@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tracks.models import House, Neighborhood, Agent, Buyer, Owner
+from neighborhood.models import House, Neighborhood, Agent, Buyer, Owner
 
 class NeighborhoodSerializer(serializers.HyperlinkedModelSerializer):
 	model = Neighborhood
@@ -7,7 +7,7 @@ class NeighborhoodSerializer(serializers.HyperlinkedModelSerializer):
 
 class HouseSerializer(serializers.HyperlinkedModelSerializer):
 	model = House
-	fields = ("id", "url", "address", "bed", "bath", "sq_ft", "lot_size", "yr_built", "agent", "selling", "image", "neighborhood", "last_sold")
+	fields = ("id", "url", "address", "bed", "bath", "sq_ft", "lot_size", "yr_built", "house_agent", "selling", "image", "house_neighborhood", "last_sold")
 
 class AgentSerializer(serializers.HyperlinkedModelSerializer):
 	model = Agent
@@ -15,8 +15,8 @@ class AgentSerializer(serializers.HyperlinkedModelSerializer):
 
 class BuyerSerializer(serializers.HyperlinkedModelSerializer):
 	model = Buyer
-	fields = ("id", "url", "first_name", "last_name", "email", "agent", "budget", "image")
+	fields = ("id", "url", "first_name", "last_name", "email", "buyer_agent", "budget", "image")
 
 class OwnerSerializer(serializers.HyperlinkedModelSerializer):
 	model = Owner
-	fields = ("id", "url", "first_name", "last_name", "email", "house", "image")
+	fields = ("id", "url", "first_name", "last_name", "email", "owner_house", "image")
