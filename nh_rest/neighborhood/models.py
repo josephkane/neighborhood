@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Neighborhood(models.Model):
 	name = models.CharField(max_length=20)
 
-	def __string__(self):
+	def __str__(self):
 		return "{}: {}".format(self.id, self.name)
 
 class Agent(User):
@@ -12,7 +12,7 @@ class Agent(User):
 	member_since = models.DateField(auto_now_add=True)
 	image = models.ImageField(upload_to="../img/agent_imgs/", default="../img/default_agent.jpg")
 
-	def __string__(self):
+	def __str__(self):
 		return "{}: {} {}".format(self.id, self.first_name, self.last_name)
 
 class House(models.Model):
@@ -28,7 +28,7 @@ class House(models.Model):
 	house_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="house_neighborhood")
 	last_sold = models.DateField(auto_now=False)
 
-	def __string__(self):
+	def __str__(self):
 		return "{}: {}".format(self.id, self.address)
 
 class Buyer(User):
