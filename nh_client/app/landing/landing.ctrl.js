@@ -4,16 +4,29 @@ angular.module("nh")
 		"$http",
 		function ($location, $http) {
 			const landCtrl = this;
-			landCtrl.login = false;
-			landCtrl.register = false;
+			landCtrl.isLoginVisible = false;
+			landCtrl.isRegisterVisible = false;
 
 			landCtrl.showLogin = function () {
-				landCtrl.register = false;
-				landCtrl.login = true;
+				landCtrl.isRegisterVisible = false;
+				landCtrl.isLoginVisible = true;
 			}
 
 			landCtrl.showRegister = function () {
-				landCtrl.login = false;
-				landCtrl.register = true
+				landCtrl.isLoginVisible = false;
+				landCtrl.isRegisterVisible = true
+			}
+
+			landCtrl.login = function () {
+				console.log("username: ", landCtrl.username);
+				console.log("password: ", landCtrl.password);
+			}
+			landCtrl.register = function () {
+				console.log("username: ", landCtrl.username);
+				console.log("password: ", landCtrl.password);
+				console.log("firstName: ", landCtrl.firstName);
+				console.log("lastName: ", landCtrl.lastName);
+				console.log("email: ", landCtrl.email);
+				console.log("bio: ", landCtrl.bio);
 			}
 		}])
