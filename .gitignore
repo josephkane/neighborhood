@@ -1,3 +1,5 @@
 .python-version
 __pycache__/
 *.sqlite3
+agents.txt
+.DS_Store

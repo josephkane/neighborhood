@@ -75,9 +75,9 @@ def create_user(request):
 
     # check for user type, create appropriate user
     if data["user_type"] == "agent":
-        create_agent(user, data["agent_info"])
+        create_agent(user["url"], data["agent_info"])
     elif data["user_type"] == "buyer":
-        create_buyer(user, data["buyer_info"])
+        create_buyer(user["url"], data["buyer_info"])
     else:
         return HttpResponseBadRequest
 
@@ -92,31 +92,31 @@ def create_user(request):
     else:
         return Http404
 
-def create_agent(user, agent_info):
+def create_agent(user_url, agent_info):
     """
         Create new Agent and attach it to specified User
 
-        Args-User instance, agent-specific info
+        Args-User url, agent-specific info
     """
 
     new_agent = Agent.objects.create(
             bio=agent_info["bio"],
             image=agent_info["image"],
-            user=user
+            user=user-url
         )
 
     new_agent.save()
 
-def create_buyer(user, buyer_info):
+def create_buyer(user_url, buyer_info):
     """
         Create new Buyer and attach it to specified User
 
-        Args-User instance, buyer-specific info
+        Args-User url, buyer-specific info
     """
 
     new_buyer = Buyer.objects.create(
             image=buyer_info["image"],
-            user=user
+            user=user_url
         )
 
     new_buyer.save()
