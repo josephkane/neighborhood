@@ -1,2 +1,5 @@
 .python-version
-nh_rest/__pycache__
+__pycache__/
+*.sqlite3
+agents.txt
+.DS_Store

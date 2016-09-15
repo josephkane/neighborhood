@@ -1,4 +1,5 @@
-"""nh_rest URL Configuration
+"""
+nh_rest URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -15,8 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('neighborhood.urls')),
-]
+    url(r'^', include("neighborhood.urls")),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
