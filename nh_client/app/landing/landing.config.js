@@ -1,9 +1,9 @@
-angular.module("mh")
+angular.module("nh")
 	.config(($routeProvider) => {
 		$routeProvider
 			.when("/", {
 				controller: "LandingCtrl",
 				controllerAs: "landCtrl",
-				templateUrl: "landing.html"
+				templateUrl: "app/landing/landing.html"
 			})
 	})

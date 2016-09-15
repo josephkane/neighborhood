@@ -1,3 +1,40 @@
 <div>
 	<h1>WELCOME TO NEIGHBORHOOD</h1>
+
+	<div>
+		<button type="click" ng-click="landCtrl.showLogin()">Sign In</button>
+		<button type="click" ng-click="landCtrl.showRegister()">Register</button>
+	</div>
+
+	<div ng-model="loginSection" ng-show="landCtrl.login">
+		<label>Username:</label>
+		<input type="text" ng-model="username">
+		<label>Password:</label>
+		<input type="password" ng-model="password">
+	</div>
+
+	<div ng-model="registerSection" ng-show="landCtrl.register">
+		<label>First name:</label>
+		<input type="text" ng-model="firstName">
+		<label>Last name:</label>
+		<input type="text" ng-model="lastName">
+		<label>Username:</label>
+		<input type="text" ng-model="userName">
+		<label>Password:</label>
+		<input type="password" ng-model="password">
+		<label>E-mail:</label>
+		<input type="email" ng-model="email">
+		<label>Profile photo:</label>
+		<input type="file" name="img" ng-model="image">
+		<select ng-model="user_type">
+			<option value="">--</option>
+			<option value="agent">Agent</option>
+			<option value="buyer">Buyer</option>
+		</select>
+		<div ng-show="user_type == 'agent'">
+			<label>Bio</label>
+			<input type="text" ng-model="bio">
+		</div>
+	</div>
+
 </div>
