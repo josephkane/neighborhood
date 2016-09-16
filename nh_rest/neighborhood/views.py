@@ -3,8 +3,8 @@ from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, permissions
-from neighborhood.models import *
-from neighborhood.serializers import *
+from .models import *
+from .serializers import *
 
 import json
 
@@ -45,6 +45,7 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 # CREATE A USER
+@csrf_exempt
 def create_user(request):
     """
         Creates a new Django user object
@@ -54,6 +55,7 @@ def create_user(request):
 
     # loads request body to json and decode into python-readable object
     data = json.loads(request.body.decode())
+    print("REGISTER DATA: ", data)
 
     username =  data["username"]
     password = data["password"]
@@ -72,51 +74,54 @@ def create_user(request):
 
     # save user to database
     user.save()
-
+    print("USER: ", user)
     # check for user type, create appropriate user
     if data["user_type"] == "agent":
-        create_agent(user["url"], data["agent_info"])
+        create_agent(user, data["agent_info"])
     elif data["user_type"] == "buyer":
-        create_buyer(user["url"], data["buyer_info"])
+        create_buyer(user)
     else:
         return HttpResponseBadRequest
 
     # try to authenticate based on "data" properties
-    currentUser = authenticate(username=username, password=password)
+    authenticated_user = authenticate(username=username, password=password)
 
-    # if currentUser returns something, login and redirect
-    if currentUser is not None:
-        login(request, currentUser)
-        return HttpResponseRedirect('/')
-    # if currentUser returns nothing, return 404
+    # if authenticated_user returns something, login and redirect
+    success = True
+    if authenticated_user is not None:
+        login(request=request, user=authenticated_user)
+        auth_data = json.dumps({"success":success})
+        # return http response with result of login attempt as json
+        return HttpResponse(auth_data, content_type='application/json')
+    # if authenticated_user returns nothing, return 404
     else:
         return Http404
 
-def create_agent(user_url, agent_info):
+def create_agent(user, agent_info):
     """
         Create new Agent and attach it to specified User
 
         Args-User url, agent-specific info
     """
-
+    print("NEW AGENT")
     new_agent = Agent.objects.create(
             bio=agent_info["bio"],
             image=agent_info["image"],
-            user=user-url
+            user=user
         )
 
     new_agent.save()
 
-def create_buyer(user_url, buyer_info):
+def create_buyer(user):
     """
         Create new Buyer and attach it to specified User
 
         Args-User url, buyer-specific info
     """
+    print("NEW BUYER")
 
     new_buyer = Buyer.objects.create(
-            image=buyer_info["image"],
-            user=user_url
+            user=user
         )
 
     new_buyer.save()
@@ -134,12 +139,14 @@ def login_user(request):
     # loads request body to json and decode into python-readable object
     data = json.loads(request.body.decode())
 
+    username = data['username']
+    password = data['password']
+
     # use python authenticate method to verify
     authenticated_user = authenticate(
-            username=data['username'],
-            password=data['password']
+            username=username,
+            password=password
         )
-
     # if authenticate method returns something, log the user in
     success = True
     if authenticated_user is not None:

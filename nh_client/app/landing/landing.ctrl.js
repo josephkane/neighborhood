@@ -2,7 +2,8 @@ angular.module("nh")
 	.controller("LandingCtrl", [
 		"$location",
 		"$http",
-		function ($location, $http) {
+		"apiUrl",
+		function ($location, $http, apiUrl) {
 			const landCtrl = this;
 			landCtrl.isLoginVisible = false;
 			landCtrl.isRegisterVisible = false;
@@ -18,15 +19,38 @@ angular.module("nh")
 			}
 
 			landCtrl.login = function () {
-				console.log("username: ", landCtrl.username);
-				console.log("password: ", landCtrl.password);
+				console.log("login");
+				$http({
+					url: `${apiUrl}/login/`,
+					method: "POST",
+					headers: {"Content-type": "application/x-www-form-encoded"},
+					data: {
+						"username": landCtrl.username,
+						"password": landCtrl.password
+					}
+				})
+				.then((res) => {
+					console.log("res: ", res);
+				})
 			}
 			landCtrl.register = function () {
-				console.log("username: ", landCtrl.username);
-				console.log("password: ", landCtrl.password);
-				console.log("firstName: ", landCtrl.firstName);
-				console.log("lastName: ", landCtrl.lastName);
-				console.log("email: ", landCtrl.email);
-				console.log("bio: ", landCtrl.bio);
+				console.log("register");
+				$http({
+					url: `${apiUrl}/create_user/`,
+					method: "POST",
+					headers: {"Content-type": "application/x-www-form-encoded"},
+					data: {
+						"username": landCtrl.userName,
+						"password": landCtrl.password,
+						"first_name": landCtrl.firstName,
+						"last_name": landCtrl.lastName,
+						"email": landCtrl.email,
+						"user_type": landCtrl.user_type,
+						"bio": landCtrl.bio
+					}
+				})
+				.then((res) => {
+					console.log("res: ", res);
+				})
 			}
 		}])
