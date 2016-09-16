@@ -1,0 +1,25 @@
+{
+  "name": "nh_client",
+  "homepage": "https://github.com/josephkane/neighborhood",
+  "authors": [
+    "Joseph Kane <josephckane@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-bootstrap": "^2.1.3",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.0"
+  }
+}
