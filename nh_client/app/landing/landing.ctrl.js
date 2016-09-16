@@ -29,9 +29,8 @@ angular.module("nh")
 						"password": landCtrl.password
 					}
 				})
-				.then((res) => {
-					console.log("res: ", res);
-				})
+				.then(() => $location.path("/profile"))
+				.catch((err) => console.log(err))
 			}
 			landCtrl.register = function () {
 				console.log("register");
@@ -49,8 +48,7 @@ angular.module("nh")
 						"bio": landCtrl.bio
 					}
 				})
-				.then((res) => {
-					console.log("res: ", res);
-				})
+				.then(() => $location.path("/profile"))
+				.catch((err) => console.log(err))
 			}
 		}])
