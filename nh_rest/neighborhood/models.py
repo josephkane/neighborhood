@@ -30,17 +30,17 @@ class House(models.Model):
 	bed = models.IntegerField(blank=False, null=False)
 	bath = models.DecimalField(blank=False, null=False, max_digits=2, decimal_places=1)
 	sq_ft = models.IntegerField(blank=False, null=False)
-	lot_size = models.IntegerField
-	yr_built = models.IntegerField
-	selling = models.BooleanField(blank=False, null=False)
+	lot_size = models.IntegerField(null=True)
+	yr_built = models.IntegerField(null=True)
+	selling = models.BooleanField(blank=False, null=False, default=True)
 	image = models.ImageField(upload_to="../img/house_imgs/", default="../img/default_house.jpg")
 	house_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="house")
-	last_sold = models.DateField(auto_now=False)
+	last_sold = models.DateField(auto_now=False, null=True)
 	price = models.IntegerField(blank=False, null=False)
 	description = models.CharField(max_length=200)
 
 	def __str__(self):
-		return "{}: {}".format(self.id, self.address)
+		return "{}".format(self.address)
 
 class HouseRequest(models.Model):
 	request_buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, related_name="request")

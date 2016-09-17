@@ -35,7 +35,7 @@ angular.module("nh")
 			landCtrl.register = function () {
 				console.log("register");
 				$http({
-					url: `${apiUrl}/create_user/`,
+					url: `${apiUrl}/register/`,
 					method: "POST",
 					headers: {"Content-type": "application/x-www-form-encoded"},
 					data: {

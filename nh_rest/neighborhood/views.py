@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.forms.models import model_to_dict
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseBadRequest
@@ -46,7 +48,7 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
 
 # CREATE A USER
 @csrf_exempt
-def create_user(request):
+def register_user(request):
     """
         Creates a new Django user object
 
@@ -55,7 +57,6 @@ def create_user(request):
 
     # loads request body to json and decode into python-readable object
     data = json.loads(request.body.decode())
-    print("REGISTER DATA: ", data)
 
     username =  data["username"]
     password = data["password"]
@@ -74,7 +75,6 @@ def create_user(request):
 
     # save user to database
     user.save()
-    print("USER: ", user)
     # check for user type, create appropriate user
     if data["user_type"] == "agent":
         create_agent(user, data["agent_info"])
@@ -139,13 +139,10 @@ def login_user(request):
     # loads request body to json and decode into python-readable object
     data = json.loads(request.body.decode())
 
-    username = data['username']
-    password = data['password']
-
     # use python authenticate method to verify
     authenticated_user = authenticate(
-            username=username,
-            password=password
+            username=data['username'],
+            password=data['password']
         )
     # if authenticate method returns something, log the user in
     success = True
@@ -169,3 +166,60 @@ def logout_view(request):
     logout(request)
     print('user', request.user)
     return HttpResponseRedirect('/')
+
+@csrf_exempt
+def create_new_house(request):
+    """
+        Creates a new house with the parameters specified by the user
+
+        Args-http request object
+    """
+
+    # loads request body to json and decode into python-readable object
+    data = json.loads(request.body.decode())
+
+    # make vars for readability
+    # agent = data["agent"]
+    address = data["address"]
+    bed = data["bed"]
+    bath = data["bath"]
+    sq_ft = data["sq_ft"]
+    lot_size = data["lot_size"]
+    yr_built = data["yr_built"]
+    # image = data["image"]
+    # neighborhood = data["neighborhood"]
+    price = data["price"]
+    description = data["description"]
+
+    # create new house
+    new_house = House.objects.create(
+            address = address,
+            # house_agent = agent,
+            bed = bed,
+            bath = bath,
+            sq_ft = sq_ft,
+            lot_size = lot_size,
+            yr_built = yr_built,
+            # image = image,
+            # house_neighborhood = neighborhood,
+            price = price,
+            description = description
+        )
+
+    # save house to database
+    new_house.save()
+
+    new_house = model_to_dict(new_house)
+
+    # house_data = HouseSerializer(new_house, context={"request": request})
+    # return http response with result of login attempt as json
+    print("NEW_HOUSE: ", new_house)
+    print("DUMP: ", json.dumps({"img": str(new_house["image"])}))
+    new_house["image"] = str(new_house["image"])
+    return_house = json.dumps({"house": new_house})
+    return HttpResponse(return_house, content_type='application/json')
+
+
+
+
+
