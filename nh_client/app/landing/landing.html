@@ -19,7 +19,7 @@
 			</div>
 		</form>
 
-	<form name="registerForm" ng-submit="landCtrl.register()" ng-show="landCtrl.isRegisterVisible">
+	<form name="registerForm" ng-submit="landCtrl.register(image)" ng-show="landCtrl.isRegisterVisible">
 		<div ng-model="registerSection">
 			<label>First name:</label>
 			<input type="text" ng-model="landCtrl.firstName">
@@ -32,7 +32,7 @@
 			<label>E-mail:</label>
 			<input type="email" ng-model="landCtrl.email">
 			<label>Profile photo:</label>
-			<input type="file" name="img" ng-model="landCtrl.image">
+			<input type="file" name="img" ng-model="image">
 			<select ng-model="landCtrl.user_type">
 				<option value="">--</option>
 				<option value="agent">Agent</option>
