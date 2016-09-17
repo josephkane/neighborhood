@@ -11,14 +11,14 @@ class Agent(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	bio = models.CharField(max_length=200)
 	member_since = models.DateField(auto_now_add=True)
-	image = models.ImageField(upload_to="../img/agent_imgs/", default="../img/default_profile.gif")
+	image = models.ImageField(blank=True, upload_to="agent_imgs/", default="default_profile.gif")
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)
 
 class Buyer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to="../img/buyer_imgs/", default="../img/default_profile.gif")
+	image = models.ImageField(blank=True, upload_to="buyer_imgs/", default="default_profile.gif")
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)
@@ -33,7 +33,7 @@ class House(models.Model):
 	lot_size = models.IntegerField(null=True)
 	yr_built = models.IntegerField(null=True)
 	selling = models.BooleanField(blank=False, null=False, default=True)
-	image = models.ImageField(upload_to="../img/house_imgs/", default="../img/default_house.jpg")
+	image = models.ImageField(upload_to="house_imgs/", default="default_house.jpg")
 	house_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="house")
 	last_sold = models.DateField(auto_now=False, null=True)
 	price = models.IntegerField(blank=False, null=False)

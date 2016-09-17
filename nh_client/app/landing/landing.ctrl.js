@@ -34,6 +34,11 @@ angular.module("nh")
 			}
 			landCtrl.register = function () {
 				console.log("register");
+
+				let input = document.querySelector('[type="file"]');
+      			let file = input.files[0];
+      			console.log("IMAGE: ", file);
+
 				$http({
 					url: `${apiUrl}/register/`,
 					method: "POST",
@@ -44,6 +49,7 @@ angular.module("nh")
 						"first_name": landCtrl.firstName,
 						"last_name": landCtrl.lastName,
 						"email": landCtrl.email,
+						"image": file,
 						"user_type": landCtrl.user_type,
 						"bio": landCtrl.bio
 					}

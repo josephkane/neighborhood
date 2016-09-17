@@ -57,12 +57,14 @@ def register_user(request):
 
     # loads request body to json and decode into python-readable object
     data = json.loads(request.body.decode())
+    print("DATA: ", data)
 
     username =  data["username"]
     password = data["password"]
     email = data["email"]
     first_name = data["first_name"]
     last_name = data["last_name"]
+    image = data["image"]
 
     # create user object
     user = User.objects.create_user(
@@ -70,16 +72,16 @@ def register_user(request):
             password=password,
             email=email,
             first_name=first_name,
-            last_name=last_name,
+            last_name=last_name
         )
 
     # save user to database
     user.save()
     # check for user type, create appropriate user
     if data["user_type"] == "agent":
-        create_agent(user, data["agent_info"])
+        create_agent(user, data["bio"], data["image"])
     elif data["user_type"] == "buyer":
-        create_buyer(user)
+        create_buyer(user, data["image"])
     else:
         return HttpResponseBadRequest
 
@@ -97,7 +99,7 @@ def register_user(request):
     else:
         return Http404
 
-def create_agent(user, agent_info):
+def create_agent(user, bio, image):
     """
         Create new Agent and attach it to specified User
 
@@ -105,14 +107,14 @@ def create_agent(user, agent_info):
     """
     print("NEW AGENT")
     new_agent = Agent.objects.create(
-            bio=agent_info["bio"],
-            image=agent_info["image"],
+            bio=bio,
+            image=image,
             user=user
         )
 
     new_agent.save()
 
-def create_buyer(user):
+def create_buyer(user, image):
     """
         Create new Buyer and attach it to specified User
 
@@ -121,6 +123,7 @@ def create_buyer(user):
     print("NEW BUYER")
 
     new_buyer = Buyer.objects.create(
+            image=image,
             user=user
         )
 
