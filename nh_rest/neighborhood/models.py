@@ -11,14 +11,14 @@ class Agent(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	bio = models.CharField(max_length=200)
 	member_since = models.DateField(auto_now_add=True)
-	image = models.ImageField(blank=True, upload_to="agent_imgs/", default="default_profile.gif")
+	image = models.CharField(max_length=500)
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)
 
 class Buyer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	image = models.ImageField(blank=True, upload_to="buyer_imgs/", default="default_profile.gif")
+	image = models.CharField(max_length=500)
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)
