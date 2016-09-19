@@ -14,43 +14,49 @@ import json
 class HousesViewset(viewsets.ModelViewSet):
     queryset = House.objects.all()
     serializer_class = HouseSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class NeighborhoodsViewset(viewsets.ModelViewSet):
     queryset = Neighborhood.objects.all()
     serializer_class = NeighborhoodSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class AgentsViewset(viewsets.ModelViewSet):
     queryset = Agent.objects.all()
     serializer_class = AgentSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class BuyersViewset(viewsets.ModelViewSet):
     queryset = Buyer.objects.all()
     serializer_class = BuyerSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+            """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+            """
+            queryset = Buyer.objects.all()
+            user_id = self.request.query_params.get('user_id', None)
+            if user_id is not None:
+                queryset = queryset.filter(user__id = user_id)
+            return queryset
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    # lookup_field = "username"
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class HouseRequestsViewset(viewsets.ModelViewSet):
     queryset = HouseRequest.objects.all()
     serializer_class = HouseRequestSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
             """
-            Optionally restricts the returned purchases to a given user,
-            by filtering against a `username` query parameter in the URL.
+                Optionally restricts the returned purchases to a given user,
+                by filtering against a `username` query parameter in the URL.
             """
             queryset = HouseRequest.objects.all()
             buyer_id = self.request.query_params.get('buyer_id', None)
@@ -58,7 +64,6 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
                 queryset = queryset.filter(request_buyer__id = buyer_id)
             return queryset
 
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 # CREATE A USER
 @csrf_exempt
@@ -284,18 +289,3 @@ def new_house_request(request):
     the_request = serializers.serialize("json", (new_request,))
     # return newly created house request
     return HttpResponse(the_request, content_type='application/json')
-
-def get_house_requests(request):
-    """
-        Get all house requests made by a user
-
-        Args-http request object
-    """
-
-    # decode request object
-    data = json.loads(request.body.decode())
-    print("DATA: ", data)
-
-    # make vars for readability
-
-

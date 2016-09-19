@@ -24,11 +24,6 @@ class AgentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Agent
         fields = ("id", "url", "user", "bio", "member_since", "image")
-        extra_kwargs = {
-            'url': {'lookup_field': 'username'},
-            'user': {'lookup_field': 'username'}
-        }
-
 
 class BuyerSerializer(serializers.HyperlinkedModelSerializer):
 
