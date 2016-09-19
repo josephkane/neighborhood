@@ -3,10 +3,10 @@ angular.module("nh", ["ngRoute", "ngCookies"])
 	// .constant("FBUrl", "http://localhost:8000")
 
 	// allows django & angular to pass csrf token in header of XHR instead of bundled with django templates
-	.config($httpProvider => {
-    	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-	});
+	// .config($httpProvider => {
+ //    	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+ //    	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+	// });
 
 firebase.initializeApp({
 	apiKey: "AIzaSyANGk9Up_VDGDqnr5xplWcBQSYzkSB7be8",

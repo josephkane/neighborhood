@@ -34,6 +34,9 @@ angular.module("nh")
 				})
 				.then((res) => {
 					console.log("res: ", res);
+					let user = res.data[0];
+					let user_info = res.data[1];
+					LandingFactory.setUser(user, user_info);
 					LandingFactory.setCredentials({
 						"username": landCtrl.username,
 						"password": landCtrl.password

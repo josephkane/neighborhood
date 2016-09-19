@@ -1,3 +1,21 @@
 <h1>PROFILE PAGE</h1>
 
-<h2>Welcome {{ profCtrl.user.first_name }}</h2>
+<h2>Welcome {{ profCtrl.user.fields.first_name }}</h2>
+
+<button type="click" ng-click="profCtrl.showHouseRequestForm()">New House Request</button>
+
+<div ng-if="profCtrl.houseRequestFormIsVisible">
+	<label>Bedrooms:</label>
+	<input type="number" min="1" max="10+" ng-model="profCtrl.bed">
+	<label>Bathrooms:</label>
+	<input type="number" min="1" max="5" step="0.5" ng-model="profCtrl.bath">
+	<label>Square feet:</label>
+	<input type="number" min="500" max="5000" step="100" ng-model="profCtrl.sq_ft">
+	<label>Budget:</label>
+	<input type="number" min="100000" max="1000000" step="1000" ng-model="profCtrl.budget">
+	<label>Neighborhood:</label>
+	<select
+		ng-model="profCtrl.requestedNeighborhood"
+		ng-options="n as n for n in profCtrl.neighborhoodsArray">
+	</select>
+</div>
