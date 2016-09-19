@@ -8,9 +8,7 @@ angular.module("nh")
 
 			return {
 				getHouseRequests (user) {
-					console.log("user?", user);
 					let getRequests = $http.get(`${apiUrl}/house_requests/?buyer_id=${user.pk}`)
-					console.log("getRequests?", getRequests);
 					return getRequests.then((res) => res.data)
 				}
 			}

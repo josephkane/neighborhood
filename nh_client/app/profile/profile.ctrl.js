@@ -12,20 +12,16 @@ angular.module("nh")
 			// profCtrl.requests = [];
 
 			let user = LandingFactory.getUser()
-			console.log("user: ", user);
 			profCtrl.user = user.user
 
 			$http.get(`${apiUrl}/neighborhoods`)
 				.then((res) => {
-					console.log("neighborhoods: ", res);
 					profCtrl.neighborhoodsArray = res.data;
 				})
 
 				ProfileFactory.getHouseRequests(user.add_info)
 					.then((res) => {
 						profCtrl.requests = res;
-						console.log("res.data", res);
-						console.log("requests: ", profCtrl.requests);
 					});
 
 			profCtrl.showHouseRequestForm = function () {
@@ -57,7 +53,10 @@ angular.module("nh")
 					}
 				})
 				.then((res) => {
-					profCtrl.requests.push(res.fields);
+					ProfileFactory.getHouseRequests(user.add_info)
+					.then((res) => {
+						profCtrl.requests = res;
+					})
 				})
 			}
 
