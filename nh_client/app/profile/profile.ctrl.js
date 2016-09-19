@@ -15,7 +15,8 @@ angular.module("nh")
 			$http.get(`${apiUrl}/neighborhoods`)
 				.then((res) => {
 					console.log("neighborhoods: ", res);
-					profCtrl.neighborhoodsArray = res.data.map((n) => n.name);
+					// profCtrl.neighborhoodsArray = res.data.map((n) => n.name);
+					profCtrl.neighborhoodsArray = res.data;
 					$timeout();
 				})
 				// .then($timeout)
@@ -35,6 +36,7 @@ angular.module("nh")
 
 			profCtrl.submitHouseRequest = function () {
 				console.log("request!");
+				console.log("neighborhood: ", profCtrl.requestedNeighborhood);
 				$http({
 					url: `${apiUrl}/new_house_request/`,
 					method: "POST",

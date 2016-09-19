@@ -253,8 +253,8 @@ def new_house_request(request):
     bath = data["bath"]
     sq_ft = data["sq_ft"]
     budget = data["budget"]
-    neighborhood = data["neighborhood"]
-    buyer = Buyer.objects.get(pk=data["buyer"].pk)
+    neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
+    buyer = Buyer.objects.get(pk=data["buyer"]["pk"])
 
     # make new house request
     new_request = HouseRequest.objects.create(

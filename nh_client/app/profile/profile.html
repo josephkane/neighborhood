@@ -16,7 +16,7 @@
 	<label>Neighborhood:</label>
 	<select
 		ng-model="profCtrl.requestedNeighborhood"
-		ng-options="n as n for n in profCtrl.neighborhoodsArray">
+		ng-options="n as n.name for n in profCtrl.neighborhoodsArray">
 	</select>
 	<button type="submit">Submit</button>
 	<button type="click" ng-click="profCtrl.cancelHouseRequestForm()">Cancel</button>
