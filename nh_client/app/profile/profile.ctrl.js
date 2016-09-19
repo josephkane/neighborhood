@@ -25,7 +25,29 @@ angular.module("nh")
 			}
 
 			profCtrl.cancelHouseRequestForm = function () {
+				profCtrl.bed = null;
+				profCtrl.bath = null;
+				profCtrl.sq_ft = null;
+				profCtrl.budget = null;
+				profCtrl.neighborhood = null;
 				profCtrl.houseRequestFormIsVisible = false;
+			}
+
+			profCtrl.submitHouseRequest = function () {
+				console.log("request!");
+				$http({
+					url: `${apiUrl}/new_house_request/`,
+					method: "POST",
+					headers: {"Content-type": "application/x-www-form-encoded"},
+					data: {
+						"bed": profCtrl.bed,
+						"bath": profCtrl.bath,
+						"sq_ft": profCtrl.sq_ft,
+						"budget": profCtrl.budget,
+						"neighborhood": profCtrl.requestedNeighborhood,
+						"buyer": user.add_info
+					}
+				})
 			}
 
 		}

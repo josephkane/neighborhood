@@ -237,7 +237,42 @@ def create_new_house(request):
     return_house = json.dumps({"house": new_house})
     return HttpResponse(return_house, content_type='application/json')
 
+@csrf_exempt
+def new_house_request(request):
+    """
+        Creates a new house request
 
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+
+    # make vars for readability
+    bed = data["bed"]
+    bath = data["bath"]
+    sq_ft = data["sq_ft"]
+    budget = data["budget"]
+    neighborhood = data["neighborhood"]
+    buyer = Buyer.objects.get(pk=data["buyer"].pk)
+
+    # make new house request
+    new_request = HouseRequest.objects.create(
+        bed=bed,
+        bath=bath,
+        sq_ft=sq_ft,
+        budget=budget,
+        request_neighborhood=neighborhood,
+        request_buyer=buyer
+    )
+
+    # save to database
+    new_request.save()
+
+    # serialize new request
+    the_request = serializers.serialize("json", (new_request,))
+    # return newly created house request
+    return HttpResponse(the_request, content_type='application/json')
 
 
 
