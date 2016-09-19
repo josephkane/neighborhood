@@ -13,5 +13,6 @@ router.register(r'house_request', views.HouseRequestsViewset)
 urlpatterns = [
     url(r'^', include(router.urls)),
 	url(r'^login/$', views.login_user, name="login_user"),
-	url(r'^create_user/$', views.create_user, name="create_user")
+	url(r'^register/$', views.register_user, name="register_user"),
+	url(r'^create_new_house/$', views.create_new_house, name="create_new_house")
 ]

@@ -129,4 +129,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = "/Users/josephkane/workspace/capstone/neighborhood/nh_rest/img/"
-MEDIA_URL = "/media/"
+MEDIA_URL = "/img/"
