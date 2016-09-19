@@ -29,7 +29,9 @@ angular.module("nh")
 						"password": landCtrl.password
 					}
 				})
-				.then(() => $location.path("/profile"))
+				.then((res) => {
+					console.log("res: ", res);
+					$location.path("/profile")})
 				.catch((err) => console.log(err))
 			}
 			landCtrl.register = function (file) {
@@ -42,7 +44,6 @@ angular.module("nh")
 
 				firebase.storage().ref().child(randomPath).put(image_file)
 					.then((res) => {
-						console.log("RES: ", res);
 						$http({
 							url: `${apiUrl}/register/`,
 							method: "POST",
@@ -59,12 +60,12 @@ angular.module("nh")
 							}
 						})
 					})
+					.then((res) => {
+						console.log("RES: ", res);
+						$location.path("/profile")
+					})
+					.catch((err) => console.log(err))
 			}
-			// .then((res) => {
-			// 	console.log("RES: ", res);
-			// 	$location.path("/profile")
-			// })
-			// .catch((err) => console.log(err))
 
 			// landCtrl.register = function () {
 			// 	console.log("register");

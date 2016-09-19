@@ -92,7 +92,7 @@ def register_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
-        auth_data = json.dumps({"success":success})
+        auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
         # return http response with result of login attempt as json
         return HttpResponse(auth_data, content_type='application/json')
     # if authenticated_user returns nothing, return 404
@@ -155,7 +155,7 @@ def login_user(request):
     else:
         success = False
 
-    auth_data = json.dumps({"success":success})
+    auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
     # return http response with result of login attempt as json
     return HttpResponse(auth_data, content_type='application/json')
 

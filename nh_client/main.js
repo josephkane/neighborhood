@@ -1,4 +1,4 @@
-angular.module("nh", ["ngRoute"])
+angular.module("nh", ["ngRoute", "ngCookies"])
 	.constant("apiUrl", "http://localhost:8000")
 	// .constant("FBUrl", "http://localhost:8000")
 
