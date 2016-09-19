@@ -33,7 +33,8 @@ angular.module("nh")
 					console.log("res: ", res);
 					$location.path("/profile")})
 				.catch((err) => console.log(err))
-			}
+			};
+
 			landCtrl.register = function (file) {
 				let input = document.querySelector('[type="file"]');
 				let image_file = input.files[0];
@@ -59,12 +60,12 @@ angular.module("nh")
 								"bio": landCtrl.bio
 							}
 						})
+						.then((res) => {
+							console.log("RES: ", res);
+							$location.path("/profile")
+						})
+						.catch((err) => console.log(err))
 					})
-					.then((res) => {
-						console.log("RES: ", res);
-						$location.path("/profile")
-					})
-					.catch((err) => console.log(err))
 			}
 
 			// landCtrl.register = function () {
