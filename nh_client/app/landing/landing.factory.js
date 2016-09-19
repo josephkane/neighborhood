@@ -13,7 +13,8 @@ angular.module('nh').factory('LandingFactory', [
     		},
 
     		getCredentials () {
-    			return $cookies.get("creds")
+    			userCredentials = $cookies.get("creds")
+                return window.atob(userCredentials)
     		},
 
     		logout () {

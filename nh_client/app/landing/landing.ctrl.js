@@ -3,7 +3,9 @@ angular.module("nh")
 		"$location",
 		"$http",
 		"apiUrl",
-		function ($location, $http, apiUrl) {
+		"$timeout",
+		"LandingFactory",
+		function ($location, $http, apiUrl, $timeout, LandingFactory) {
 			const landCtrl = this;
 			landCtrl.isLoginVisible = false;
 			landCtrl.isRegisterVisible = false;
@@ -26,12 +28,18 @@ angular.module("nh")
 					headers: {"Content-type": "application/x-www-form-encoded"},
 					data: {
 						"username": landCtrl.username,
-						"password": landCtrl.password
+						"password": landCtrl.password,
+						"user_type": landCtrl.userLoginType
 					}
 				})
 				.then((res) => {
 					console.log("res: ", res);
-					$location.path("/profile")})
+					LandingFactory.setCredentials({
+						"username": landCtrl.username,
+						"password": landCtrl.password
+					})
+					$location.path(`/profile`)});
+					$timeout()
 				.catch((err) => console.log(err))
 			};
 
@@ -61,8 +69,13 @@ angular.module("nh")
 							}
 						})
 						.then((res) => {
-							console.log("RES: ", res);
-							$location.path("/profile")
+							console.log("res: ", res);
+							LandingFactory.setCredentials({
+								"username": landCtrl.username,
+								"password": landCtrl.password
+							})
+							$location.path(`/${landCtrl.userLoginType}/profile`);
+							$timeout()
 						})
 						.catch((err) => console.log(err))
 					})

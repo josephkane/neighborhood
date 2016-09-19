@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, permissions
 from .models import *
 from .serializers import *
+from django.core import serializers
 
 import json
 
@@ -37,6 +38,8 @@ class BuyersViewset(viewsets.ModelViewSet):
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    # lookup_field = "username"
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -92,9 +95,15 @@ def register_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
-        auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
+        # get additional data of logged-in user
+        if data["user_type"] == "agent":
+            add_info = Agent.objects.get(user=authenticated_user)
+        else:
+            add_info = Buyer.objects.get(user=authenticated_user)
+
+        the_user = serializers.serialize('json', (authenticated_user, add_info))
         # return http response with result of login attempt as json
-        return HttpResponse(auth_data, content_type='application/json')
+        return HttpResponse(the_user, content_type='application/json')
     # if authenticated_user returns nothing, return 404
     else:
         return Http404
@@ -155,9 +164,15 @@ def login_user(request):
     else:
         success = False
 
-    auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
+
+    if data["user_type"] == "agent":
+        add_info = Agent.objects.get(user=authenticated_user)
+    else:
+        add_info = Buyer.objects.get(user=authenticated_user)
+
+    the_user = serializers.serialize('json', (authenticated_user, add_info))
     # return http response with result of login attempt as json
-    return HttpResponse(auth_data, content_type='application/json')
+    return HttpResponse(the_user, content_type='application/json')
 
 # logout user
 def logout_view(request):
