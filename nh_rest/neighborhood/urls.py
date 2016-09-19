@@ -15,6 +15,7 @@ urlpatterns = [
 	url(r'^login/$', views.login_user, name="login_user"),
 	url(r'^register/$', views.register_user, name="register_user"),
 	url(r'^create_new_house/$', views.create_new_house, name="create_new_house"),
-	url(r'^new_house_request/$', views.new_house_request, name="new_house_request")
+	url(r'^new_house_request/$', views.new_house_request, name="new_house_request"),
+	url(r'^get_house_requests/$', views.get_house_requests, name="get_house_requests")
 
 ]

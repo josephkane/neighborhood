@@ -5,9 +5,12 @@ angular.module("nh")
 		"apiUrl",
 		"LandingFactory",
 		"$timeout",
-		function ($location, $http, apiUrl, LandingFactory, $timeout) {
+		"ProfileFactory",
+		function ($location, $http, apiUrl, LandingFactory, $timeout, ProfileFactory) {
 			const profCtrl = this;
 			profCtrl.houseRequestFormIsVisible = false;
+			// profCtrl.requests = [];
+
 			let user = LandingFactory.getUser()
 			console.log("user: ", user);
 			profCtrl.user = user.user
@@ -15,11 +18,15 @@ angular.module("nh")
 			$http.get(`${apiUrl}/neighborhoods`)
 				.then((res) => {
 					console.log("neighborhoods: ", res);
-					// profCtrl.neighborhoodsArray = res.data.map((n) => n.name);
 					profCtrl.neighborhoodsArray = res.data;
-					$timeout();
 				})
-				// .then($timeout)
+
+				ProfileFactory.getHouseRequests(user.add_info)
+					.then((res) => {
+						profCtrl.requests = res;
+						console.log("res.data", res);
+						console.log("requests: ", profCtrl.requests);
+					});
 
 			profCtrl.showHouseRequestForm = function () {
 				profCtrl.houseRequestFormIsVisible = true;
@@ -36,7 +43,6 @@ angular.module("nh")
 
 			profCtrl.submitHouseRequest = function () {
 				console.log("request!");
-				console.log("neighborhood: ", profCtrl.requestedNeighborhood);
 				$http({
 					url: `${apiUrl}/new_house_request/`,
 					method: "POST",
@@ -49,6 +55,9 @@ angular.module("nh")
 						"neighborhood": profCtrl.requestedNeighborhood,
 						"buyer": user.add_info
 					}
+				})
+				.then((res) => {
+					profCtrl.requests.push(res.fields);
 				})
 			}
 

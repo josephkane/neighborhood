@@ -47,6 +47,17 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
     queryset = HouseRequest.objects.all()
     serializer_class = HouseRequestSerializer
 
+    def get_queryset(self):
+            """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+            """
+            queryset = HouseRequest.objects.all()
+            buyer_id = self.request.query_params.get('buyer_id', None)
+            if buyer_id is not None:
+                queryset = queryset.filter(request_buyer__id = buyer_id)
+            return queryset
+
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 # CREATE A USER
@@ -274,5 +285,17 @@ def new_house_request(request):
     # return newly created house request
     return HttpResponse(the_request, content_type='application/json')
 
+def get_house_requests(request):
+    """
+        Get all house requests made by a user
+
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+    print("DATA: ", data)
+
+    # make vars for readability
 
 

@@ -2,6 +2,17 @@
 
 <h2>Welcome {{ profCtrl.user.fields.first_name }}</h2>
 
+<div>
+	<h2>My House Requests</h2>
+	<div ng-repeat="request in profCtrl.requests">
+		<p>{{ request.bed }}</p>
+		<p>{{ request.bath }}</p>
+		<p>{{ request.sq_ft }}</p>
+		<p>{{ request.budget }}</p>
+		<p>{{ request.neighborhood }}</p>
+	</div>
+</div>
+
 <button type="click" ng-click="profCtrl.showHouseRequestForm()">New House Request</button>
 
 <form name="houseRequestForm" ng-submit="profCtrl.submitHouseRequest()" ng-if="profCtrl.houseRequestFormIsVisible">
