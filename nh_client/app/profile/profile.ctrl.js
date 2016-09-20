@@ -18,10 +18,10 @@ angular.module("nh")
 					profCtrl.neighborhoodsArray = res.data;
 				})
 
-				ProfileFactory.getHouseRequests(user.add_info)
-					.then((res) => {
-						profCtrl.requests = res;
-					});
+			ProfileFactory.getHouseRequests(user.add_info)
+				.then((res) => {
+					profCtrl.requests = res;
+				});
 
 			profCtrl.showHouseRequestForm = function () {
 				profCtrl.houseRequestFormIsVisible = true;

@@ -5,8 +5,8 @@ angular.module("nh")
 		"apiUrl",
 		"LandingFactory",
 		"$timeout",
-		"ProfileFactory",
-		function ($location, $http, apiUrl, LandingFactory, $timeout, ProfileFactory) {
+		"AgentProfileFactory",
+		function ($location, $http, apiUrl, LandingFactory, $timeout, AgentProfileFactory) {
 			const agentCtrl = this;
 			agentCtrl.newHouseFormIsVisible = false;
 
@@ -17,6 +17,11 @@ angular.module("nh")
 				.then((res) => {
 					agentCtrl.neighborhoodsArray = res.data;
 				})
+
+			AgentProfileFactory.getListedHouses(user.add_info)
+				.then((res) => {
+					agentCtrl.houses = res;
+				});
 
 			agentCtrl.showNewHouseForm = function () {
 				agentCtrl.newHouseFormIsVisible = true;

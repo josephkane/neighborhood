@@ -2,8 +2,7 @@ angular.module("nh")
 	.factory("ProfileFactory", [
 		"$http",
 		"apiUrl",
-		"$timeout",
-		($http, apiUrl, $timeout) => {
+		($http, apiUrl) => {
 			let request_array;
 
 			return {

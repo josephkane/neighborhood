@@ -2,6 +2,16 @@
 
 <h2>Welcome {{ agentCtrl.user.fields.first_name }}</h2>
 
+<div>
+	<h2>My Houses</h2>
+	<div ng-repeat="house in agentCtrl.houses">
+		<p>Address: {{ house.address }}</p>
+		<p>Beds: {{ house.bed }}</p>
+		<p>Bath: {{ house.bath }}</p>
+		<p>Square feet: {{ house.sq_ft }}</p>
+	</div>
+</div>
+
 <button type="click" ng-click="agentCtrl.showNewHouseForm()">List New House</button>
 
 <form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)" ng-if="agentCtrl.newHouseFormIsVisible">
