@@ -12,6 +12,16 @@
 	</div>
 </div>
 
+<div>
+	<h2>House Requests</h2>
+	<div ng-repeat="request in agentCtrl.requests">
+		<p>Beds: {{ request.bed }}</p>
+		<p>Bath: {{ request.bath }}</p>
+		<p>Square feet: {{ request.sq_ft }}</p>
+		<p>Budget: {{ request.budget }}</p>
+	</div>
+</div>
+
 <button type="click" ng-click="agentCtrl.showNewHouseForm()">List New House</button>
 
 <form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)" ng-if="agentCtrl.newHouseFormIsVisible">

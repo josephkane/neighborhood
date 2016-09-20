@@ -19,9 +19,10 @@ angular.module("nh")
 				})
 
 			AgentProfileFactory.getListedHouses(user.add_info)
-				.then((res) => {
-					agentCtrl.houses = res;
-				});
+				.then((res) => agentCtrl.houses = res);
+
+			AgentProfileFactory.getHouseRequests()
+				.then((res) => agentCtrl.requests = res)
 
 			agentCtrl.showNewHouseForm = function () {
 				agentCtrl.newHouseFormIsVisible = true;
