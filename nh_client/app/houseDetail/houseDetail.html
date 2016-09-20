@@ -2,8 +2,8 @@
 
 <div>
 	<p ng-show="houseCtrl.house.house_agent !== null">
-		Listed by: {{ houseCtrl.house.house_agent.user.first_name }}
-		{{ houseCtrl.house.house_agent.user.last_name }}
+		Listed by: <a href="#/agentDetail/{{houseCtrl.house.house_agent.id}}">{{ houseCtrl.house.house_agent.user.first_name }}
+		{{ houseCtrl.house.house_agent.user.last_name }}</a>
 	</p>
 	<p ng-show="houseCtrl.house.house_buyer !== null">
 		Listed by: {{ houseCtrl.house.house_buyer.user.first_name }}
