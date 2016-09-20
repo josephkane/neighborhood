@@ -23,7 +23,6 @@ angular.module("nh")
 
 			ProfileFactory.getHousesForSale()
 				.then((res) => {
-					console.log("res:", res);
 					profCtrl.housesForSale = res;
 					$timeout();
 				})
@@ -62,6 +61,11 @@ angular.module("nh")
 						profCtrl.requests = res;
 					})
 				})
+			}
+
+			profCtrl.showHouse = function (house) {
+				ProfileFactory.setHouse(house);
+				$location.path("/houseDetail");
 			}
 
 		}

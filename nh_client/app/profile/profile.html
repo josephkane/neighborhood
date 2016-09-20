@@ -36,7 +36,7 @@
 
 <div>
 	<h2>Houses For Sale</h2>
-	<div ng-repeat="house in profCtrl.housesForSale">
+	<div ng-repeat="house in profCtrl.housesForSale" ng-click="profCtrl.showHouse(house)">
 		<p>Beds: {{ house.bed }}</p>
 		<p>Bath: {{ house.bath }}</p>
 		<p>Square feet: {{ house.sq_ft }}</p>

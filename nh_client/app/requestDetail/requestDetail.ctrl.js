@@ -7,6 +7,5 @@ angular.module("nh")
 			const reqCtrl = this;
 
 			reqCtrl.request = AgentProfileFactory.getRequest()
-			console.log("req: ", reqCtrl.request);
 		}
 	])
