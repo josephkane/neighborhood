@@ -1,10 +1,33 @@
 angular.module("nh")
 	.controller("HouseDetailControl", [
-		"ProfileFactory",
-		function (ProfileFactory) {
+		"$http",
+		"apiUrl",
+		"$routeParams",
+		function ($http, apiUrl, $routeParams) {
 			const houseCtrl = this;
 
-			houseCtrl.house = ProfileFactory.getHouse()
-			console.log("house: ", houseCtrl.house);
+			$http.get(`${apiUrl}/houses/${$routeParams.houseId}`)
+				.then((res) => houseCtrl.house = res.data)
 		}
 	])
+
+
+
+
+
+
+
+
+
+
+
+
+// angular.module("nh")
+// 	.controller("HouseDetailControl", [
+// 		"ProfileFactory",
+// 		function (ProfileFactory) {
+// 			const houseCtrl = this;
+
+// 			houseCtrl.house = ProfileFactory.getHouse()
+// 		}
+// 	])

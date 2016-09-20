@@ -1,7 +1,7 @@
 angular.module("nh")
 	.config(($routeProvider) => {
 		$routeProvider
-			.when("/houseDetail", {
+			.when("/houseDetail/:houseId", {
 				controller: "HouseDetailControl",
 				controllerAs: "houseCtrl",
 				templateUrl: "app/houseDetail/houseDetail.html",

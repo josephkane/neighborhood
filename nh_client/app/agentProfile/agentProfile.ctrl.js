@@ -77,4 +77,8 @@ angular.module("nh")
 				AgentProfileFactory.setRequest(request);
 				$location.path("/requestDetail");
 			}
+
+			agentCtrl.showHouse = function (house_id) {
+				$location.path(`/houseDetail/${house_id}`);
+			}
 	}])

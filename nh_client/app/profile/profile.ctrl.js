@@ -63,9 +63,8 @@ angular.module("nh")
 				})
 			}
 
-			profCtrl.showHouse = function (house) {
-				ProfileFactory.setHouse(house);
-				$location.path("/houseDetail");
+			profCtrl.showHouse = function (house_id) {
+				$location.path(`/houseDetail/${house_id}/`)
 			}
 
 		}

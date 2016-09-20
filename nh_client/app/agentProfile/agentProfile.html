@@ -4,7 +4,7 @@
 
 <div>
 	<h2>My Houses</h2>
-	<div ng-repeat="house in agentCtrl.houses">
+	<div ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
 		<p>Address: {{ house.address }}</p>
 		<p>Beds: {{ house.bed }}</p>
 		<p>Bath: {{ house.bath }}</p>
