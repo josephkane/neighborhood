@@ -29,6 +29,7 @@ class BuyerSerializer(serializers.HyperlinkedModelSerializer):
 class HouseSerializer(serializers.HyperlinkedModelSerializer):
     house_agent = AgentSerializer()
     house_buyer = BuyerSerializer()
+    house_neighborhood = NeighborhoodSerializer()
 
     class Meta:
         model = House
@@ -36,6 +37,7 @@ class HouseSerializer(serializers.HyperlinkedModelSerializer):
 
 class HouseRequestSerializer(serializers.HyperlinkedModelSerializer):
     request_buyer = BuyerSerializer()
+    request_neighborhood = NeighborhoodSerializer()
 
     class Meta:
         model = HouseRequest

@@ -16,6 +16,17 @@ class HousesViewset(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    def get_queryset(self):
+        """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+        """
+        queryset = House.objects.all()
+        agent_id = self.request.query_params.get('agent_id', None)
+        if agent_id is not None:
+            queryset = queryset.filter(house_agent__id = agent_id)
+        return queryset
+
 class NeighborhoodsViewset(viewsets.ModelViewSet):
     queryset = Neighborhood.objects.all()
     serializer_class = NeighborhoodSerializer
@@ -32,15 +43,15 @@ class BuyersViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-            """
-            Optionally restricts the returned purchases to a given user,
-            by filtering against a `username` query parameter in the URL.
-            """
-            queryset = Buyer.objects.all()
-            user_id = self.request.query_params.get('user_id', None)
-            if user_id is not None:
-                queryset = queryset.filter(user__id = user_id)
-            return queryset
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Buyer.objects.all()
+        user_id = self.request.query_params.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(user__id = user_id)
+        return queryset
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -54,15 +65,15 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-            """
-                Optionally restricts the returned purchases to a given user,
-                by filtering against a `username` query parameter in the URL.
-            """
-            queryset = HouseRequest.objects.all()
-            buyer_id = self.request.query_params.get('buyer_id', None)
-            if buyer_id is not None:
-                queryset = queryset.filter(request_buyer__id = buyer_id)
-            return queryset
+        """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+        """
+        queryset = HouseRequest.objects.all()
+        buyer_id = self.request.query_params.get('buyer_id', None)
+        if buyer_id is not None:
+            queryset = queryset.filter(request_buyer__id = buyer_id)
+        return queryset
 
 
 # CREATE A USER
@@ -202,58 +213,6 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 @csrf_exempt
-def create_new_house(request):
-    """
-        Creates a new house with the parameters specified by the user
-
-        Args-http request object
-    """
-
-    # loads request body to json and decode into python-readable object
-    data = json.loads(request.body.decode())
-
-    # make vars for readability
-    # agent = data["agent"]
-    address = data["address"]
-    bed = data["bed"]
-    bath = data["bath"]
-    sq_ft = data["sq_ft"]
-    lot_size = data["lot_size"]
-    yr_built = data["yr_built"]
-    # image = data["image"]
-    # neighborhood = data["neighborhood"]
-    price = data["price"]
-    description = data["description"]
-
-    # create new house
-    new_house = House.objects.create(
-            address = address,
-            # house_agent = agent,
-            bed = bed,
-            bath = bath,
-            sq_ft = sq_ft,
-            lot_size = lot_size,
-            yr_built = yr_built,
-            # image = image,
-            # house_neighborhood = neighborhood,
-            price = price,
-            description = description
-        )
-
-    # save house to database
-    new_house.save()
-
-    new_house = model_to_dict(new_house)
-
-    # house_data = HouseSerializer(new_house, context={"request": request})
-    # return http response with result of login attempt as json
-    print("NEW_HOUSE: ", new_house)
-    print("DUMP: ", json.dumps({"img": str(new_house["image"])}))
-    new_house["image"] = str(new_house["image"])
-    return_house = json.dumps({"house": new_house})
-    return HttpResponse(return_house, content_type='application/json')
-
-@csrf_exempt
 def new_house_request(request):
     """
         Creates a new house request
@@ -311,7 +270,6 @@ def create_new_house(request):
     yr_built = data["yr_built"]
     price = data["price"]
     image = data["image"]
-    print("IMAGE: ", image)
     description = data["description"]
     house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
     house_agent = Agent.objects.get(pk=data["agent"]["pk"])

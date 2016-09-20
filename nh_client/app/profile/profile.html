@@ -4,7 +4,7 @@
 
 <div>
 	<h2>My House Requests</h2>
-	<div ng-repeat="request in profCtrl.requests">
+	<div ng-repeat="request in profCtrl.requests" ng-click="profCtrl.showRequest(request.id)">
 		<p>Beds: {{ request.bed }}</p>
 		<p>Bath: {{ request.bath }}</p>
 		<p>Square feet: {{ request.sq_ft }}</p>
@@ -36,13 +36,14 @@
 
 <div>
 	<h2>Houses For Sale</h2>
-	<div ng-repeat="house in profCtrl.housesForSale">
+	<div ng-repeat="house in profCtrl.housesForSale" ng-click="profCtrl.showHouse(house.id)">
+		<p><img src="{{ house.image }}"></p>
+		<h3>{{ house.address }}</h3>
 		<p>Beds: {{ house.bed }}</p>
 		<p>Bath: {{ house.bath }}</p>
 		<p>Square feet: {{ house.sq_ft }}</p>
 		<p>Year built: {{ house.yr_built }}</p>
+		<p>{{ house.description }}</p>
 		<p>Price: {{ house.price }}</p>
-		<p>Description: {{ house.description }}</p>
-		<p><img src="{{ house.image }}"></p>
 	</div>
 </div>

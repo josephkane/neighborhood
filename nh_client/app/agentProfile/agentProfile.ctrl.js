@@ -1,17 +1,16 @@
 angular.module("nh")
 	.controller("AgentCtrl", [
-		"$location",
 		"$http",
 		"apiUrl",
+		"$location",
 		"LandingFactory",
-		"$timeout",
 		"AgentProfileFactory",
-		function ($location, $http, apiUrl, LandingFactory, $timeout, AgentProfileFactory) {
+		function ($http, apiUrl, $location, LandingFactory, AgentProfileFactory) {
 			const agentCtrl = this;
 			agentCtrl.newHouseFormIsVisible = false;
 
-			let user = LandingFactory.getUser()
-			agentCtrl.user = user.user
+			let user = LandingFactory.getUser();
+			agentCtrl.user = user.user;
 
 			$http.get(`${apiUrl}/neighborhoods`)
 				.then((res) => {
@@ -23,7 +22,6 @@ angular.module("nh")
 
 			AgentProfileFactory.getHouseRequests()
 				.then((res) => {
-					console.log("res: ", res);
 					agentCtrl.requests = res});
 
 			agentCtrl.showNewHouseForm = function () {
@@ -73,5 +71,13 @@ angular.module("nh")
 							}
 						})
 					})
+			}
+
+			agentCtrl.showRequest = function (request_id) {
+				$location.path(`/requestDetail/${request_id}`);
+			}
+
+			agentCtrl.showHouse = function (house_id) {
+				$location.path(`/houseDetail/${house_id}`);
 			}
 	}])

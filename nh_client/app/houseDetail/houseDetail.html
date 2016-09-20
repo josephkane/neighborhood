@@ -1,0 +1,27 @@
+<h1>HOUSE DETAIL</h1>
+
+<div>
+	<p ng-show="houseCtrl.house.house_agent !== null">
+		Listed by: <a href="#/agentDetail/{{houseCtrl.house.house_agent.id}}">{{ houseCtrl.house.house_agent.user.first_name }}
+		{{ houseCtrl.house.house_agent.user.last_name }}</a>
+	</p>
+	<p ng-show="houseCtrl.house.house_buyer !== null">
+		Listed by: {{ houseCtrl.house.house_buyer.user.first_name }}
+		{{ houseCtrl.house.house_buyer.user.last_name }}
+	</p>
+	<p><img src="{{ houseCtrl.house.image }}"></p>
+	<p>Address: {{ houseCtrl.house.address }}</p>
+	<p>Beds: {{ houseCtrl.house.bed }}</p>
+	<p>Bath: {{ houseCtrl.house.bath }}</p>
+	<p>Square feet: {{ houseCtrl.house.sq_ft }}</p>
+	<p>Lot size (in acres): {{ houseCtrl.house.lot_size }}</p>
+	<p>Year built: {{ houseCtrl.house.yr_built }}</p>
+	<p ng-show="houseCtrl.house.house_neighborhood !== null">
+		Neighborhood: {{ houseCtrl.house.house_neighborhood.name }}
+	<p>Price: {{ houseCtrl.house.price }}</p>
+	<p>Description: {{ houseCtrl.house.description }}</p>
+	<p ng-show="houseCtrl.house.last_sold !== null">
+		Last sold: {{ houseCtrl.house.last_sold }}
+	</p>
+	</p>
+</div>

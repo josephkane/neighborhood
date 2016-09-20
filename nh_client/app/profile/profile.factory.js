@@ -4,6 +4,7 @@ angular.module("nh")
 		"apiUrl",
 		($http, apiUrl) => {
 			let request_array;
+			let house_for_sale;
 
 			return {
 				getHouseRequests (user) {
@@ -14,6 +15,14 @@ angular.module("nh")
 				getHousesForSale () {
 					let getHouses = $http.get(`${apiUrl}/houses/`)
 					return getHouses.then((res) => res.data)
+				},
+
+				setHouse (house) {
+					house_for_sale = house
+				},
+
+				getHouse () {
+					return house_for_sale
 				}
 			}
 		}])
