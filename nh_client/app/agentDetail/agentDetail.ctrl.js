@@ -8,9 +8,9 @@ angular.module("nh")
 			const adCtrl = this;
 
 			$http.get(`${apiUrl}/agents/${$routeParams.agentId}/`)
-				.then((res) => {
-					adCtrl.agent = res.data;
-					console.log("agent: ", adCtrl.agent);
-				});
+				.then((res) => adCtrl.agent = res.data);
+
+			$http.get(`${apiUrl}/houses/?agent_id=${$routeParams.agentId}`)
+				.then((res) => adCtrl.houses = res.data)
 		}
 	])

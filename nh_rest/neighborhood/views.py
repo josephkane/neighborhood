@@ -16,6 +16,17 @@ class HousesViewset(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    def get_queryset(self):
+        """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+        """
+        queryset = House.objects.all()
+        agent_id = self.request.query_params.get('agent_id', None)
+        if agent_id is not None:
+            queryset = queryset.filter(house_agent__id = agent_id)
+        return queryset
+
 class NeighborhoodsViewset(viewsets.ModelViewSet):
     queryset = Neighborhood.objects.all()
     serializer_class = NeighborhoodSerializer
@@ -32,15 +43,15 @@ class BuyersViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-            """
-            Optionally restricts the returned purchases to a given user,
-            by filtering against a `username` query parameter in the URL.
-            """
-            queryset = Buyer.objects.all()
-            user_id = self.request.query_params.get('user_id', None)
-            if user_id is not None:
-                queryset = queryset.filter(user__id = user_id)
-            return queryset
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Buyer.objects.all()
+        user_id = self.request.query_params.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(user__id = user_id)
+        return queryset
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -54,15 +65,15 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
-            """
-                Optionally restricts the returned purchases to a given user,
-                by filtering against a `username` query parameter in the URL.
-            """
-            queryset = HouseRequest.objects.all()
-            buyer_id = self.request.query_params.get('buyer_id', None)
-            if buyer_id is not None:
-                queryset = queryset.filter(request_buyer__id = buyer_id)
-            return queryset
+        """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+        """
+        queryset = HouseRequest.objects.all()
+        buyer_id = self.request.query_params.get('buyer_id', None)
+        if buyer_id is not None:
+            queryset = queryset.filter(request_buyer__id = buyer_id)
+        return queryset
 
 
 # CREATE A USER
