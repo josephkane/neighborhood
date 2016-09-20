@@ -29,7 +29,7 @@ angular.module("nh")
 					data: {
 						"username": landCtrl.username,
 						"password": landCtrl.password,
-						"user_type": landCtrl.userLoginType
+						"user_type": landCtrl.user_type
 					}
 				})
 				.then((res) => {
@@ -40,11 +40,11 @@ angular.module("nh")
 						"username": landCtrl.username,
 						"password": landCtrl.password
 					})
-					if (landCtrl.user_type == "buyer") {
+					if (landCtrl.user_type === "buyer") {
 						$location.path(`/profile`);
-					} else {
+					} else if (landCtrl.user_type === "agent") {
 						$location.path(`/agentProfile`);
-							}
+					}
 					$timeout();
 				})
 				.catch((err) => console.log(err))
@@ -84,9 +84,9 @@ angular.module("nh")
 								"username": landCtrl.username,
 								"password": landCtrl.password
 							});
-							if (landCtrl.user_type == "buyer") {
+							if (landCtrl.user_type === "buyer") {
 								$location.path(`/profile`);
-							} else {
+							} else if (landCtrl.user_type === "agent") {
 								$location.path(`/agentProfile`);
 							}
 							$timeout();

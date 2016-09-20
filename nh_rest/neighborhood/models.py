@@ -33,7 +33,7 @@ class House(models.Model):
 	lot_size = models.IntegerField(null=True)
 	yr_built = models.IntegerField(null=True)
 	selling = models.BooleanField(blank=False, null=False, default=True)
-	image = models.ImageField(upload_to="house_imgs/", default="default_house.jpg")
+	image = models.CharField(max_length=1000)
 	house_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="house")
 	last_sold = models.DateField(auto_now=False, null=True)
 	price = models.IntegerField(blank=False, null=False)

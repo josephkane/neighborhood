@@ -311,6 +311,7 @@ def create_new_house(request):
     yr_built = data["yr_built"]
     price = data["price"]
     image = data["image"]
+    print("IMAGE: ", image)
     description = data["description"]
     house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
     house_agent = Agent.objects.get(pk=data["agent"]["pk"])

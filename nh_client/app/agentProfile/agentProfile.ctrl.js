@@ -50,6 +50,7 @@ angular.module("nh")
 
 				firebase.storage().ref().child(randomPath).put(image_file)
 					.then((res) => {
+						console.log("res: ", res.downloadURL);
 						$http({
 							url: `${apiUrl}/create_new_house/`,
 							method: "POST",

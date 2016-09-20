@@ -19,9 +19,14 @@ angular.module("nh")
 				})
 
 			ProfileFactory.getHouseRequests(user.add_info)
+				.then((res) => profCtrl.requests = res);
+
+			ProfileFactory.getHousesForSale()
 				.then((res) => {
-					profCtrl.requests = res;
-				});
+					console.log("res:", res);
+					profCtrl.housesForSale = res;
+					$timeout();
+				})
 
 			profCtrl.showHouseRequestForm = function () {
 				profCtrl.houseRequestFormIsVisible = true;

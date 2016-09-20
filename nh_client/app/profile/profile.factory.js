@@ -9,6 +9,11 @@ angular.module("nh")
 				getHouseRequests (user) {
 					let getRequests = $http.get(`${apiUrl}/house_requests/?buyer_id=${user.pk}`)
 					return getRequests.then((res) => res.data)
+				},
+
+				getHousesForSale () {
+					let getHouses = $http.get(`${apiUrl}/houses/`)
+					return getHouses.then((res) => res.data)
 				}
 			}
 		}])

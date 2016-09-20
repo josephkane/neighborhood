@@ -8,11 +8,10 @@ class NeighborhoodSerializer(serializers.HyperlinkedModelSerializer):
         fields = ("id", "url", "name", "house", "request")
 
 class HouseSerializer(serializers.HyperlinkedModelSerializer):
-    image = serializers.ImageField(max_length=None, use_url=True)
 
     class Meta:
         model = House
-        fields = ("id", "url", "address", "bed", "bath", "sq_ft", "lot_size", "yr_built", "house_agent", "house_buyer", "selling", "image", "house_neighborhood", "last_sold")
+        fields = ("id", "url", "address", "bed", "bath", "sq_ft", "lot_size", "yr_built", "house_agent", "house_buyer", "selling", "image", "house_neighborhood", "last_sold", "price", "description")
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

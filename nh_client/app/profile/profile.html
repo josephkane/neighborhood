@@ -13,6 +13,7 @@
 	</div>
 </div>
 
+
 <button type="click" ng-click="profCtrl.showHouseRequestForm()">New House Request</button>
 
 <form name="houseRequestForm" ng-submit="profCtrl.submitHouseRequest()" ng-if="profCtrl.houseRequestFormIsVisible">
@@ -32,3 +33,16 @@
 	<button type="submit">Submit</button>
 	<button type="click" ng-click="profCtrl.cancelHouseRequestForm()">Cancel</button>
 </form>
+
+<div>
+	<h2>Houses For Sale</h2>
+	<div ng-repeat="house in profCtrl.housesForSale">
+		<p>Beds: {{ house.bed }}</p>
+		<p>Bath: {{ house.bath }}</p>
+		<p>Square feet: {{ house.sq_ft }}</p>
+		<p>Year built: {{ house.yr_built }}</p>
+		<p>Price: {{ house.price }}</p>
+		<p>Description: {{ house.description }}</p>
+		<p><img src="{{ house.image }}"></p>
+	</div>
+</div>
