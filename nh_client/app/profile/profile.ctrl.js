@@ -9,7 +9,6 @@ angular.module("nh")
 		function ($location, $http, apiUrl, LandingFactory, $timeout, ProfileFactory) {
 			const profCtrl = this;
 			profCtrl.houseRequestFormIsVisible = false;
-			// profCtrl.requests = [];
 
 			let user = LandingFactory.getUser()
 			profCtrl.user = user.user

@@ -289,3 +289,51 @@ def new_house_request(request):
     the_request = serializers.serialize("json", (new_request,))
     # return newly created house request
     return HttpResponse(the_request, content_type='application/json')
+
+@csrf_exempt
+def create_new_house(request):
+    """
+        Creates new house (currently only possible for agents)
+
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+    print("DATA: ", data)
+
+    # make vars for readability
+    address = data["address"]
+    bed = data["bed"]
+    bath = data["bath"]
+    sq_ft = data["sq_ft"]
+    lot_size = data["lot_size"]
+    yr_built = data["yr_built"]
+    price = data["price"]
+    image = data["image"]
+    description = data["description"]
+    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
+    house_agent = Agent.objects.get(pk=data["agent"]["pk"])
+
+    # make new house request
+    new_house = House.objects.create(
+        address=address,
+        bed=bed,
+        bath=bath,
+        sq_ft=sq_ft,
+        lot_size=lot_size,
+        yr_built=yr_built,
+        price=price,
+        image=image,
+        description=description,
+        house_neighborhood=house_neighborhood,
+        house_agent=house_agent
+    )
+
+    # save to database
+    new_house.save()
+
+    # serialize new request
+    the_house = serializers.serialize("json", (new_house,))
+    # return newly created house request
+    return HttpResponse(the_house, content_type='application/json')

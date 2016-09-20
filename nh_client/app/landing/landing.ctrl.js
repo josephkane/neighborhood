@@ -40,8 +40,13 @@ angular.module("nh")
 						"username": landCtrl.username,
 						"password": landCtrl.password
 					})
-					$location.path(`/profile`)});
-					$timeout()
+					if (landCtrl.user_type == "buyer") {
+						$location.path(`/profile`);
+					} else {
+						$location.path(`/agentProfile`);
+							}
+					$timeout();
+				})
 				.catch((err) => console.log(err))
 			};
 
@@ -79,7 +84,11 @@ angular.module("nh")
 								"username": landCtrl.username,
 								"password": landCtrl.password
 							});
-							$location.path(`/profile`);
+							if (landCtrl.user_type == "buyer") {
+								$location.path(`/profile`);
+							} else {
+								$location.path(`/agentProfile`);
+							}
 							$timeout();
 						})
 						.catch((err) => console.log(err))

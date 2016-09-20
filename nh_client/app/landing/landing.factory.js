@@ -27,8 +27,6 @@ angular.module('nh').factory('LandingFactory', [
         	},
 
             setUser (user, add_info) {
-                console.log("FAC USER: ", user);
-                console.log("FAC INFO: ", add_info);
                 currentUser = user;
                 currentUserInfo = add_info;
             },
