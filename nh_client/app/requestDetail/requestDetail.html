@@ -1,1 +1,10 @@
 <h1>REQUEST DETAIL</h1>
+
+<div>
+	<p>Requested by {{ reqCtrl.request.request_buyer.user.first_name }}
+	{{ reqCtrl.request.request_buyer.user.last_name }}</p>
+	<p>Beds: {{ reqCtrl.request.bed }}</p>
+	<p>Bath: {{ reqCtrl.request.bath }}</p>
+	<p>Square feet: {{ reqCtrl.request.sq_ft }}</p>
+	<p ng-show="reqCtrl.request.request_neighborhood !== null">Neighborhood: {{ reqCtrl.request.request_neighborhood.name }}</p>
+</div>

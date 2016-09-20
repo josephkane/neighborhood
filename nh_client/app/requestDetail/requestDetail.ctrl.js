@@ -1,5 +1,5 @@
 angular.module("nh")
-	.controller("RequestDetailCtrl", [
+	.controller("RequestDetailControl", [
 		"$http",
 		"apiUrl",
 		"AgentProfileFactory",
