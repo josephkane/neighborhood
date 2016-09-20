@@ -22,7 +22,9 @@ angular.module("nh")
 				.then((res) => agentCtrl.houses = res);
 
 			AgentProfileFactory.getHouseRequests()
-				.then((res) => agentCtrl.requests = res)
+				.then((res) => {
+					console.log("res: ", res);
+					agentCtrl.requests = res});
 
 			agentCtrl.showNewHouseForm = function () {
 				agentCtrl.newHouseFormIsVisible = true;

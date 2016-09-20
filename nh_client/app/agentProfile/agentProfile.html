@@ -50,5 +50,6 @@
 		<p>Bath: {{ request.bath }}</p>
 		<p>Square feet: {{ request.sq_ft }}</p>
 		<p>Budget: {{ request.budget }}</p>
+		<p>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</p>
 	</div>
 </div>
