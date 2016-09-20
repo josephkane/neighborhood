@@ -2,10 +2,11 @@ angular.module("nh")
 	.controller("RequestDetailControl", [
 		"$http",
 		"apiUrl",
-		"AgentProfileFactory",
-		function ($http, apiUrl, AgentProfileFactory) {
+		"$routeParams",
+		function ($http, apiUrl, $routeParams) {
 			const reqCtrl = this;
 
-			reqCtrl.request = AgentProfileFactory.getRequest()
+			$http.get(`${apiUrl}/house_requests/${$routeParams.requestId}`)
+				.then((res) => reqCtrl.request = res.data)
 		}
 	])

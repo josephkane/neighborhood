@@ -4,7 +4,7 @@
 
 <div>
 	<h2>My House Requests</h2>
-	<div ng-repeat="request in profCtrl.requests">
+	<div ng-repeat="request in profCtrl.requests" ng-click="profCtrl.showRequest(request.id)">
 		<p>Beds: {{ request.bed }}</p>
 		<p>Bath: {{ request.bath }}</p>
 		<p>Square feet: {{ request.sq_ft }}</p>

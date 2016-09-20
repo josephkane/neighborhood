@@ -15,13 +15,5 @@ angular.module("nh")
 					let getRequests = $http.get(`${apiUrl}/house_requests/`)
 					return getRequests.then((res) => res.data)
 				},
-
-				setRequest (req) {
-					request = req
-				},
-
-				getRequest () {
-					return request
-				}
 			}
 		}])

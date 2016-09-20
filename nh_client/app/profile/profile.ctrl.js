@@ -63,6 +63,10 @@ angular.module("nh")
 				})
 			}
 
+			profCtrl.showRequest = function (request_id) {
+				$location.path(`/requestDetail/${request_id}`);
+			}
+
 			profCtrl.showHouse = function (house_id) {
 				$location.path(`/houseDetail/${house_id}/`)
 			}

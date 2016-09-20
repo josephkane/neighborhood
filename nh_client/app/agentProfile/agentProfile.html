@@ -45,7 +45,7 @@
 
 	<div>
 		<h2>House Requests</h2>
-		<div ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request)">
+		<div ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request.id)">
 			<p>Beds: {{ request.bed }}</p>
 			<p>Bath: {{ request.bath }}</p>
 			<p>Square feet: {{ request.sq_ft }}</p>
