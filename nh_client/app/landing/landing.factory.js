@@ -3,6 +3,9 @@ angular.module('nh').factory('LandingFactory', [
     '$location',
     ($cookies, $location) => {
     	let userCredentials = null;
+        let currentUser;
+        let currentUserInfo;
+
 
     	return {
     		setCredentials (creds) {
@@ -13,15 +16,24 @@ angular.module('nh').factory('LandingFactory', [
     		},
 
     		getCredentials () {
-    			return $cookies.get("creds")
+    			userCredentials = $cookies.get("creds")
+                return window.atob(userCredentials)
     		},
 
     		logout () {
     			userCredentials = null;
         		$cookies.remove('creds');
         		$location.path("/");
-        	}
+        	},
 
+            setUser (user, add_info) {
+                currentUser = user;
+                currentUserInfo = add_info;
+            },
+
+            getUser () {
+                return {"user": currentUser, "add_info": currentUserInfo}
+            },
     	}
     }
 ])

@@ -1,0 +1,55 @@
+<h1>AGENT PAGE</h1>
+
+<h2>Welcome {{ agentCtrl.user.fields.first_name }}</h2>
+
+<div>
+	<h2>My Houses</h2>
+	<div ng-repeat="house in agentCtrl.houses">
+		<p>Address: {{ house.address }}</p>
+		<p>Beds: {{ house.bed }}</p>
+		<p>Bath: {{ house.bath }}</p>
+		<p>Square feet: {{ house.sq_ft }}</p>
+	</div>
+</div>
+
+
+<button type="click" ng-click="agentCtrl.showNewHouseForm()">List New House</button>
+
+<form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)" ng-if="agentCtrl.newHouseFormIsVisible">
+	<label>Address:</label>
+	<input type="text" ng-model="agentCtrl.address">
+	<label>Bedrooms:</label>
+	<input type="number" min="1" max="10" step="1" ng-model="agentCtrl.bed">
+	<label>Bathrooms:</label>
+	<input type="number" min="1" max="5" step="0.5" ng-model="agentCtrl.bath">
+	<label>Square feet:</label>
+	<input type="number" min="500" max="5000" step="100" ng-model="agentCtrl.sq_ft">
+	<label>Lot Size (in acres):</label>
+	<input type="number" min="0.01" max="2" step="0.01" ng-model="agentCtrl.lot_size">
+	<label>Year built:</label>
+	<input type="number" min="1880" max="2016" step="1" ng-model="agentCtrl.yr_built">
+	<label>Image:</label>
+	<input type="file" ng-model="agentCtrl.image">
+	<label>Description:</label>
+	<input type="text" ng-model="agentCtrl.description">
+	<label>Neighborhood:</label>
+	<select
+		ng-model="agentCtrl.listedNeighborhood"
+		ng-options="n as n.name for n in agentCtrl.neighborhoodsArray">
+	</select>
+	<label>Price:</label>
+	<input type="number" min="50000" max="1000000" step="5000" ng-model="agentCtrl.price">
+	<button type="submit">Submit</button>
+	<button type="click" ng-click="agentCtrl.cancelNewHouseForm()">Cancel</button>
+</form>
+
+<div>
+	<h2>House Requests</h2>
+	<div ng-repeat="request in agentCtrl.requests">
+		<p>Beds: {{ request.bed }}</p>
+		<p>Bath: {{ request.bath }}</p>
+		<p>Square feet: {{ request.sq_ft }}</p>
+		<p>Budget: {{ request.budget }}</p>
+		<p>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</p>
+	</div>
+</div>

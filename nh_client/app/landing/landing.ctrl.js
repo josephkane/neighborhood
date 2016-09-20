@@ -3,7 +3,9 @@ angular.module("nh")
 		"$location",
 		"$http",
 		"apiUrl",
-		function ($location, $http, apiUrl) {
+		"$timeout",
+		"LandingFactory",
+		function ($location, $http, apiUrl, $timeout, LandingFactory) {
 			const landCtrl = this;
 			landCtrl.isLoginVisible = false;
 			landCtrl.isRegisterVisible = false;
@@ -26,12 +28,25 @@ angular.module("nh")
 					headers: {"Content-type": "application/x-www-form-encoded"},
 					data: {
 						"username": landCtrl.username,
-						"password": landCtrl.password
+						"password": landCtrl.password,
+						"user_type": landCtrl.user_type
 					}
 				})
 				.then((res) => {
-					console.log("res: ", res);
-					$location.path("/profile")})
+					let user = res.data[0];
+					let user_info = res.data[1];
+					LandingFactory.setUser(user, user_info);
+					LandingFactory.setCredentials({
+						"username": landCtrl.username,
+						"password": landCtrl.password
+					})
+					if (landCtrl.user_type === "buyer") {
+						$location.path(`/profile`);
+					} else if (landCtrl.user_type === "agent") {
+						$location.path(`/agentProfile`);
+					}
+					$timeout();
+				})
 				.catch((err) => console.log(err))
 			};
 
@@ -61,8 +76,20 @@ angular.module("nh")
 							}
 						})
 						.then((res) => {
-							console.log("RES: ", res);
-							$location.path("/profile")
+							console.log("res: ", res);
+							let user = res.data[0];
+							let user_info = res.data[1];
+							LandingFactory.setUser(user, user_info);
+							LandingFactory.setCredentials({
+								"username": landCtrl.username,
+								"password": landCtrl.password
+							});
+							if (landCtrl.user_type === "buyer") {
+								$location.path(`/profile`);
+							} else if (landCtrl.user_type === "agent") {
+								$location.path(`/agentProfile`);
+							}
+							$timeout();
 						})
 						.catch((err) => console.log(err))
 					})

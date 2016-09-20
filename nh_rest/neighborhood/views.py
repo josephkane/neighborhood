@@ -7,32 +7,40 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, permissions
 from .models import *
 from .serializers import *
+from django.core import serializers
 
 import json
 
 class HousesViewset(viewsets.ModelViewSet):
     queryset = House.objects.all()
     serializer_class = HouseSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class NeighborhoodsViewset(viewsets.ModelViewSet):
     queryset = Neighborhood.objects.all()
     serializer_class = NeighborhoodSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class AgentsViewset(viewsets.ModelViewSet):
     queryset = Agent.objects.all()
     serializer_class = AgentSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class BuyersViewset(viewsets.ModelViewSet):
     queryset = Buyer.objects.all()
     serializer_class = BuyerSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+            """
+            Optionally restricts the returned purchases to a given user,
+            by filtering against a `username` query parameter in the URL.
+            """
+            queryset = Buyer.objects.all()
+            user_id = self.request.query_params.get('user_id', None)
+            if user_id is not None:
+                queryset = queryset.filter(user__id = user_id)
+            return queryset
 
 class UsersViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -43,8 +51,19 @@ class UsersViewset(viewsets.ModelViewSet):
 class HouseRequestsViewset(viewsets.ModelViewSet):
     queryset = HouseRequest.objects.all()
     serializer_class = HouseRequestSerializer
-
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+            """
+                Optionally restricts the returned purchases to a given user,
+                by filtering against a `username` query parameter in the URL.
+            """
+            queryset = HouseRequest.objects.all()
+            buyer_id = self.request.query_params.get('buyer_id', None)
+            if buyer_id is not None:
+                queryset = queryset.filter(request_buyer__id = buyer_id)
+            return queryset
+
 
 # CREATE A USER
 @csrf_exempt
@@ -92,9 +111,15 @@ def register_user(request):
     success = True
     if authenticated_user is not None:
         login(request=request, user=authenticated_user)
-        auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
+        # get additional data of logged-in user
+        if data["user_type"] == "agent":
+            add_info = Agent.objects.get(user=authenticated_user)
+        else:
+            add_info = Buyer.objects.get(user=authenticated_user)
+
+        the_user = serializers.serialize('json', (authenticated_user, add_info))
         # return http response with result of login attempt as json
-        return HttpResponse(auth_data, content_type='application/json')
+        return HttpResponse(the_user, content_type='application/json')
     # if authenticated_user returns nothing, return 404
     else:
         return Http404
@@ -155,9 +180,15 @@ def login_user(request):
     else:
         success = False
 
-    auth_data = json.dumps({"success":success, "username": str(authenticated_user)})
+
+    if data["user_type"] == "agent":
+        add_info = Agent.objects.get(user=authenticated_user)
+    else:
+        add_info = Buyer.objects.get(user=authenticated_user)
+
+    the_user = serializers.serialize('json', (authenticated_user, add_info))
     # return http response with result of login attempt as json
-    return HttpResponse(auth_data, content_type='application/json')
+    return HttpResponse(the_user, content_type='application/json')
 
 # logout user
 def logout_view(request):
@@ -222,7 +253,88 @@ def create_new_house(request):
     return_house = json.dumps({"house": new_house})
     return HttpResponse(return_house, content_type='application/json')
 
+@csrf_exempt
+def new_house_request(request):
+    """
+        Creates a new house request
 
+        Args-http request object
+    """
 
+    # decode request object
+    data = json.loads(request.body.decode())
 
+    # make vars for readability
+    bed = data["bed"]
+    bath = data["bath"]
+    sq_ft = data["sq_ft"]
+    budget = data["budget"]
+    neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
+    buyer = Buyer.objects.get(pk=data["buyer"]["pk"])
 
+    # make new house request
+    new_request = HouseRequest.objects.create(
+        bed=bed,
+        bath=bath,
+        sq_ft=sq_ft,
+        budget=budget,
+        request_neighborhood=neighborhood,
+        request_buyer=buyer
+    )
+
+    # save to database
+    new_request.save()
+
+    # serialize new request
+    the_request = serializers.serialize("json", (new_request,))
+    # return newly created house request
+    return HttpResponse(the_request, content_type='application/json')
+
+@csrf_exempt
+def create_new_house(request):
+    """
+        Creates new house (currently only possible for agents)
+
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+    print("DATA: ", data)
+
+    # make vars for readability
+    address = data["address"]
+    bed = data["bed"]
+    bath = data["bath"]
+    sq_ft = data["sq_ft"]
+    lot_size = data["lot_size"]
+    yr_built = data["yr_built"]
+    price = data["price"]
+    image = data["image"]
+    print("IMAGE: ", image)
+    description = data["description"]
+    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
+    house_agent = Agent.objects.get(pk=data["agent"]["pk"])
+
+    # make new house request
+    new_house = House.objects.create(
+        address=address,
+        bed=bed,
+        bath=bath,
+        sq_ft=sq_ft,
+        lot_size=lot_size,
+        yr_built=yr_built,
+        price=price,
+        image=image,
+        description=description,
+        house_neighborhood=house_neighborhood,
+        house_agent=house_agent
+    )
+
+    # save to database
+    new_house.save()
+
+    # serialize new request
+    the_house = serializers.serialize("json", (new_house,))
+    # return newly created house request
+    return HttpResponse(the_house, content_type='application/json')
