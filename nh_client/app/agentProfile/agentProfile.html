@@ -43,13 +43,13 @@
 	<button type="click" ng-click="agentCtrl.cancelNewHouseForm()">Cancel</button>
 </form>
 
-<div>
-	<h2>House Requests</h2>
-	<div ng-repeat="request in agentCtrl.requests">
-		<p>Beds: {{ request.bed }}</p>
-		<p>Bath: {{ request.bath }}</p>
-		<p>Square feet: {{ request.sq_ft }}</p>
-		<p>Budget: {{ request.budget }}</p>
-		<p>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</p>
+	<div>
+		<h2>House Requests</h2>
+		<div ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request)">
+			<p>Beds: {{ request.bed }}</p>
+			<p>Bath: {{ request.bath }}</p>
+			<p>Square feet: {{ request.sq_ft }}</p>
+			<p>Budget: {{ request.budget }}</p>
+			<p>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</p>
+		</div>
 	</div>
-</div>
