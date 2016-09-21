@@ -18,10 +18,11 @@
 	<p>Year built: {{ houseCtrl.house.yr_built }}</p>
 	<p ng-show="houseCtrl.house.house_neighborhood !== null">
 		Neighborhood: {{ houseCtrl.house.house_neighborhood.name }}
+	</p>
 	<p>Price: {{ houseCtrl.house.price }}</p>
 	<p>Description: {{ houseCtrl.house.description }}</p>
 	<p ng-show="houseCtrl.house.last_sold !== null">
 		Last sold: {{ houseCtrl.house.last_sold }}
 	</p>
-	</p>
+	<button ng-click="houseCtrl.buyHouse()">BUY</button>
 </div>
