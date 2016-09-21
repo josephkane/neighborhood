@@ -9,7 +9,7 @@ let requiresAuth = ($location, LandingFactory) => new Promise((resolve, reject) 
 	}
 });
 
-let getLoggedInUser = (LandingFactory, $http, apiUrl, $timeout) => new Promise((resolve, reject) => {
+let getLoggedInBuyer = (LandingFactory, $http, apiUrl, $timeout) => new Promise((resolve, reject) => {
     let currentUser;
     let add_info;
     $http.get(`${apiUrl}/buyers/`)
@@ -38,6 +38,6 @@ angular.module("nh")
 				controller: "ProfileCtrl",
 				controllerAs: "profCtrl",
 				templateUrl: "app/profile/profile.html",
-				resolve: { requiresAuth, getLoggedInUser }
+				resolve: { requiresAuth, getLoggedInBuyer }
 			})
 	})
