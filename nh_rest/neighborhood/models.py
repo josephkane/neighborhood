@@ -49,3 +49,14 @@ class HouseRequest(models.Model):
 	sq_ft = models.IntegerField(blank=False, null=False)
 	request_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="request")
 	budget = models.IntegerField(blank=True, null=True)
+
+class HouseSale(models.Model):
+	sale_agent = models.ForeignKey(Agent, null=True, on_delete=models.SET_NULL, related_name="home_sale")
+	sale_buyer = models.ForeignKey(Buyer, null=True, on_delete=models.SET_NULL, related_name="home_sale")
+	sale_house = models.ForeignKey(House, on_delete=models.CASCADE, related_name="home_sale")
+	price = models.IntegerField(null=False)
+	date = models.DateField(auto_now_add=True)
+	sale_neighborhood = models.ForeignKey(Neighborhood, null=True, on_delete=models.SET_NULL, related_name="home_sale")
+
+	def __str__(self):
+		return "{}: {}".format(self.sale_house.address, self.price)

@@ -10,6 +10,7 @@ from .serializers import *
 from django.core import serializers
 
 import json
+import datetime
 
 class HousesViewset(viewsets.ModelViewSet):
     queryset = House.objects.all()
@@ -74,6 +75,11 @@ class HouseRequestsViewset(viewsets.ModelViewSet):
         if buyer_id is not None:
             queryset = queryset.filter(request_buyer__id = buyer_id)
         return queryset
+
+class HouseSalesViewset(viewsets.ModelViewSet):
+    queryset = HouseSale.objects.all()
+    serializer_class = HouseSaleSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 # CREATE A USER
@@ -259,7 +265,6 @@ def create_new_house(request):
 
     # decode request object
     data = json.loads(request.body.decode())
-    print("DATA: ", data)
 
     # make vars for readability
     address = data["address"]
@@ -296,3 +301,48 @@ def create_new_house(request):
     the_house = serializers.serialize("json", (new_house,))
     # return newly created house request
     return HttpResponse(the_house, content_type='application/json')
+
+@csrf_exempt
+def create_new_sale(request):
+    """
+        Creates new house sale (currently only possible for buyers)
+
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+
+    # make vars for readability
+    agent = Agent.objects.get(pk=data["house"]["house_agent"]["id"])
+    buyer = Buyer.objects.get(pk=data["buyer"])
+    house = House.objects.get(pk=data["house"]["id"])
+    neighborhood = Neighborhood.objects.get(pk=data["house"]["house_neighborhood"]["id"])
+    price = data["house"]["price"]
+
+    # create new sale record
+    new_sale = HouseSale.objects.create(
+        sale_agent=agent,
+        sale_buyer=buyer,
+        sale_house=house,
+        sale_neighborhood=neighborhood,
+        price=price
+    )
+
+    # save to database
+    new_sale.save()
+
+    # modify house instance
+    house["house_agent"] = None
+    house["house_buyer"] = buyer
+    house["selling"] = False
+    house["last_sold"] = datetime.date
+
+    # save house instance to database
+    house.save()
+
+    # serialize new sale
+    the_sale = serializers.serialize("json", (new_sale,))
+    # return newly created house request
+    return HttpResponse(the_sale, content_type='application/json')
+
