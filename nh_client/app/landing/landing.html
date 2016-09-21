@@ -1,57 +1,98 @@
-<div>
-	<h1>WELCOME TO NEIGHBORHOOD</h1>
+<div class="landing-container">
 
-	<div>
-		<button type="click" ng-click="landCtrl.showLogin()">Sign In</button>
-		<button type="click" ng-click="landCtrl.showRegister()">Register</button>
-	</div>
+	<ul class="kf-slider">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<!-- <li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li> -->
+	</ul>
 
-		<form name="loginForm" ng-submit="landCtrl.login()" ng-show="landCtrl.isLoginVisible">
+	<div class="landing-content">
+
+		<h1 class="landing-headline">Welcome to Neighborhood</h1>
+		<h4 class="landing-tagline">Find your home.</h4>
+
+		<div class="landing-button-section" ng-show="landCtrl.isButtonsVisible">
+			<div class="landing-button sign-in" ng-click="landCtrl.showLogin()">Sign In</div>
+			<div class="landing-button register" ng-click="landCtrl.showRegister()">Register</div>
+		</div>
+
+		<form class="landing-form form-group" name="loginForm" ng-submit="landCtrl.login()" ng-show="landCtrl.isLoginVisible">
 			<div ng-model="landCtrl.loginSection">
-				<label>Username:</label>
-				<input type="text" ng-model="landCtrl.username">
-				<label>Password:</label>
-				<input type="password" ng-model="landCtrl.password">
-				<label>Sign in as:</label>
-				<select ng-model="landCtrl.user_type">
-					<option value="agent">Agent</option>
-					<option value="buyer">Buyer</option>
-				</select>
+				<div class="form-group">
+					<label>Username:</label>
+					<input class="form-control" type="text" ng-model="landCtrl.username">
+				</div>
+				<div class="form-group">
+					<label>Password:</label>
+					<input class="form-control" type="password" ng-model="landCtrl.password">
+				</div>
+				<div class="form-group">
+					<label>Sign in as:</label>
+					<select class="form-control" ng-model="landCtrl.user_type">
+						<option value="agent">Agent</option>
+						<option value="buyer">Buyer</option>
+					</select>
+				</div>
 			</div>
 
-			<div>
-				<button type="submit">Login</button>
+			<div class="landing-button-section rows">
+				<div class="landing-button sign-in" ng-click="landCtrl.login()">Login</div>
+				<div class="landing-button register" ng-click="landCtrl.showButtons()">Back</div>
 			</div>
 		</form>
 
-	<form name="registerForm" ng-submit="landCtrl.register(image)" ng-show="landCtrl.isRegisterVisible">
-		<div ng-model="registerSection">
-			<label>First name:</label>
-			<input type="text" ng-model="landCtrl.firstName">
-			<label>Last name:</label>
-			<input type="text" ng-model="landCtrl.lastName">
-			<label>Username:</label>
-			<input type="text" ng-model="landCtrl.userName">
-			<label>Password:</label>
-			<input type="password" ng-model="landCtrl.password">
-			<label>E-mail:</label>
-			<input type="email" ng-model="landCtrl.email">
-			<label>Profile photo:</label>
-			<input type="file" name="img" ng-model="image">
-			<select ng-model="landCtrl.user_type">
-				<option value="">--</option>
-				<option value="agent">Agent</option>
-				<option value="buyer">Buyer</option>
-			</select>
-			<div ng-show="landCtrl.user_type == 'agent'">
-				<label>Bio</label>
-				<input type="text" ng-model="landCtrl.bio">
+		<form class="landing-form form-group" name="registerForm" ng-submit="landCtrl.register()" ng-show="landCtrl.isRegisterVisible">
+			<div ng-model="registerSection">
+				<div class="form-group">
+					<label>First name:</label>
+					<input class="form-control" type="text" ng-model="landCtrl.firstName">
+				</div>
+				<div class="form-group">
+					<label>Last name:</label>
+					<input class="form-control" type="text" ng-model="landCtrl.lastName">
+				</div>
+				<div class="form-group">
+					<label>Username:</label>
+					<input class="form-control" type="text" ng-model="landCtrl.userName">
+				</div>
+				<div class="form-group">
+					<label>Password:</label>
+					<input class="form-control" type="password" ng-model="landCtrl.password">
+				</div>
+				<div class="form-group">
+					<label>E-mail:</label>
+					<input class="form-control" type="email" ng-model="landCtrl.email">
+				</div>
+				<div class="form-group">
+					<label>Profile photo:</label>
+					<input class="form-control-file" type="file" name="img" ng-model="image">
+				</div>
+				<div class="form-group">
+					<label>Register as:</label>
+					<select class="form-control" ng-model="landCtrl.user_type">
+						<option value="">--</option>
+						<option value="agent">Agent</option>
+						<option value="buyer">Buyer</option>
+					</select>
+				</div>
+				<div class="form-group" ng-show="landCtrl.user_type == 'agent'">
+					<label>Bio</label>
+					<input class="form-control" type="text" ng-model="landCtrl.bio">
+				</div>
 			</div>
-		</div>
 
-		<div>
-			<button type="submit">Register</button>
-		</div>
-	</form>
+			<div class="landing-button-section rows">
+				<div class="landing-button sign-in" ng-click="landCtrl.register()">Register</div>
+				<div class="landing-button register" ng-click="landCtrl.showButtons()">Back</div>
+			</div>
+		</form>
+	 </div>
 
 </div>
