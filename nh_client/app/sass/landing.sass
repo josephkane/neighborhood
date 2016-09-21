@@ -3,26 +3,85 @@
 	width: 100%
 	margin: 0 auto
 	text-align: center
-
- /*-- Full Height --*/
 	height: 100vh
+	width: 100vw
 	color: rgba(255,255,255,0.9)
+	// &:after
+	// 	content: ''
+	// 	position: absolute
+	// 	top: 0
+	// 	left: 0
+	// 	height: 100%
+	// 	width: 100%
+	// 	background-color: rgba(118, 144, 164, 0.4)
+	// 	z-index: 0
 
-/*-- Create an Overlay --*/
-	&:after
-		content: ''
-		position: absolute
-		top: 0
-		left: 0
-		height: 100%
-		width: 100%
-		background-color: rgba(118, 144, 164, 0.4)
-		z-index: 0
-
-.v-center
+.landing-content
 	display: table-cell
 	vertical-align: middle
 	position: relative
 	z-index: 4
 	padding: 0 5%
+	color: rgba(0,0,0,1)
+
+.landing-headline
+	font-weight: 400
+	font-style: italic
+
+.landing-tagline
+	font-weight: 300
+
+ul
+	padding: 0
+
+@include keyframes(slider-lg)
+	0%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2F1537-06_PL3_OutdoorRetreat_Ventana_SheaHomes_EricFiggePhotos_large.jpg?alt=media&token=4e4199e0-b8a8-4c99-9991-e188a058f4a6")
+
+	10%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fpexels-photo-104982.jpeg?alt=media&token=46bc03e0-8b31-4fff-8f77-a18cd84f0f6c")
+
+	20%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fartist-bedroom-attic.jpeg?alt=media&token=b4cf40ca-739c-4807-922f-fb7eada93828")
+
+	30%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2FModern-Living-Room-Interior-Design-2.jpg?alt=media&token=631a6135-041b-43d1-b60c-fb9b62ea3f1c")
+
+	40%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2F4522_Exterior_Day___Homestead.jpg?alt=media&token=38b231be-8415-4035-892f-71a8d562f195")
+
+	50%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2FNaroon-modern-backyard-project-by-Signature-Landscapes-COS-Design-and-Serenity-Pools.jpg?alt=media&token=9c7ff7b2-5a58-428d-a16a-3093359cdc4d")
+
+	60%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fnew-homes1.jpg?alt=media&token=c4c7d8d1-6d1a-4fb6-ba89-bc7d1f66ce85")
+
+	70%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fslide1.jpg?alt=media&token=7b9bd69c-2977-476b-8587-b9bbde00330d")
+
+	80%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fpromo292878835.jpeg?alt=media&token=39df5b36-9d92-49c6-a18a-349d43c00582")
+
+	90%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2FColor-Combination-For-New-Home.png?alt=media&token=5289572f-1223-4673-9fe6-5a760cb6edc9")
+
+	100%
+		background-image: url("https://firebasestorage.googleapis.com/v0/b/neighborhood-f9998.appspot.com/o/landing%2Fluxurious-backyard-retreat-with-fancy-pool.jpg?alt=media&token=4b0dff74-4657-429a-bc8c-9f029205e14d")
+
+.landing-background
+	height: 100%
+	width: 100%
+	position: absolute
+	top: 0
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: 50%
+	z-index: 0
+	// @media (min-width: 32ems)
+	@include animation(slider-lg ease-in-out 120s both infinite)
+
+
+
+
+
 

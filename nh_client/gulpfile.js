@@ -4,7 +4,7 @@ const gulp = require("gulp")
 const sass = require("gulp-sass")
 
 gulp.task("sass", function() {
-	return gulp.src("src/sass/main.sass")
+	return gulp.src("app/sass/main.sass")
 	.pipe(sass({
 		includePaths: require('node-bourbon').includePaths
 	}))
@@ -12,7 +12,7 @@ gulp.task("sass", function() {
 })
 
 gulp.task("watch", function () {
-	gulp.watch("sass/**/*.s+(a|c)ss", ["sass"])
+	gulp.watch("app/sass/**/*.s+(a|c)ss", ["sass"])
 })
 
 gulp.task("default", ["sass", "watch"])
