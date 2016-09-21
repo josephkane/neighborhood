@@ -12,6 +12,7 @@ class Agent(models.Model):
 	bio = models.CharField(max_length=200)
 	member_since = models.DateField(auto_now_add=True)
 	image = models.CharField(max_length=500)
+	user_type = models.CharField(max_length=5, default="agent")
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)
@@ -19,6 +20,7 @@ class Agent(models.Model):
 class Buyer(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	image = models.CharField(max_length=500)
+	user_type = models.CharField(max_length=5, default="buyer")
 
 	def __str__(self):
 		return "{}: {} {}".format(self.id, self.user.first_name, self.user.last_name)

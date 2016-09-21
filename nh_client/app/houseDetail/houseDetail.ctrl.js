@@ -15,18 +15,22 @@ angular.module("nh")
 					let buyer = houseCtrl.house.house_buyer
 					let currentUserName = houseCtrl.currentUser.user.username
 					let isSelling = houseCtrl.house.selling
-					let hasBio = houseCtrl.currentUser.add_info.bio
+					let currentUserType = houseCtrl.currentUser.add_info.user_type
 
 					if (buyer !== null && buyer.user.username === currentUserName) {
-						if (houseCtrl.house.selling === false) {
+						if (isSelling === false) {
 							houseCtrl.showListButton = true
 						}
 					} else {
 						houseCtrl.showListButton = false
 					};
 
-					if (isSelling && hasBio !== undefined) {
-						houseCtrl.showBuyButton = true
+					if (isSelling && currentUserType !== "agent") {
+						if (buyer !== null && currentUserName !== buyer.user.username) {
+							houseCtrl.showBuyButton = true
+						} else if (buyer === null) {
+							houseCtrl.showBuyButton = true
+						}
 					} else {
 						houseCtrl.showBuyButton = false
 					};

@@ -17,14 +17,14 @@ class AgentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Agent
-        fields = ("id", "url", "user", "bio", "member_since", "image")
+        fields = ("id", "url", "user", "bio", "member_since", "image", "user_type")
 
 class BuyerSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer()
 
     class Meta:
         model = Buyer
-        fields = ("id", "url", "user", "image")
+        fields = ("id", "url", "user", "image", "user_type")
 
 class HouseSerializer(serializers.HyperlinkedModelSerializer):
     house_agent = AgentSerializer()
