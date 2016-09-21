@@ -17,5 +17,6 @@ urlpatterns = [
 	url(r'^create_new_house/$', views.create_new_house, name="create_new_house"),
 	url(r'^new_house_request/$', views.new_house_request, name="new_house_request"),
 	url(r'^create_new_house/$', views.create_new_house, name="create_new_house"),
-	url(r'^create_new_sale/$', views.create_new_sale, name="create_new_sale")
+	url(r'^create_new_sale/$', views.create_new_sale, name="create_new_sale"),
+	url(r'^list_house/$', views.list_house, name="list_house")
 ]

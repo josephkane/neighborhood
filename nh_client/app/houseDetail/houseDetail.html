@@ -1,3 +1,29 @@
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="mySmallModalLabel">List this house!</h4>
+      </div>
+      <div class="form-group">
+      	<label>List with:</label>
+      	<select class="form-control" ng-model="houseCtrl.listingAgent">
+      		<option ng-repeat="agent in houseCtrl.agents" value="{{ agent.id }}">
+      			{{ agent.user.first_name }} {{ agent.user.last_name }}
+      		</option>
+      	</select>
+      </div>
+      <div class="form-group">
+	      <label>Price:</label>
+	      <input ng-model="houseCtrl.price" class="form-control" type="number" min="50000" max="1000000" step="5000">
+      </div>
+      <button type="click" ng-click="houseCtrl.listHouse()">List this house</button>
+    </div>
+  </div>
+</div>
+
 <h1>HOUSE DETAIL</h1>
 
 <div>
@@ -6,7 +32,7 @@
 		{{ houseCtrl.house.house_agent.user.last_name }}</a>
 	</p>
 	<p ng-show="houseCtrl.house.house_buyer !== null">
-		Listed by: {{ houseCtrl.house.house_buyer.user.first_name }}
+		Owned by: {{ houseCtrl.house.house_buyer.user.first_name }}
 		{{ houseCtrl.house.house_buyer.user.last_name }}
 	</p>
 	<p><img src="{{ houseCtrl.house.image }}"></p>
@@ -24,5 +50,13 @@
 	<p ng-show="houseCtrl.house.last_sold !== null">
 		Last sold: {{ houseCtrl.house.last_sold }}
 	</p>
-	<button ng-click="houseCtrl.buyHouse()">BUY</button>
+	<button ng-show="houseCtrl.house.selling && houseCtrl.currentUser.add_info.model !== 'neighborhood.agent'" ng-click="houseCtrl.buyHouse()">BUY</button>
+	<button
+		type="button"
+		class="btn btn-primary"
+		data-toggle="modal"
+		data-target=".bd-example-modal-sm"
+		ng-show="houseCtrl.house.house_buyer.user.username === houseCtrl.currentUser.user.fields.username">
+			List this house
+	</button>
 </div>
