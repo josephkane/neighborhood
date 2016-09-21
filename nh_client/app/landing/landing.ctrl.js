@@ -9,15 +9,24 @@ angular.module("nh")
 			const landCtrl = this;
 			landCtrl.isLoginVisible = false;
 			landCtrl.isRegisterVisible = false;
+			landCtrl.isButtonsVisible = true;
 
 			landCtrl.showLogin = function () {
+				landCtrl.isButtonsVisible = false;
 				landCtrl.isRegisterVisible = false;
 				landCtrl.isLoginVisible = true;
 			}
 
 			landCtrl.showRegister = function () {
+				landCtrl.isButtonsVisible = false;
 				landCtrl.isLoginVisible = false;
 				landCtrl.isRegisterVisible = true
+			}
+
+			landCtrl.showButtons = function () {
+				landCtrl.isButtonsVisible = true;
+				landCtrl.isLoginVisible = false;
+				landCtrl.isRegisterVisible = false
 			}
 
 			landCtrl.login = function () {

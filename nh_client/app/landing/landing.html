@@ -18,26 +18,33 @@
 		<h1 class="landing-headline">Welcome to Neighborhood</h1>
 		<h4 class="landing-tagline">Find your home.</h4>
 
-		<div class="landing-button-section">
+		<div class="landing-button-section" ng-show="landCtrl.isButtonsVisible">
 			<div class="landing-button sign-in" ng-click="landCtrl.showLogin()">Sign In</div>
 			<div class="landing-button register" ng-click="landCtrl.showRegister()">Register</div>
 		</div>
 
-		<form name="loginForm" ng-submit="landCtrl.login()" ng-show="landCtrl.isLoginVisible">
+		<form class="landing-form form-group" name="loginForm" ng-submit="landCtrl.login()" ng-show="landCtrl.isLoginVisible">
 			<div ng-model="landCtrl.loginSection">
-				<label>Username:</label>
-				<input type="text" ng-model="landCtrl.username">
-				<label>Password:</label>
-				<input type="password" ng-model="landCtrl.password">
-				<label>Sign in as:</label>
-				<select ng-model="landCtrl.user_type">
-					<option value="agent">Agent</option>
-					<option value="buyer">Buyer</option>
-				</select>
+				<div class="form-group">
+					<label>Username:</label>
+					<input class="form-control" type="text" ng-model="landCtrl.username">
+				</div>
+				<div class="form-group">
+					<label>Password:</label>
+					<input class="form-control" type="password" ng-model="landCtrl.password">
+				</div>
+				<div class="form-group">
+					<label>Sign in as:</label>
+					<select class="form-control" ng-model="landCtrl.user_type">
+						<option value="agent">Agent</option>
+						<option value="buyer">Buyer</option>
+					</select>
+				</div>
 			</div>
 
-			<div>
-				<button type="submit">Login</button>
+			<div class="landing-button-section rows">
+				<div class="landing-button sign-in" ng-click="landCtrl.login()">Login</div>
+				<div class="landing-button register" ng-click="landCtrl.showButtons()">Back</div>
 			</div>
 		</form>
 
