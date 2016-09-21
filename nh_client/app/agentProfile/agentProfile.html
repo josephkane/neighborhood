@@ -1,10 +1,11 @@
 <h1>AGENT PAGE</h1>
 
-<h2>Welcome {{ agentCtrl.user.fields.first_name }}</h2>
+<h2>Welcome {{ agentCtrl.user.first_name }}</h2>
 
 <div>
 	<h2>My Houses</h2>
 	<div ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
+		<p><img ng-src="{{ house.image }}"></p>
 		<p>Address: {{ house.address }}</p>
 		<p>Beds: {{ house.bed }}</p>
 		<p>Bath: {{ house.bath }}</p>

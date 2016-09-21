@@ -7,7 +7,7 @@ angular.module("nh")
 
 			return {
 				getListedHouses (user) {
-					let getHouses = $http.get(`${apiUrl}/houses/?agent_id=${user.pk}`)
+					let getHouses = $http.get(`${apiUrl}/houses/?agent_id=${user.id}`)
 					return getHouses.then((res) => res.data)
 				},
 

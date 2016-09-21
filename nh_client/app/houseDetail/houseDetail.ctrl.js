@@ -6,10 +6,35 @@ angular.module("nh")
 		"LandingFactory",
 		function ($http, apiUrl, $routeParams, LandingFactory) {
 			const houseCtrl = this;
-			houseCtrl.currentUser = LandingFactory.getUser()
+			houseCtrl.currentUser = LandingFactory.getUser();
 
 			$http.get(`${apiUrl}/houses/${$routeParams.houseId}`)
-				.then((res) => houseCtrl.house = res.data)
+				.then((res) => {
+					houseCtrl.house = res.data
+
+					let buyer = houseCtrl.house.house_buyer
+					let currentUserName = houseCtrl.currentUser.user.username
+					let isSelling = houseCtrl.house.selling
+					let currentUserType = houseCtrl.currentUser.add_info.user_type
+
+					if (buyer !== null && buyer.user.username === currentUserName) {
+						if (isSelling === false) {
+							houseCtrl.showListButton = true
+						}
+					} else {
+						houseCtrl.showListButton = false
+					};
+
+					if (isSelling && currentUserType !== "agent") {
+						if (buyer !== null && currentUserName !== buyer.user.username) {
+							houseCtrl.showBuyButton = true
+						} else if (buyer === null) {
+							houseCtrl.showBuyButton = true
+						}
+					} else {
+						houseCtrl.showBuyButton = false
+					};
+				})
 
 			$http.get(`${apiUrl}/agents/`)
 				.then((res) => houseCtrl.agents = res.data)
