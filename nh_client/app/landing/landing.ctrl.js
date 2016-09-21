@@ -59,7 +59,7 @@ angular.module("nh")
 				.catch((err) => console.log(err))
 			};
 
-			landCtrl.register = function (file) {
+			landCtrl.register = function () {
 				let input = document.querySelector('[type="file"]');
 				let image_file = input.files[0];
 

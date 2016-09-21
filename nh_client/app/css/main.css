@@ -26,13 +26,13 @@ body {
   font-size: 6rem;
   font-weight: 400;
   font-style: italic;
-  text-shadow: 0 0 4px #666;
+  text-shadow: 0 0 6px #666;
   margin: 2.5rem 0; }
 
 .landing-tagline {
   font-size: 4rem;
   font-weight: 300;
-  text-shadow: 0 0 4px #666;
+  text-shadow: 0 0 6px #666;
   margin: 2rem 0 3rem; }
 
 @-webkit-keyframes fade-out {
@@ -56,8 +56,8 @@ body {
 ul.kf-slider {
   padding: 0; }
   ul.kf-slider li {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     position: absolute;
     top: 0;
     background-size: cover;
@@ -115,7 +115,7 @@ ul.kf-slider {
 .landing-button {
   cursor: pointer;
   padding: 0.8rem 1rem;
-  border-radius: 2px; }
+  border-radius: 5px; }
 
 .sign-in {
   background-color: #2980b9; }
@@ -130,7 +130,7 @@ ul.kf-slider {
   margin: 0 auto; }
   .landing-form label {
     text-align: left;
-    text-shadow: 0 0 4px #666; }
+    text-shadow: 0 0 6px #666; }
 
 .rows {
   flex-direction: row;
