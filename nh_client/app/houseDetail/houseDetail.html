@@ -6,7 +6,7 @@
 		{{ houseCtrl.house.house_agent.user.last_name }}</a>
 	</p>
 	<p ng-show="houseCtrl.house.house_buyer !== null">
-		Listed by: {{ houseCtrl.house.house_buyer.user.first_name }}
+		Owned by: {{ houseCtrl.house.house_buyer.user.first_name }}
 		{{ houseCtrl.house.house_buyer.user.last_name }}
 	</p>
 	<p><img src="{{ houseCtrl.house.image }}"></p>
@@ -25,7 +25,7 @@
 		Last sold: {{ houseCtrl.house.last_sold }}
 	</p>
 	<button ng-show="houseCtrl.house.selling" ng-click="houseCtrl.buyHouse()">BUY</button>
-	<button ng-show="houseCtrl.house.house_buyer.user.username == houseCtrl.currentUser.user.username" ng-click="houseCtrl.buyHouse()">
+	<button ng-show="houseCtrl.house.house_buyer.user.username === houseCtrl.currentUser.user.fields.username" ng-click="houseCtrl.listHouse()">
 		List this house
 	</button>
 </div>
