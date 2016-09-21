@@ -22,20 +22,24 @@
 	position: relative
 	z-index: 4
 	padding: 0 5%
-	color: rgba(0,0,0,1)
+	// color: rgba(0,0,0,1)
 
 .landing-headline
+	font-size: 4rem
 	font-weight: 400
 	font-style: italic
+	text-shadow: 0 0 4px #666
 
 .landing-tagline
+	font-size: 2rem
 	font-weight: 300
+	text-shadow: 0 0 4px #666
 
 @include keyframes(fade-out)
-	33%
+	5%
 		opacity: 1
 
-	66%
+	95%
 		opacity: 0
 
 ul.kf-slider
@@ -50,7 +54,7 @@ ul.kf-slider
 		background-position:	50%
 		z-index: 0
 		opacity: 0
-		@include animation(fade-out 12s infinite both)
+		@include animation(fade-out 40s infinite both)
 		// background-image: url(../images/banner-1-sm.jpg);
 		background-image: url(../land_img/backporch1.jpg)
 		@media (min-width: 32ems)
@@ -58,14 +62,75 @@ ul.kf-slider
 	li:nth-child(2)
 		// background-image: url(../images/banner-2-sm.jpg)
 		background-image: url(../land_img/kitchen1.jpg)
-		@include animation-delay(4s)
+		@include animation-delay(8s)
 		@media (min-width: 32ems)
 			background-image: url(../land_img/kitchen1.jpg)
 	li:nth-child(3)
 		// background-image: url(../images/banner-2-sm.jpg)
 		background-image: url(../land_img/livingRoom2.jpg)
-		@include animation-delay(8s)
+		@include animation-delay(16s)
 		@media (min-width: 32ems)
 			background-image: url(../land_img/livingRoom2.jpg)
+	li:nth-child(4)
+		// background-image: url(../images/banner-2-sm.jpg)
+		background-image: url(../land_img/kitchen3.jpg)
+		@include animation-delay(24s)
+		@media (min-width: 32ems)
+			background-image: url(../land_img/kitchen3.jpg)
+	li:nth-child(5)
+		// background-image: url(../images/banner-2-sm.jpg)
+		background-image: url(../land_img/house1.jpg)
+		@include animation-delay(32s)
+		@media (min-width: 32ems)
+			background-image: url(../land_img/house1.jpg)
+	// li:nth-child(6)
+	// 	// background-image: url(../images/banner-2-sm.jpg)
+	// 	background-image: url(../land_img/livingRoom1.jpg)
+	// 	@include animation-delay(15s)
+	// 	@media (min-width: 32ems)
+	// 		background-image: url(../land_img/livingRoom1.jpg)
+	// li:nth-child(7)
+	// 	// background-image: url(../images/banner-2-sm.jpg)
+	// 	background-image: url(../land_img/house2.jpg)
+	// 	@include animation-delay(18s)
+	// 	@media (min-width: 32ems)
+	// 		background-image: url(../land_img/house2.jpg)
+	// li:nth-child(8)
+	// 	// background-image: url(../images/banner-2-sm.jpg)
+	// 	background-image: url(../land_img/kitchen2.jpg)
+	// 	@include animation-delay(21s)
+	// 	@media (min-width: 32ems)
+	// 		background-image: url(../land_img/kitchen2.jpg)
+	// li:nth-child(9)
+	// 	// background-image: url(../images/banner-2-sm.jpg)
+	// 	background-image: url(../land_img/house3.jpg)
+	// 	@include animation-delay(24s)
+	// 	@media (min-width: 32ems)
+	// 		background-image: url(../land_img/house3.jpg)
+	// li:nth-child(10)
+	// 	// background-image: url(../images/banner-2-sm.jpg)
+	// 	background-image: url(../land_img/livingRoom3.jpg)
+	// 	@include animation-delay(27s)
+	// 	@media (min-width: 32ems)
+	// 		background-image: url(../land_img/livingRoom3.jpg)
+
+.landing-button-section
+	display: flex
+	flex-flow: row wrap
+	width: 30%
+	margin: 0 auto
+	justify-content: space-around
+
+.landing-button
+	cursor: pointer
+	padding: 0.8rem 1rem
+	border-radius: 2px
+
+
+.sign-in
+	background-color: #2980b9
+
+.register
+	background-color: #27ae60
 
 

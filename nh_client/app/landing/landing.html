@@ -4,6 +4,13 @@
 		<li></li>
 		<li></li>
 		<li></li>
+		<li></li>
+		<li></li>
+		<!-- <li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li> -->
 	</ul>
 
 	<div class="landing-content">
@@ -11,9 +18,9 @@
 		<h1 class="landing-headline">Welcome to Neighborhood</h1>
 		<h4 class="landing-tagline">Find your home.</h4>
 
-		<div>
-			<button type="click" ng-click="landCtrl.showLogin()">Sign In</button>
-			<button type="click" ng-click="landCtrl.showRegister()">Register</button>
+		<div class="landing-button-section">
+			<div class="landing-button sign-in" ng-click="landCtrl.showLogin()">Sign In</div>
+			<div class="landing-button register" ng-click="landCtrl.showRegister()">Register</div>
 		</div>
 
 		<form name="loginForm" ng-submit="landCtrl.login()" ng-show="landCtrl.isLoginVisible">
