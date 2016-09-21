@@ -30,7 +30,7 @@ class House(models.Model):
 	bed = models.IntegerField(blank=False, null=False)
 	bath = models.DecimalField(blank=False, null=False, max_digits=2, decimal_places=1)
 	sq_ft = models.IntegerField(blank=False, null=False)
-	lot_size = models.IntegerField(null=True)
+	lot_size = models.DecimalField(null=True, max_digits=3, decimal_places=2)
 	yr_built = models.IntegerField(null=True)
 	selling = models.BooleanField(blank=False, null=False, default=True)
 	image = models.CharField(max_length=1000)

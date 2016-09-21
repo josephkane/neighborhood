@@ -10,22 +10,31 @@ angular.module("nh")
 			const profCtrl = this;
 			profCtrl.houseRequestFormIsVisible = false;
 
-			let user = LandingFactory.getUser()
-			profCtrl.user = user.user
+			profCtrl.user = LandingFactory.getUser()
+
+			// let user = LandingFactory.getUser()
+			// profCtrl.user = user.user
 
 			$http.get(`${apiUrl}/neighborhoods`)
 				.then((res) => {
 					profCtrl.neighborhoodsArray = res.data;
 				})
 
-			ProfileFactory.getHouseRequests(user.add_info)
+			$http.get(`${apiUrl}/houses/?buyer_id=${profCtrl.user.add_info.pk}`)
+				.then((res) => profCtrl.myHouses = res.data)
+
+			// factory not necessary, refator this later
+			ProfileFactory.getHouseRequests(profCtrl.user.add_info)
 				.then((res) => profCtrl.requests = res);
 
+			// factory not necessary, refator this later
 			ProfileFactory.getHousesForSale()
 				.then((res) => {
 					profCtrl.housesForSale = res;
 					$timeout();
 				})
+
+
 
 			profCtrl.showHouseRequestForm = function () {
 				profCtrl.houseRequestFormIsVisible = true;
