@@ -8,7 +8,7 @@ angular.module("nh")
 
 			return {
 				getHouseRequests (user) {
-					let getRequests = $http.get(`${apiUrl}/house_requests/?buyer_id=${user.pk}`)
+					let getRequests = $http.get(`${apiUrl}/house_requests/?buyer_id=${user.id}`)
 					return getRequests.then((res) => res.data)
 				},
 

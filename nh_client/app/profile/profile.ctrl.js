@@ -20,7 +20,7 @@ angular.module("nh")
 					profCtrl.neighborhoodsArray = res.data;
 				})
 
-			$http.get(`${apiUrl}/houses/?buyer_id=${profCtrl.user.add_info.pk}`)
+			$http.get(`${apiUrl}/houses/?buyer_id=${profCtrl.user.add_info.id}`)
 				.then((res) => profCtrl.myHouses = res.data)
 
 			// factory not necessary, refator this later
