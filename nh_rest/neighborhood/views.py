@@ -306,7 +306,7 @@ def create_new_house(request):
 
     # serialize new request
     the_house = serializers.serialize("json", (new_house,))
-    # return newly created house request
+    # return newly created house
     return HttpResponse(the_house, content_type='application/json')
 
 @csrf_exempt
@@ -346,11 +346,47 @@ def create_new_sale(request):
     house.selling = False
     house.last_sold = datetime.date.today()
 
-    # save house instance to database
+    # save modified house instance to database
     house.save()
 
     # serialize new sale
     the_sale = serializers.serialize("json", (new_sale,))
-    # return newly created house request
+    # return newly created house sale
     return HttpResponse(the_sale, content_type='application/json')
+
+@csrf_exempt
+def list_house(request):
+    """
+        Lists a house for sale (currently only possible for buyers)
+
+        Args-http request object
+    """
+
+    # decode request object
+    data = json.loads(request.body.decode())
+
+    # make vars for readability
+    house = House.objects.get(pk=data["house"])
+    agent = Agent.objects.get(pk=data["agent"])
+    price = data["price"]
+
+    # modify house instance
+    house.house_agent = agent
+    house.selling = True
+    house.price = price
+
+    # save modified house instance to database
+    house.save()
+
+    # serialize new listed house
+    the_listing = serializers.serialize("json", (house,))
+    # return newly modified/listed house
+    return HttpResponse(the_listing, content_type='application/json')
+
+
+
+
+
+
+
 

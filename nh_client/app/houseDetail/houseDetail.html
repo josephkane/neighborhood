@@ -17,8 +17,9 @@
       </div>
       <div class="form-group">
 	      <label>Price:</label>
-	      <input class="form-control" type="number" min="50000" max="1000000" step="5000">
+	      <input ng-model="houseCtrl.price" class="form-control" type="number" min="50000" max="1000000" step="5000">
       </div>
+      <button type="click" ng-click="houseCtrl.listHouse()">List this house</button>
     </div>
   </div>
 </div>
@@ -55,7 +56,7 @@
 		class="btn btn-primary"
 		data-toggle="modal"
 		data-target=".bd-example-modal-sm"
-		ng-show="houseCtrl.house.house_buyer.user.username === houseCtrl.currentUser.user.fields.username" ng-click="houseCtrl.listHouse()">
+		ng-show="houseCtrl.house.house_buyer.user.username === houseCtrl.currentUser.user.fields.username">
 			List this house
 	</button>
 </div>

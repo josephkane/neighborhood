@@ -28,5 +28,19 @@ angular.module("nh")
 					console.log("RES: ", res);
 				})
 			}
+
+			houseCtrl.listHouse = function () {
+				$http({
+					url: `${apiUrl}/list_house/`,
+					method: "POST",
+					headers: {"Content-type": "application/x-www-form-encoded"},
+					data: {
+						"house": houseCtrl.house.id,
+						"agent": houseCtrl.listingAgent,
+						"price": houseCtrl.price,
+					}
+				})
+				.then((res) => console.log("listed: ", res))
+			}
 		}
 	])
