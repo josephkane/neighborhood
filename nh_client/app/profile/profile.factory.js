@@ -13,7 +13,7 @@ angular.module("nh")
 				},
 
 				getHousesForSale () {
-					let getHouses = $http.get(`${apiUrl}/houses/`)
+					let getHouses = $http.get(`${apiUrl}/houses/?selling=true`)
 					return getHouses.then((res) => res.data)
 				},
 

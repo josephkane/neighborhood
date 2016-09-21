@@ -24,8 +24,11 @@ class HousesViewset(viewsets.ModelViewSet):
         """
         queryset = House.objects.all()
         agent_id = self.request.query_params.get('agent_id', None)
+        selling = self.request.query_params.get('selling', None)
         if agent_id is not None:
             queryset = queryset.filter(house_agent__id = agent_id)
+        elif selling is not None:
+            queryset = queryset.filter(selling = selling)
         return queryset
 
 class NeighborhoodsViewset(viewsets.ModelViewSet):
