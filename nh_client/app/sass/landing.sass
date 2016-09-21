@@ -1,0 +1,28 @@
+.landing-container
+	display: table
+	width: 100%
+	margin: 0 auto
+	text-align: center
+
+ /*-- Full Height --*/
+	height: 100vh
+	color: rgba(255,255,255,0.9)
+
+/*-- Create an Overlay --*/
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		height: 100%
+		width: 100%
+		background-color: rgba(118, 144, 164, 0.4)
+		z-index: 0
+
+.v-center
+	display: table-cell
+	vertical-align: middle
+	position: relative
+	z-index: 4
+	padding: 0 5%
+

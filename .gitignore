@@ -4,3 +4,4 @@ __pycache__/
 agents.txt
 .DS_Store
 nh_client/app/lib
+nh_client/node_modules
