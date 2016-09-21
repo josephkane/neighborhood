@@ -331,12 +331,13 @@ def create_new_sale(request):
 
     # save to database
     new_sale.save()
+    # print("DATE: ", datetime.date.today())
 
     # modify house instance
-    house["house_agent"] = None
-    house["house_buyer"] = buyer
-    house["selling"] = False
-    house["last_sold"] = datetime.date
+    house.house_agent = None
+    house.house_buyer = buyer
+    house.selling = False
+    house.last_sold = datetime.date.today()
 
     # save house instance to database
     house.save()
