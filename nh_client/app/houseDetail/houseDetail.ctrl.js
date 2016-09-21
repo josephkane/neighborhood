@@ -11,6 +11,9 @@ angular.module("nh")
 			$http.get(`${apiUrl}/houses/${$routeParams.houseId}`)
 				.then((res) => houseCtrl.house = res.data)
 
+			$http.get(`${apiUrl}/agents/`)
+				.then((res) => houseCtrl.agents = res.data)
+
 			houseCtrl.buyHouse = function () {
 				$http({
 					url: `${apiUrl}/create_new_sale/`,

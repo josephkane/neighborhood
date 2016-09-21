@@ -9,8 +9,8 @@
       </div>
       <div class="form-group">
       	<label>List with:</label>
-      	<select class="form-control">
-      		<option ng-repeat="agent in houseCtrl.agents">
+      	<select class="form-control" ng-model="houseCtrl.listingAgent">
+      		<option ng-repeat="agent in houseCtrl.agents" value="{{ agent.id }}">
       			{{ agent.user.first_name }} {{ agent.user.last_name }}
       		</option>
       	</select>
