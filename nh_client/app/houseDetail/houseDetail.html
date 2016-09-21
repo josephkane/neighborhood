@@ -50,7 +50,7 @@
 	<p ng-show="houseCtrl.house.last_sold !== null">
 		Last sold: {{ houseCtrl.house.last_sold }}
 	</p>
-	<button ng-show="houseCtrl.house.selling" ng-click="houseCtrl.buyHouse()">BUY</button>
+	<button ng-show="houseCtrl.house.selling && houseCtrl.currentUser.add_info.model !== 'neighborhood.agent'" ng-click="houseCtrl.buyHouse()">BUY</button>
 	<button
 		type="button"
 		class="btn btn-primary"
