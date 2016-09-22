@@ -62,3 +62,18 @@ class HouseSale(models.Model):
 
 	def __str__(self):
 		return "{}: {}".format(self.sale_house.address, self.price)
+
+class Conversation(models.Model):
+	convo_agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name="convo")
+	convo_buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, related_name="convo")
+	convo_request = models.ForeignKey(HouseRequest, on_delete=models.CASCADE, related_name="convo")
+
+class Message(models.Model):
+	text = models.CharField(max_length=200)
+	created = models.DateTimeField(auto_now_add=True)
+	author = models.CharField(max_length=200)
+	recipient = models.CharField(max_length=200)
+	convo = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name="message")
+
+
+

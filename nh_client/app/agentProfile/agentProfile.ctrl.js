@@ -24,6 +24,9 @@ angular.module("nh")
 				.then((res) => {
 					agentCtrl.requests = res});
 
+			$http.get(`${apiUrl}/conversations/?convo_agent=${agentCtrl.user.username}`)
+				.then((res) => agentCtrl.convos = res.data)
+
 			agentCtrl.showNewHouseForm = function () {
 				agentCtrl.newHouseFormIsVisible = true;
 			}
@@ -79,5 +82,9 @@ angular.module("nh")
 
 			agentCtrl.showHouse = function (house_id) {
 				$location.path(`/houseDetail/${house_id}`);
+			}
+
+			agentCtrl.showConvo = function (convo_id) {
+				$location.path(`/convoDetail/${convo_id}`)
 			}
 	}])

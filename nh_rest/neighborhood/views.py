@@ -88,6 +88,30 @@ class HouseSalesViewset(viewsets.ModelViewSet):
     serializer_class = HouseSaleSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+class ConversationsViewset(viewsets.ModelViewSet):
+    queryset = Conversation.objects.all()
+    serializer_class = ConversationSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Conversation.objects.all()
+        convo_agent = self.request.query_params.get('convo_agent', None)
+        convo_buyer = self.request.query_params.get('convo_buyer', None)
+        if convo_agent is not None:
+            queryset = queryset.filter(convo_agent__user__username = convo_agent)
+        elif convo_buyer is not None:
+            queryset = queryset.filter(convo_buyer__user__username = convo_buyer)
+        return queryset
+
+class MessagesViewset(viewsets.ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 # CREATE A USER
 @csrf_exempt
@@ -384,10 +408,54 @@ def list_house(request):
     # return newly modified/listed house
     return HttpResponse(the_listing, content_type='application/json')
 
+@csrf_exempt
+def create_new_conversation(request):
+    data = json.loads(request.body.decode())
 
+    agent = Agent.objects.get(pk=data["agent"])
+    buyer = Buyer.objects.get(pk=data["buyer"])
+    request = HouseRequest.objects.get(pk=data["request"])
+    author = data["author"]
+    recipient = data["recipient"]
+    text = data["text"]
 
+    new_convo = Conversation.objects.create(
+        convo_agent=agent,
+        convo_buyer=buyer,
+        convo_request=request
+    )
 
+    new_convo.save()
 
+    new_message = Message.objects.create(
+        author=author,
+        recipient=recipient,
+        text=text,
+        convo=new_convo
+    )
 
+    new_message.save()
 
+    the_convo_and_message = serializers.serialize("json", (new_convo, new_message))
+    return HttpResponse(the_convo_and_message, content_type='application/json')
 
+@csrf_exempt
+def create_new_message(request):
+    data = json.loads(request.body.decode())
+
+    author = data["author"]
+    recipient = data["recipient"]
+    text = data["text"]
+    convo = Conversation.objects.get(pk=data["convo"])
+
+    new_message = Message.objects.create(
+        author=author,
+        recipient=recipient,
+        text=text,
+        convo=convo
+    )
+
+    new_message.save()
+
+    the_message = serializers.serialize("json", (new_message,))
+    return HttpResponse(the_message, content_type='application/json')

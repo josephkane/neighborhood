@@ -16,6 +16,7 @@ let getLoggedInBuyer = (LandingFactory, $http, apiUrl, $timeout) => new Promise(
         .then(res => {
             allUsers = res.data
             currentUserCredentials = LandingFactory.getCredentials();
+            console.log("creds", currentUserCredentials);
             currentUsername = currentUserCredentials.split(":")[0];
             console.log("res:", res);
             console.log("CURRENT USER:", currentUsername);

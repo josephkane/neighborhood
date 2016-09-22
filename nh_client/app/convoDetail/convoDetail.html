@@ -1,0 +1,35 @@
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="mySmallModalLabel">Reply:</h4>
+      </div>
+      <div class="form-group">
+      	<textarea ng-model="convoCtrl.reply"></textarea>
+      </div>
+      <button type="click" ng-click="convoCtrl.replyMessage()">Reply</button>
+    </div>
+  </div>
+</div>
+
+<div>
+	<h1>Conversation between {{ convoCtrl.convo.message[0].author }} & {{ convoCtrl.convo.message[0].recipient }}</h1>
+
+	<div ng-repeat="message in convoCtrl.convo.message">
+		<h4>From: {{ message.author }}</h4>
+		<h4>To: {{ message.recipient }}</h4>
+		<p>Time: {{ message.created | date:short }}</p>
+		<p>Message: {{ message.text }}</p>
+	</div>
+
+	<button
+		type="button"
+		class="btn btn-primary"
+		data-toggle="modal"
+		data-target=".bd-example-modal-sm">
+			Add message
+	</button>
+</div>

@@ -12,6 +12,8 @@ angular.module("nh")
 
 			profCtrl.user = LandingFactory.getUser()
 
+			profCtrl.messages = []
+
 			// let user = LandingFactory.getUser()
 			// profCtrl.user = user.user
 
@@ -33,6 +35,9 @@ angular.module("nh")
 					profCtrl.housesForSale = res;
 					$timeout();
 				})
+
+			$http.get(`${apiUrl}/conversations/?convo_buyer=${profCtrl.user.user.username}`)
+				.then((res) => profCtrl.convos = res.data)
 
 
 
@@ -78,6 +83,10 @@ angular.module("nh")
 
 			profCtrl.showHouse = function (house_id) {
 				$location.path(`/houseDetail/${house_id}/`)
+			}
+
+			profCtrl.showConvo = function (convo_id) {
+				$location.path(`/convoDetail/${convo_id}`)
 			}
 
 		}

@@ -75,7 +75,7 @@ angular.module("nh")
 							method: "POST",
 							headers: {"Content-type": "application/x-www-form-encoded"},
 							data: {
-								"username": landCtrl.userName,
+								"username": landCtrl.username,
 								"password": landCtrl.password,
 								"first_name": landCtrl.firstName,
 								"last_name": landCtrl.lastName,
@@ -96,8 +96,10 @@ angular.module("nh")
 							});
 							if (landCtrl.user_type === "buyer") {
 								$location.path(`/profile`);
+								$timeout()
 							} else if (landCtrl.user_type === "agent") {
 								$location.path(`/agentProfile`);
+								$timeout()
 							}
 							$timeout();
 						})
