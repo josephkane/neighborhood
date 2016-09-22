@@ -17,7 +17,10 @@ angular.module('nh').factory('LandingFactory', [
 
     		getCredentials () {
     			userCredentials = $cookies.get("creds")
-                return window.atob(userCredentials)
+                console.log("creds: ", userCredentials);
+                if (userCredentials) {
+                    return window.atob(userCredentials)
+                }
     		},
 
     		logout () {

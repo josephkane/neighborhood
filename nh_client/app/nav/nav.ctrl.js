@@ -9,7 +9,7 @@ angular.module("nh")
 			const navCtrl = this;
 
 			navCtrl.logout = function () {
-				let user = LandingFactory.getUser();
+				LandingFactory.logout();
 
 				$http({
 					url: `${apiUrl}/logout/`,
