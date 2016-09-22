@@ -167,8 +167,8 @@ ul.kf-slider {
 .nav-logo {
   font-family: "Courgette", cursive;
   font-size: 6.5rem;
-  padding: 0 2rem;
-  margin: 1rem 0 1.5rem;
+  padding: 0 3rem;
+  margin: 0.5rem 0 1.7rem;
   color: #fff; }
 
 .nav-links {
@@ -199,6 +199,11 @@ ul.kf-slider {
   padding-bottom: 10px;
   border-bottom: 2px solid #000;
   margin-bottom: 3rem; }
+  .profile-headline h2 {
+    display: inline-block;
+    margin: 0; }
+  .profile-headline .list-button {
+    text-align: right; }
 
 .profile-section {
   display: flex;
@@ -240,3 +245,22 @@ ul.kf-slider {
 
 .request {
   margin: 2rem 1rem; }
+
+.list-button {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #27ae60;
+  padding: 0.8rem 1.8rem;
+  border-radius: 2px;
+  margin-right: 1rem; }
+  .list-button:hover {
+    background-color: #2ecc71; }
+
+.listings-headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+
+.listing-blank {
+  flex-grow: 2; }

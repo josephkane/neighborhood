@@ -2,7 +2,11 @@
 	<h1 class="welcome-headline">Welcome {{ agentCtrl.user.first_name }}!</h1>
 
 	<div class="profile-content">
-		<h2 class="profile-headline">Your Listings</h2>
+		<div class="profile-headline listings-headline">
+			<h2>Your Listings</h2>
+			<div class="listing-blank"></div>
+			<div class="list-button" ng-click="agentCtrl.showNewHouseForm()">List New House</div>
+		</div>
 		<div class="profile-section">
 			<div class="profile-card listing grow" ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
 				<div class="profile-card-img"><img ng-src="{{ house.image }}"></div>
@@ -14,9 +18,6 @@
 				</div>
 			</div>
 		</div>
-
-
-		<button type="click" ng-click="agentCtrl.showNewHouseForm()">List New House</button>
 
 		<form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)" ng-if="agentCtrl.newHouseFormIsVisible">
 			<label>Address:</label>
