@@ -93,6 +93,17 @@ class ConversationsViewset(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Conversation.objects.all()
+        recipient = self.request.query_params.get('recipient', None)
+        if recipient is not None:
+            queryset = queryset.filter(message__recipient = recipient)
+        return queryset
+
 class MessagesViewset(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer

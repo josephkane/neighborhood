@@ -34,6 +34,9 @@ angular.module("nh")
 					$timeout();
 				})
 
+			$http.get(`${apiUrl}/conversations/?recipient=${profCtrl.user.user.username}`)
+				.then((res) => profCtrl.convos = res.data)
+
 
 
 			profCtrl.showHouseRequestForm = function () {

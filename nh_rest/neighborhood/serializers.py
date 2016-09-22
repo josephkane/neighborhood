@@ -54,9 +54,6 @@ class HouseSaleSerializer(serializers.HyperlinkedModelSerializer):
        fields = ("id", "url", "sale_agent", "sale_buyer", "sale_house", "price", "date", "sale_neighborhood")
 
 class ConversationSerializer(serializers.HyperlinkedModelSerializer):
-    convo_agent = AgentSerializer()
-    convo_buyer = BuyerSerializer()
-    convo_request = HouseRequestSerializer()
 
     class Meta:
         model = Conversation
