@@ -439,8 +439,9 @@ def create_new_conversation(request):
 @csrf_exempt
 def create_new_message(request):
     data = json.loads(request.body.decode())
+    print("DATA: ", data["author"])
 
-    author = author["author"],
+    author = data["author"],
     recipient = data["recipient"]
     text = data["text"]
     convo = Conversation.objects.get(pk=data["convo"])
@@ -449,10 +450,11 @@ def create_new_message(request):
         author=author,
         recipient=recipient,
         text=text,
-        convo=new_convo
+        convo=convo
     )
 
     new_message.save()
+    print("MESSAGE: ", author)
 
     the_message = serializers.serialize("json", (new_message,))
     return HttpResponse(the_message, content_type='application/json')

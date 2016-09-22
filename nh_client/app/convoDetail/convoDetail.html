@@ -10,7 +10,7 @@
       <div class="form-group">
       	<textarea ng-model="convoCtrl.reply"></textarea>
       </div>
-      <button type="click" ng-click="convoCtrl.replyMessage(convoCtrl.reply)">Reply</button>
+      <button type="click" ng-click="convoCtrl.replyMessage()">Reply</button>
     </div>
   </div>
 </div>
@@ -21,7 +21,7 @@
 	<div ng-repeat="message in convoCtrl.convo.message">
 		<h4>From: {{ message.author }}</h4>
 		<h4>To: {{ message.recipient }}</h4>
-		<p>Time: {{ message.created }}</p>
+		<p>Time: {{ message.created | date:short }}</p>
 		<p>Message: {{ message.text }}</p>
 	</div>
 

@@ -10,7 +10,7 @@
 				<div class="profile_card-img"><h4>{{ convo.message[0].author }}</h4></div>
 				<div class="profile-card-info">
 					<p>{{ convo.message[0].text }}</p>
-					<p>{{ convo.message[0].created }}</p>
+					<p>{{ convo.message[0].created | date:short }}</p>
 				</div>
 			</div>
 		</div>

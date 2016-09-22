@@ -62,6 +62,8 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 class ConversationSerializer(serializers.HyperlinkedModelSerializer):
     message = MessageSerializer(many=True)
     convo_request = HouseRequestSerializer()
+    convo_buyer = BuyerSerializer()
+    convo_agent = AgentSerializer()
 
     class Meta:
         model = Conversation
