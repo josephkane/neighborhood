@@ -2,6 +2,19 @@
 	<h1 class="welcome-headline">Welcome {{ profCtrl.user.user.first_name }}!</h1>
 
 	<div class="profile-content">
+		<h2 class="profile-headline">My Messages</h2>
+		<div class="profile-section">
+			<div class="profile-card grow"
+				ng-repeat="convo in profCtrl.convos"
+				ng-click="profCtrl.showConvo(convo.id)">
+				<div class="profile_card-img"><h4>{{ convo.message[0].author }}</h4></div>
+				<div class="profile-card-info">
+					<p>{{ convo.message[0].text }}</p>
+					<p>{{ convo.message[0].created }}</p>
+				</div>
+			</div>
+		</div>
+
 		<h2 class="profile-headline">My Houses</h2>
 		<div class="profile-section">
 			<div class="profile-card grow"
