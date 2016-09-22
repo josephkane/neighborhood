@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from neighborhood.models import House, Neighborhood, Agent, Buyer, HouseRequest, HouseSale
+from neighborhood.models import *
 
 class NeighborhoodSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -53,3 +53,18 @@ class HouseSaleSerializer(serializers.HyperlinkedModelSerializer):
        model = HouseSale
        fields = ("id", "url", "sale_agent", "sale_buyer", "sale_house", "price", "date", "sale_neighborhood")
 
+class ConversationSerializer(serializers.HyperlinkedModelSerializer):
+    convo_agent = AgentSerializer()
+    convo_buyer = BuyerSerializer()
+    convo_request = HouseRequestSerializer()
+
+    class Meta:
+        model = Conversation
+        fields = ("id", "url", "convo_agent", "convo_buyer", "convo_request", "message")
+
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    convo = ConversationSerializer()
+
+    class Meta:
+        model = Message
+        fields = ("id", "url", "convo", "text", "created", "author", "recipient")
