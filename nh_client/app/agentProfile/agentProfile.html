@@ -5,7 +5,7 @@
 		<h2 class="profile-headline">Your Listings</h2>
 		<div class="profile-section">
 			<div class="profile-card listing" ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
-				<p class="profile-card-img"><img ng-src="{{ house.image }}"></p>
+				<div class="profile-card-img"><img ng-src="{{ house.image }}"></div>
 				<div class="profile-card-info">
 					<h4>{{ house.address }}</h4>
 					<p>Beds: {{ house.bed }}</p>
