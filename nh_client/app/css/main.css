@@ -222,7 +222,7 @@ ul.kf-slider {
 .profile-card-info {
   width: 50%;
   padding-left: 2rem;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
   border-left: 0; }
@@ -237,3 +237,6 @@ ul.kf-slider {
 .profile-card-img {
   display: inline-block;
   width: 50%; }
+
+.request {
+  margin: 2rem 1rem; }

@@ -46,14 +46,17 @@
 			<button type="click" ng-click="agentCtrl.cancelNewHouseForm()">Cancel</button>
 		</form>
 
-		<div>
-			<h2>House Requests</h2>
-			<div ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request.id)">
-				<p>Beds: {{ request.bed }}</p>
-				<p>Bath: {{ request.bath }}</p>
-				<p>Square feet: {{ request.sq_ft }}</p>
-				<p>Budget: {{ request.budget }}</p>
-				<p>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</p>
+		<h2 class="profile-headline">House Requests</h2>
+		<div class="profile-section">
+			<div class="profile-card request" ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request.id)">
+				<div class="profile-card-img"><img ng-src="{{ request.request_buyer.image }}"></div>
+				<div class="profile-card-info">
+					<h4>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</h4>
+					<p>Beds: {{ request.bed }}</p>
+					<p>Bath: {{ request.bath }}</p>
+					<p>Square feet: {{ request.sq_ft }}</p>
+					<p>Budget: {{ request.budget }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
