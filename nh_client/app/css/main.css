@@ -215,7 +215,8 @@ ul.kf-slider {
   flex-direction: row;
   width: 40%;
   cursor: pointer;
-  border-radius: 2px; }
+  border-radius: 2px;
+  margin-bottom: 2rem; }
   .profile-card img {
     width: 100%;
     height: 100%;
@@ -243,10 +244,7 @@ ul.kf-slider {
   display: inline-block;
   width: 50%; }
 
-.request {
-  margin: 2rem 1rem; }
-
-.list-button {
+.profile-button {
   display: inline-block;
   cursor: pointer;
   color: #fff;
@@ -254,13 +252,16 @@ ul.kf-slider {
   padding: 0.8rem 1.8rem;
   border-radius: 2px;
   margin-right: 1rem; }
-  .list-button:hover {
+  .profile-button:hover {
     background-color: #2ecc71; }
 
-.listings-headline {
+.flex-headline {
   display: flex;
   flex-direction: row;
   justify-content: space-around; }
 
-.listing-blank {
+.profile-blank {
   flex-grow: 2; }
+
+.request {
+  margin: 2rem 1rem; }

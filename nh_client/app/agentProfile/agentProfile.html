@@ -2,10 +2,10 @@
 	<h1 class="welcome-headline">Welcome {{ agentCtrl.user.first_name }}!</h1>
 
 	<div class="profile-content">
-		<div class="profile-headline listings-headline">
+		<div class="profile-headline flex-headline">
 			<h2>Your Listings</h2>
-			<div class="listing-blank"></div>
-			<div class="list-button" ng-click="agentCtrl.showNewHouseForm()">List New House</div>
+			<div class="profile-blank"></div>
+			<div class="profile-button" ng-click="agentCtrl.showNewHouseForm()">List New House</div>
 		</div>
 		<div class="profile-section">
 			<div class="profile-card listing grow" ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
