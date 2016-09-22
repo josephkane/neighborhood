@@ -99,9 +99,12 @@ class ConversationsViewset(viewsets.ModelViewSet):
         by filtering against a `username` query parameter in the URL.
         """
         queryset = Conversation.objects.all()
-        recipient = self.request.query_params.get('recipient', None)
-        if recipient is not None:
-            queryset = queryset.filter(message__recipient = recipient)
+        convo_agent = self.request.query_params.get('convo_agent', None)
+        convo_buyer = self.request.query_params.get('convo_buyer', None)
+        if convo_agent is not None:
+            queryset = queryset.filter(convo_agent__user__username = convo_agent)
+        elif convo_buyer is not None:
+            queryset = queryset.filter(convo_buyer__user__username = convo_buyer)
         return queryset
 
 class MessagesViewset(viewsets.ModelViewSet):
@@ -439,9 +442,8 @@ def create_new_conversation(request):
 @csrf_exempt
 def create_new_message(request):
     data = json.loads(request.body.decode())
-    print("DATA: ", data["author"])
 
-    author = data["author"],
+    author = data["author"]
     recipient = data["recipient"]
     text = data["text"]
     convo = Conversation.objects.get(pk=data["convo"])
@@ -454,7 +456,6 @@ def create_new_message(request):
     )
 
     new_message.save()
-    print("MESSAGE: ", author)
 
     the_message = serializers.serialize("json", (new_message,))
     return HttpResponse(the_message, content_type='application/json')

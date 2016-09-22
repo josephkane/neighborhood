@@ -36,7 +36,7 @@ angular.module("nh")
 					$timeout();
 				})
 
-			$http.get(`${apiUrl}/conversations/?recipient=${profCtrl.user.user.username}`)
+			$http.get(`${apiUrl}/conversations/?convo_buyer=${profCtrl.user.user.username}`)
 				.then((res) => profCtrl.convos = res.data)
 
 
