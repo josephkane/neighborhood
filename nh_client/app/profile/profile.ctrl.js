@@ -12,6 +12,8 @@ angular.module("nh")
 
 			profCtrl.user = LandingFactory.getUser()
 
+			profCtrl.messages = []
+
 			// let user = LandingFactory.getUser()
 			// profCtrl.user = user.user
 

@@ -53,15 +53,16 @@ class HouseSaleSerializer(serializers.HyperlinkedModelSerializer):
        model = HouseSale
        fields = ("id", "url", "sale_agent", "sale_buyer", "sale_house", "price", "date", "sale_neighborhood")
 
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Message
+        fields = ("id", "url", "text", "created", "author", "recipient")
+
 class ConversationSerializer(serializers.HyperlinkedModelSerializer):
+    message = MessageSerializer(many=True)
 
     class Meta:
         model = Conversation
         fields = ("id", "url", "convo_agent", "convo_buyer", "convo_request", "message")
 
-class MessageSerializer(serializers.HyperlinkedModelSerializer):
-    convo = ConversationSerializer()
-
-    class Meta:
-        model = Message
-        fields = ("id", "url", "convo", "text", "created", "author", "recipient")
