@@ -189,7 +189,7 @@ ul.kf-slider {
 
 .welcome-headline {
   text-align: center;
-  margin: 4rem 0 6rem; }
+  margin: 4rem 0; }
 
 .profile-content {
   width: 90%;
@@ -198,7 +198,7 @@ ul.kf-slider {
 .profile-headline {
   padding-bottom: 10px;
   border-bottom: 2px solid #000;
-  margin-bottom: 3rem; }
+  margin: 6rem 0 3rem; }
   .profile-headline h2 {
     display: inline-block;
     margin: 0; }
