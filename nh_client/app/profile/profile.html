@@ -1,79 +1,92 @@
-<h1>PROFILE PAGE</h1>
+<div class="profile-container">
+	<h1 class="welcome-headline">Welcome {{ profCtrl.user.user.first_name }}!</h1>
 
-<h2>Welcome {{ profCtrl.user.fields.first_name }}</h2>
+	<div class="profile-content">
+		<h2 class="profile-headline">My Houses</h2>
+		<div class="profile-section">
+			<div class="profile-card grow"
+				ng-repeat="house in profCtrl.myHouses"
+				ng-click="profCtrl.showHouse(house.id)"
+				ng-show="house.selling === false">
+				<div class="profile_card-img"><img ng-src="{{ house.image }}"></div>
+				<div class="profile-card-info">
+					<h4>{{ house.address }}</h4>
+					<p>Beds: {{ house.bed }}</p>
+					<p>Bath: {{ house.bath }}</p>
+					<p>Square feet: {{ house.sq_ft }}</p>
+					<p>Neighborhood: {{ house.house_neighborhood.name }}</p>
+				</div>
+			</div>
+		</div>
 
-<div>
-	<h2>My Houses</h2>
-	<div
-		ng-repeat="house in profCtrl.myHouses"
-		ng-click="profCtrl.showHouse(house.id)"
-		ng-show="house.selling === false">
-		<p><img ng-src="{{ house.image }}"></p>
-		<h4>{{ house.address }}</h4>
-		<p>Beds: {{ house.bed }}</p>
-		<p>Bath: {{ house.bath }}</p>
-		<p>Square feet: {{ house.sq_ft }}</p>
-		<p>Neighborhood: {{ house.house_neighborhood.name }}</p>
-	</div>
-</div>
+		<h2 class="profile-headline">Houses I'm Selling</h2>
+		<div class="profile-section">
+			<div class="profile-card grow"
+				ng-repeat="house in profCtrl.myHouses"
+				ng-click="profCtrl.showHouse(house.id)"
+				ng-show="house.selling === true">
+				<div class="profile-card-img"><img ng-src="{{ house.image }}"></div>
+				<div class="profile-card-info">
+					<h4>{{ house.address }}</h4>
+					<p>Beds: {{ house.bed }}</p>
+					<p>Bath: {{ house.bath }}</p>
+					<p>Square feet: {{ house.sq_ft }}</p>
+					<p>Price: {{ house.price }}</p>
+					<p>Neighborhood: {{ house.house_neighborhood.name }}</p>
+				</div>
+			</div>
+		</div>
 
-<div>
-	<h2>Houses I'm Selling</h2>
-	<div
-		ng-repeat="house in profCtrl.myHouses"
-		ng-click="profCtrl.showHouse(house.id)"
-		ng-show="house.selling === true">
-		<p><img ng-src="{{ house.image }}"></p>
-		<p>Beds: {{ house.bed }}</p>
-		<p>Bath: {{ house.bath }}</p>
-		<p>Square feet: {{ house.sq_ft }}</p>
-		<p>Price: {{ house.price }}</p>
-		<p>Neighborhood: {{ house.house_neighborhood.name }}</p>
-	</div>
-</div>
+		<div class="profile-headline flex-headline">
+			<h2>My House Requests</h2>
+			<div class="profile-blank"></div>
+			<div class="profile-button" ng-click="profCtrl.showHouseRequestForm()">New House Request</div>
+		</div>
+		<div class="profile-section">
+			<div class="profile-card request grow" ng-repeat="request in profCtrl.requests" ng-click="profCtrl.showRequest(request.id)">
+				<div class="profile-card-img"><img ng-src="{{ request.request_buyer.image }}"></div>
+				<div class="profile-card-info">
+					<p>Beds: {{ request.bed }}</p>
+					<p>Bath: {{ request.bath }}</p>
+					<p>Square feet: {{ request.sq_ft }}</p>
+					<p>Budget: {{ request.budget }}</p>
+					<p>Neighborhood: {{ request.request_neighborhood.name }}</p>
+				</div>
+			</div>
+		</div>
 
-<div>
-	<h2>My House Requests</h2>
-	<div ng-repeat="request in profCtrl.requests" ng-click="profCtrl.showRequest(request.id)">
-		<p>Beds: {{ request.bed }}</p>
-		<p>Bath: {{ request.bath }}</p>
-		<p>Square feet: {{ request.sq_ft }}</p>
-		<p>Budget: {{ request.budget }}</p>
-		<p>Neighborhood: {{ request.neighborhood }}</p>
-	</div>
-</div>
+		<form name="houseRequestForm" ng-submit="profCtrl.submitHouseRequest()" ng-if="profCtrl.houseRequestFormIsVisible">
+			<label>Bedrooms:</label>
+			<input type="number" min="1" max="10+" ng-model="profCtrl.bed">
+			<label>Bathrooms:</label>
+			<input type="number" min="1" max="5" step="0.5" ng-model="profCtrl.bath">
+			<label>Square feet:</label>
+			<input type="number" min="500" max="5000" step="100" ng-model="profCtrl.sq_ft">
+			<label>Budget:</label>
+			<input type="number" min="100000" max="1000000" step="1000" ng-model="profCtrl.budget">
+			<label>Neighborhood:</label>
+			<select
+				ng-model="profCtrl.requestedNeighborhood"
+				ng-options="n as n.name for n in profCtrl.neighborhoodsArray">
+			</select>
+			<button type="submit">Submit</button>
+			<button type="click" ng-click="profCtrl.cancelHouseRequestForm()">Cancel</button>
+		</form>
 
-
-<button type="click" ng-click="profCtrl.showHouseRequestForm()">New House Request</button>
-
-<form name="houseRequestForm" ng-submit="profCtrl.submitHouseRequest()" ng-if="profCtrl.houseRequestFormIsVisible">
-	<label>Bedrooms:</label>
-	<input type="number" min="1" max="10+" ng-model="profCtrl.bed">
-	<label>Bathrooms:</label>
-	<input type="number" min="1" max="5" step="0.5" ng-model="profCtrl.bath">
-	<label>Square feet:</label>
-	<input type="number" min="500" max="5000" step="100" ng-model="profCtrl.sq_ft">
-	<label>Budget:</label>
-	<input type="number" min="100000" max="1000000" step="1000" ng-model="profCtrl.budget">
-	<label>Neighborhood:</label>
-	<select
-		ng-model="profCtrl.requestedNeighborhood"
-		ng-options="n as n.name for n in profCtrl.neighborhoodsArray">
-	</select>
-	<button type="submit">Submit</button>
-	<button type="click" ng-click="profCtrl.cancelHouseRequestForm()">Cancel</button>
-</form>
-
-<div>
-	<h2>Houses For Sale</h2>
-	<div ng-repeat="house in profCtrl.housesForSale" ng-click="profCtrl.showHouse(house.id)">
-		<p><img ng-src="{{ house.image }}"></p>
-		<h3>{{ house.address }}</h3>
-		<p>Beds: {{ house.bed }}</p>
-		<p>Bath: {{ house.bath }}</p>
-		<p>Square feet: {{ house.sq_ft }}</p>
-		<p>Year built: {{ house.yr_built }}</p>
-		<p>{{ house.description }}</p>
-		<p>Price: {{ house.price }}</p>
+		<h2 class="profile-headline">Houses For Sale</h2>
+		<div class="profile-section">
+			<div class="profile-card grow" ng-repeat="house in profCtrl.housesForSale" ng-click="profCtrl.showHouse(house.id)">
+				<div class="profile-card-img"><img ng-src="{{ house.image }}"></div>
+				<div class="profile-card-info">
+					<h4>{{ house.address }}</h4>
+					<p>Beds: {{ house.bed }}</p>
+					<p>Bath: {{ house.bath }}</p>
+					<p>Square feet: {{ house.sq_ft }}</p>
+					<p>Year built: {{ house.yr_built }}</p>
+					<p>{{ house.description }}</p>
+					<p>Price: {{ house.price }}</p>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
