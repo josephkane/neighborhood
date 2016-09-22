@@ -1,6 +1,11 @@
 <div class="profile-container">
 	<h1 class="welcome-headline">Welcome {{ agentCtrl.user.first_name }}!</h1>
 
+	<div>
+		<p>Houses sold this year: {{ agentCtrl.metrics.number_of_sales }}</p>
+		<p>Amount YTD: {{ agentCtrl.metrics.total_sales }}</p>
+	</div>
+
 	<div class="profile-content">
 		<h2 class="profile-headline">My Messages</h2>
 		<div class="profile-section">
