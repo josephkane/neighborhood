@@ -88,12 +88,12 @@ class HouseSalesViewset(viewsets.ModelViewSet):
     serializer_class = HouseSaleSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class ConversationViewset(viewsets.ModelViewSet):
+class ConversationsViewset(viewsets.ModelViewSet):
     queryset = Conversation.objects.all()
     serializer_class = ConversationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-class MessageViewset(viewsets.ModelViewSet):
+class MessagesViewset(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

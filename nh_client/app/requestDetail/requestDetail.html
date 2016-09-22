@@ -5,21 +5,13 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="mySmallModalLabel">List this house!</h4>
+        <h4 class="modal-title" id="mySmallModalLabel">Message to {{ reqCtrl.request.request_buyer.user.first_name }}:</h4>
       </div>
       <div class="form-group">
-      	<label>List with:</label>
-      	<select class="form-control" ng-model="houseCtrl.listingAgent">
-      		<option ng-repeat="agent in houseCtrl.agents" value="{{ agent.id }}">
-      			{{ agent.user.first_name }} {{ agent.user.last_name }}
-      		</option>
-      	</select>
+      	<label>Message:</label>
+      	<textarea ng-model="reqCtrl.text"></textarea>
       </div>
-      <div class="form-group">
-	      <label>Price:</label>
-	      <input ng-model="houseCtrl.price" class="form-control" type="number" min="50000" max="1000000" step="5000">
-      </div>
-      <button type="click" ng-click="houseCtrl.listHouse()">List this house</button>
+      <button type="click" ng-click="reqCtrl.createConvo()">Send</button>
     </div>
   </div>
 </div>
@@ -34,5 +26,15 @@
 	<p>Square feet: {{ reqCtrl.request.sq_ft }}</p>
 	<p ng-show="reqCtrl.request.request_neighborhood !== null">Neighborhood: {{ reqCtrl.request.request_neighborhood.name }}</p>
 </div>
+
+<button
+	type="button"
+	class="btn btn-primary"
+	data-toggle="modal"
+	data-target=".bd-example-modal-sm"
+	ng-show="reqCtrl.showMessageButton"
+	>
+		Send buyer a message
+</button>
 
 

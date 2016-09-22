@@ -9,6 +9,9 @@ router.register(r'agents', views.AgentsViewset)
 router.register(r'buyers', views.BuyersViewset)
 router.register(r'users', views.UsersViewset)
 router.register(r'house_requests', views.HouseRequestsViewset)
+router.register(r'house_sales', views.HouseSalesViewset)
+router.register(r'conversations', views.ConversationsViewset)
+router.register(r'messages', views.MessagesViewset)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

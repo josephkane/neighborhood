@@ -10,12 +10,5 @@ angular.module("nh")
 
 			navCtrl.logout = function () {
 				LandingFactory.logout();
-
-				$http({
-					url: `${apiUrl}/logout/`,
-					method: "POST",
-					headers: {"Content-type": "application/x-www-form-encoded"},
-					data: {"user": user.user}
-				})
 			};
 		}])
