@@ -114,7 +114,8 @@ ul.kf-slider {
 
 .landing-button {
   cursor: pointer;
-  padding: 0.8rem 1.8rem; }
+  padding: 0.8rem 1.8rem;
+  border-radius: 2px; }
 
 .sign-in {
   background-color: #2980b9; }
@@ -136,14 +137,14 @@ ul.kf-slider {
     padding: 10px;
     border: solid 5px #c9c9c9;
     transition: border 0.3s;
-    border-radius: 1px; }
+    border-radius: 2px; }
   .landing-form input[type="text"]:focus,
   .landing-form input[type="password"]:focus,
   .landing-form input[type="text"].focus,
   .landing-form input[type="password"].focus {
     border: solid 5px #969696; }
   .landing-form select {
-    border-radius: 1px !important; }
+    border-radius: 2px !important; }
 
 .rows {
   flex-direction: row;
@@ -176,6 +177,40 @@ ul.kf-slider {
     text-decoration: none;
     color: #fff;
     padding: 1.5rem 2.5rem;
-    margin: 0 1.5rem; }
+    margin: 0 1.5rem;
+    border-radius: 2px; }
     .nav-links a:hover {
       background-color: #3498db; }
+
+.welcome-headline {
+  text-align: center;
+  margin: 3rem 0 6rem; }
+
+.profile-content {
+  width: 90%;
+  margin: 0 auto; }
+
+.profile-headline {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+  margin-bottom: 3rem; }
+
+.profile-section {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; }
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  width: 40%; }
+  .profile-card img {
+    width: 100%; }
+  .profile-card p {
+    display: inline-block; }
+
+.profile-card-info {
+  width: 50%; }
+
+.profile-card-img {
+  width: 50%; }
