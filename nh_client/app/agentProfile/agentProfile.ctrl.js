@@ -5,8 +5,7 @@ angular.module("nh")
 		"$location",
 		"LandingFactory",
 		"AgentProfileFactory",
-		"$timeout",
-		function ($http, apiUrl, $location, LandingFactory, AgentProfileFactory, $timeout) {
+		function ($http, apiUrl, $location, LandingFactory, AgentProfileFactory) {
 			const agentCtrl = this;
 			agentCtrl.newHouseFormIsVisible = false;
 			agentCtrl.metrics = {
@@ -37,7 +36,7 @@ angular.module("nh")
 			$http.get(`${apiUrl}/house_sales/?agent_id=${user.add_info.id}`)
 				.then((res) => {
 					agentCtrl.sales = res.data;
-					$timeout();
+					console.log("SALES:", agentCtrl.sales);
 					agentCtrl.metrics.number_of_sales = agentCtrl.sales.length;
 					for (i = 0; i <= agentCtrl.sales.length; i++) {
 						agentCtrl.metrics.total_sales += agentCtrl.sales[i].price
@@ -86,11 +85,12 @@ angular.module("nh")
 								"price": agentCtrl.price,
 								"description": agentCtrl.description,
 								"image": res.downloadURL,
-								"neighborhood": agentCtrl.listedNeighborhood,
-								"agent": user.add_info
+								"neighborhood": agentCtrl.listedNeighborhood.id,
+								"agent": user.add_info.id
 							}
 						})
 					})
+					.then((res) => agentCtrl.houses.push(res.data))
 			}
 
 			agentCtrl.showRequest = function (request_id) {

@@ -319,8 +319,8 @@ def create_new_house(request):
     price = data["price"]
     image = data["image"]
     description = data["description"]
-    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
-    house_agent = Agent.objects.get(pk=data["agent"]["pk"])
+    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"])
+    house_agent = Agent.objects.get(pk=data["agent"])
 
     # make new house request
     new_house = House.objects.create(
