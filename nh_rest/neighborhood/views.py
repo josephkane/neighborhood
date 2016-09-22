@@ -214,8 +214,8 @@ def login_user(request):
     # return http response with result of login attempt as json
     return HttpResponse(the_user, content_type='application/json')
 
-# logout user
-def logout_view(request):
+@csrf_exempt
+def logout_user(request):
     """
         Logout current user
 
@@ -223,7 +223,8 @@ def logout_view(request):
     """
     logout(request)
     print('user', request.user)
-    return HttpResponseRedirect('/')
+    return HttpResponse
+
 
 @csrf_exempt
 def new_house_request(request):

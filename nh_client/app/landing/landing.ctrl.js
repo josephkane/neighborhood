@@ -30,7 +30,6 @@ angular.module("nh")
 			}
 
 			landCtrl.login = function () {
-				console.log("login");
 				$http({
 					url: `${apiUrl}/login/`,
 					method: "POST",
@@ -50,8 +49,10 @@ angular.module("nh")
 						"password": landCtrl.password
 					})
 					if (landCtrl.user_type === "buyer") {
+						showNav = true
 						$location.path(`/profile`);
 					} else if (landCtrl.user_type === "agent") {
+						showNav = true
 						$location.path(`/agentProfile`);
 					}
 					$timeout();

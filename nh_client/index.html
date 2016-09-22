@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<div ng-app="nh">
-			<!-- <div ng-include="'nav/navAgent.html'" ng-controller="NavControl as navCtrl" ng-show="navCtrl.currentUser"></div> -->
+			<div ng-include="'app/nav/nav.html'" ng-controller="NavCtrl as navCtrl" ng-if="location.path() !== '/'"></div>
 			<div ng-view></div>
 		</div>
 
@@ -37,5 +37,6 @@
 		<script src="app/houseDetail/houseDetail.ctrl.js"></script>
 		<script src="app/agentDetail/agentDetail.config.js"></script>
 		<script src="app/agentDetail/agentDetail.ctrl.js"></script>
+		<script src="app/nav/nav.ctrl.js"></script>
 	</body>
 </html>
