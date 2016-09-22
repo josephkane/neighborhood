@@ -1,0 +1,10 @@
+<div>
+	<h1>Conversation between {{ convoCtrl.convo.message[0].author }} & {{ convoCtrl.convo.message[0].recipient }}</h1>
+
+	<div ng-repeat="message in convoCtrl.convo.message">
+		<h4>From: {{ message.author }}</h4>
+		<h4>To: {{ message.recipient }}</h4>
+		<p>Time: {{ message.created }}</p>
+		<p>Message: {{ message.text }}</p>
+	</div>
+</div>

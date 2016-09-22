@@ -85,5 +85,9 @@ angular.module("nh")
 				$location.path(`/houseDetail/${house_id}/`)
 			}
 
+			profCtrl.showConvo = function (convo_id) {
+				$location.path(`/convoDetail/${convo_id}`)
+			}
+
 		}
 	])
