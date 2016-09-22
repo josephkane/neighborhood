@@ -1,5 +1,70 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="mySmallModalLabel">List new house:</h4>
+      	</div>
+      	<form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)">
+      		<div class="form-group">
+	      		<label>Address:</label>
+	      		<input type="text" ng-model="agentCtrl.address">
+      		</div>
+      		<div class="form-group">
+	      		<label>Bedrooms:</label>
+	      		<input type="number" min="1" max="10" step="1" ng-model="agentCtrl.bed">
+      		</div>
+      		<div class="form-group">
+	      		<label>Bathrooms:</label>
+	      		<input type="number" min="1" max="5" step="0.5" ng-model="agentCtrl.bath">
+      		</div>
+      		<div class="form-group">
+	      		<label>Square feet:</label>
+	      		<input type="number" min="500" max="5000" step="100" ng-model="agentCtrl.sq_ft">
+      		</div>
+      		<div class="form-group">
+	      		<label>Lot Size (in acres):</label>
+	      		<input type="number" min="0.01" max="2" step="0.01" ng-model="agentCtrl.lot_size">
+      		</div>
+      		<div class="form-group">
+	      		<label>Year built:</label>
+	      		<input type="number" min="1880" max="2016" step="1" ng-model="agentCtrl.yr_built">
+      		</div>
+      		<div class="form-group">
+	      		<label>Image:</label>
+	      		<input type="file" ng-model="agentCtrl.image">
+      		</div>
+      		<div class="form-group">
+	      		<label>Description:</label>
+	      		<input type="text" ng-model="agentCtrl.description">
+      		</div>
+      		<div class="form-group">
+	      		<label>Neighborhood:</label>
+	      		<select
+      			ng-model="agentCtrl.listedNeighborhood"
+      			ng-options="n as n.name for n in agentCtrl.neighborhoodsArray">
+      		</select>
+      		</div>
+      		<div class="form-group">
+	      		<label>Price:</label>
+	      		<input type="number" min="50000" max="1000000" step="5000" ng-model="agentCtrl.price">
+      		</div>
+      		<button type="submit">Submit</button>
+      		<button type="click" data-dismiss="modal" ng-click="agentCtrl.cancelNewHouseForm()">Cancel</button>
+      	</form>
+    </div>
+  </div>
+</div>
+
 <div class="profile-container">
 	<h1 class="welcome-headline">Welcome {{ agentCtrl.user.first_name }}!</h1>
+
+	<div>
+		<p>Houses sold this year: {{ agentCtrl.metrics.number_of_sales }}</p>
+		<p>Amount YTD: {{ agentCtrl.metrics.total_sales }}</p>
+	</div>
 
 	<div class="profile-content">
 		<h2 class="profile-headline">My Messages</h2>
@@ -18,7 +83,7 @@
 		<div class="profile-headline flex-headline">
 			<h2>Your Listings</h2>
 			<div class="profile-blank"></div>
-			<div class="profile-button" ng-click="agentCtrl.showNewHouseForm()">List New House</div>
+			<div class="profile-button" data-toggle="modal" data-target=".bd-example-modal-lg">List New House</div>
 		</div>
 		<div class="profile-section">
 			<div class="profile-card listing grow" ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
@@ -31,34 +96,6 @@
 				</div>
 			</div>
 		</div>
-
-		<form name="newHouseForm" ng-submit="agentCtrl.submitNewHouse(agentCtrl.image)" ng-if="agentCtrl.newHouseFormIsVisible">
-			<label>Address:</label>
-			<input type="text" ng-model="agentCtrl.address">
-			<label>Bedrooms:</label>
-			<input type="number" min="1" max="10" step="1" ng-model="agentCtrl.bed">
-			<label>Bathrooms:</label>
-			<input type="number" min="1" max="5" step="0.5" ng-model="agentCtrl.bath">
-			<label>Square feet:</label>
-			<input type="number" min="500" max="5000" step="100" ng-model="agentCtrl.sq_ft">
-			<label>Lot Size (in acres):</label>
-			<input type="number" min="0.01" max="2" step="0.01" ng-model="agentCtrl.lot_size">
-			<label>Year built:</label>
-			<input type="number" min="1880" max="2016" step="1" ng-model="agentCtrl.yr_built">
-			<label>Image:</label>
-			<input type="file" ng-model="agentCtrl.image">
-			<label>Description:</label>
-			<input type="text" ng-model="agentCtrl.description">
-			<label>Neighborhood:</label>
-			<select
-				ng-model="agentCtrl.listedNeighborhood"
-				ng-options="n as n.name for n in agentCtrl.neighborhoodsArray">
-			</select>
-			<label>Price:</label>
-			<input type="number" min="50000" max="1000000" step="5000" ng-model="agentCtrl.price">
-			<button type="submit">Submit</button>
-			<button type="click" ng-click="agentCtrl.cancelNewHouseForm()">Cancel</button>
-		</form>
 
 		<h2 class="profile-headline">House Requests</h2>
 		<div class="profile-section">

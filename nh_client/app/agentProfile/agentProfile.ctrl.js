@@ -8,6 +8,10 @@ angular.module("nh")
 		function ($http, apiUrl, $location, LandingFactory, AgentProfileFactory) {
 			const agentCtrl = this;
 			agentCtrl.newHouseFormIsVisible = false;
+			agentCtrl.metrics = {
+				number_of_sales: 0,
+				total_sales: 0
+			}
 
 			let user = LandingFactory.getUser();
 			agentCtrl.user = user.user;
@@ -17,15 +21,27 @@ angular.module("nh")
 					agentCtrl.neighborhoodsArray = res.data;
 				})
 
+			// factory not necessary, refactor later
 			AgentProfileFactory.getListedHouses(user.add_info)
 				.then((res) => agentCtrl.houses = res);
 
+			// factory not necessary, refactor later
 			AgentProfileFactory.getHouseRequests()
 				.then((res) => {
 					agentCtrl.requests = res});
 
 			$http.get(`${apiUrl}/conversations/?convo_agent=${agentCtrl.user.username}`)
 				.then((res) => agentCtrl.convos = res.data)
+
+			$http.get(`${apiUrl}/house_sales/?agent_id=${user.add_info.id}`)
+				.then((res) => {
+					agentCtrl.sales = res.data;
+					console.log("SALES:", agentCtrl.sales);
+					agentCtrl.metrics.number_of_sales = agentCtrl.sales.length;
+					for (i = 0; i <= agentCtrl.sales.length; i++) {
+						agentCtrl.metrics.total_sales += agentCtrl.sales[i].price
+					}
+				})
 
 			agentCtrl.showNewHouseForm = function () {
 				agentCtrl.newHouseFormIsVisible = true;
@@ -69,11 +85,12 @@ angular.module("nh")
 								"price": agentCtrl.price,
 								"description": agentCtrl.description,
 								"image": res.downloadURL,
-								"neighborhood": agentCtrl.listedNeighborhood,
-								"agent": user.add_info
+								"neighborhood": agentCtrl.listedNeighborhood.id,
+								"agent": user.add_info.id
 							}
 						})
 					})
+					.then((res) => agentCtrl.houses.push(res.data))
 			}
 
 			agentCtrl.showRequest = function (request_id) {

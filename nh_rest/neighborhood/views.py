@@ -88,6 +88,17 @@ class HouseSalesViewset(viewsets.ModelViewSet):
     serializer_class = HouseSaleSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = HouseSale.objects.all()
+        agent_id = self.request.query_params.get('agent_id', None)
+        if agent_id is not None:
+            queryset = queryset.filter(sale_agent__id = agent_id)
+        return queryset
+
 class ConversationsViewset(viewsets.ModelViewSet):
     queryset = Conversation.objects.all()
     serializer_class = ConversationSerializer
@@ -308,8 +319,8 @@ def create_new_house(request):
     price = data["price"]
     image = data["image"]
     description = data["description"]
-    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"]["id"])
-    house_agent = Agent.objects.get(pk=data["agent"]["pk"])
+    house_neighborhood = Neighborhood.objects.get(pk=data["neighborhood"])
+    house_agent = Agent.objects.get(pk=data["agent"])
 
     # make new house request
     new_house = House.objects.create(
