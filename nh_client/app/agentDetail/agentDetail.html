@@ -1,7 +1,7 @@
 <h1>AGENT DETAIL</h1>
 
 <div>
-	<p><img src="{{ adCtrl.agent.image }}"></p>
+	<p><img ng-src="{{ adCtrl.agent.image }}"></p>
 	<h3>{{ adCtrl.agent.user.first_name }} {{ adCtrl.agent.user.last_name }}</h3>
 	<p>{{ adCtrl.agent.bio }}</p>
 	<p>Member since: {{ adCtrl.agent.member_since }}</p>
@@ -10,8 +10,8 @@
 
 <h2>{{ adCtrl.agent.user.first_name }}'s Listings</h2>
 
-<div ng-repeat="house in adCtrl.houses" on-click="adCtrl.routeToHouse(house.id)">
-	<p><img src="{{ house.image }}"></p>
+<div ng-repeat="house in adCtrl.houses" ng-click="adCtrl.routeToHouse(house.id)">
+	<p><img ng-src="{{ house.image }}"></p>
 	<h3>{{ house.address }}</h3>
 	<p>Bed: {{ house.bed }}</p>
 	<p>Bath: {{ house.bath }}</p>
@@ -19,4 +19,17 @@
 	<p>Year built: {{ house.yr_built }}</p>
 	<p>{{ house.description }}</p>
 	<p>Price: {{ house.price }}</p>
+</div>
+
+<h2>{{ adCtrl.agent.user.first_name }}'s Sales</h2>
+<div ng-repeat="sale in adCtrl.sales">
+	<p><img ng-src="{{ sale.sale_house.image }}"></p>
+	<h3>{{ sale.sale_house.address }}</h3>
+	<p>Bed: {{ sale.sale_house.bed }}</p>
+	<p>Bath: {{ sale.sale_house.bath }}</p>
+	<p>Square feet: {{ sale.sale_house.sq_ft }}</p>
+	<p>Year built: {{ sale.sale_house.yr_built }}</p>
+	<p>{{ sale.sale_house.description }}</p>
+	<p>Price: {{ sale.sale_house.price }}</p>
+	<p>Date: {{ sale.date | date:short }}</p>
 </div>

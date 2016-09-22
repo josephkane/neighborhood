@@ -45,7 +45,7 @@ angular.module("nh")
 					method: "POST",
 					headers: {"Content-type": "application/x-www-form-encoded"},
 					data: {
-						"buyer": houseCtrl.currentUser.add_info.pk,
+						"buyer": houseCtrl.currentUser.add_info.id,
 						"house": houseCtrl.house
 					}
 				})
