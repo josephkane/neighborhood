@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
     	<div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -72,7 +72,7 @@
 			<div class="profile-card grow"
 				ng-repeat="convo in agentCtrl.convos"
 				ng-click="agentCtrl.showConvo(convo.id)">
-				<div class="profile_card-img"><h4>{{ convo.message[0].author }} to {{ convo.message[0].recipient }}</h4></div>
+				<div class="profile_card-img"><h4>with {{ convo.convo_buyer.user.username }}</h4></div>
 				<div class="profile-card-info">
 					<p>{{ convo.message[0].text }}</p>
 					<p>{{ convo.message[0].created | date:short }}</p>
@@ -83,7 +83,7 @@
 		<div class="profile-headline flex-headline">
 			<h2>Your Listings</h2>
 			<div class="profile-blank"></div>
-			<div class="profile-button" data-toggle="modal" data-target=".bd-example-modal-lg">List New House</div>
+			<div class="profile-button" data-toggle="modal" data-target=".bd-example-modal-sm">List New House</div>
 		</div>
 		<div class="profile-section">
 			<div class="profile-card listing grow" ng-repeat="house in agentCtrl.houses" ng-click="agentCtrl.showHouse(house.id)">
@@ -102,11 +102,12 @@
 			<div class="profile-card request grow" ng-repeat="request in agentCtrl.requests" ng-click="agentCtrl.showRequest(request.id)">
 				<div class="profile-card-img"><img ng-src="{{ request.request_buyer.image }}"></div>
 				<div class="profile-card-info">
-					<h4>Requested by: {{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</h4>
-					<p>Beds: {{ request.bed }}</p>
-					<p>Bath: {{ request.bath }}</p>
-					<p>Square feet: {{ request.sq_ft }}</p>
-					<p>Budget: {{ request.budget | currency : $ : 2}}</p>
+					<label>Requested by:</label>
+					<h4>{{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</h4>
+					<label>Budget:</label>
+					<p>{{ request.budget | currency : $ : 2}}</p>
+					<label>Budget:</label>
+					<p>{{ request.budget }}</p>
 				</div>
 			</div>
 		</div>

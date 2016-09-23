@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
     	<div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,7 +49,7 @@
 			<div class="profile-card grow"
 				ng-repeat="convo in profCtrl.convos"
 				ng-click="profCtrl.showConvo(convo.id)">
-				<div class="profile_card-img"><h4>{{ convo.message[0].author }}</h4></div>
+				<div class="profile_card-img"><h4>with {{ convo.convo_agent.user.username}}</h4></div>
 				<div class="profile-card-info">
 					<p>{{ convo.message[0].text }}</p>
 					<p>{{ convo.message[0].created | date:short }}</p>
@@ -95,17 +95,16 @@
 		<div class="profile-headline flex-headline">
 			<h2>My House Requests</h2>
 			<div class="profile-blank"></div>
-			<div class="profile-button" data-toggle="modal" data-target=".bd-example-modal-lg">New House Request</div>
+			<div class="profile-button" data-toggle="modal" data-target=".bd-example-modal-sm">New House Request</div>
 		</div>
 		<div class="profile-section">
 			<div class="profile-card request grow" ng-repeat="request in profCtrl.requests" ng-click="profCtrl.showRequest(request.id)">
 				<div class="profile-card-img"><img ng-src="{{ request.request_buyer.image }}"></div>
 				<div class="profile-card-info">
-					<p>Beds: {{ request.bed }}</p>
-					<p>Bath: {{ request.bath }}</p>
-					<p>Square feet: {{ request.sq_ft }}</p>
-					<p>Budget: {{ request.budget | currency : $ : 2}}</p>
-					<p>Neighborhood: {{ request.request_neighborhood.name }}</p>
+					<label>Budget:</label>
+					<p>{{ request.budget | currency : $ : 2}}</p>
+					<label>Neighborhood:</label>
+					<p>{{ request.request_neighborhood.name }}</p>
 				</div>
 			</div>
 		</div>
