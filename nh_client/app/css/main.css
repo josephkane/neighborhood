@@ -73,45 +73,61 @@ ul.kf-slider {
     background-position: 50%;
     z-index: 0;
     opacity: 0;
-    -webkit-animation: fade-out 40s infinite both;
-    -moz-animation: fade-out 40s infinite both;
-    animation: fade-out 40s infinite both;
+    -webkit-animation: fade-out 42s infinite both;
+    -moz-animation: fade-out 42s infinite both;
+    animation: fade-out 42s infinite both;
     background-image: url(../land_img/backporch1.jpg); }
     @media (min-width: 32ems) {
       ul.kf-slider li {
         background-image: url(../land_img/backporch1.jpg); } }
   ul.kf-slider li:nth-child(2) {
     background-image: url(../land_img/kitchen1.jpg);
-    -webkit-animation-delay: 4s;
-    -moz-animation-delay: 4s;
-    animation-delay: 4s; }
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    animation-delay: 6s; }
     @media (min-width: 32ems) {
       ul.kf-slider li:nth-child(2) {
         background-image: url(../land_img/kitchen1.jpg); } }
   ul.kf-slider li:nth-child(3) {
     background-image: url(../land_img/livingRoom2.jpg);
-    -webkit-animation-delay: 8s;
-    -moz-animation-delay: 8s;
-    animation-delay: 8s; }
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    animation-delay: 12s; }
     @media (min-width: 32ems) {
       ul.kf-slider li:nth-child(3) {
         background-image: url(../land_img/livingRoom2.jpg); } }
   ul.kf-slider li:nth-child(4) {
     background-image: url(../land_img/kitchen3.jpg);
-    -webkit-animation-delay: 12s;
-    -moz-animation-delay: 12s;
-    animation-delay: 12s; }
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    animation-delay: 18s; }
     @media (min-width: 32ems) {
       ul.kf-slider li:nth-child(4) {
         background-image: url(../land_img/kitchen3.jpg); } }
   ul.kf-slider li:nth-child(5) {
     background-image: url(../land_img/house1.jpg);
-    -webkit-animation-delay: 16s;
-    -moz-animation-delay: 16s;
-    animation-delay: 16s; }
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    animation-delay: 24s; }
     @media (min-width: 32ems) {
       ul.kf-slider li:nth-child(5) {
         background-image: url(../land_img/house1.jpg); } }
+  ul.kf-slider li:nth-child(6) {
+    background-image: url(../land_img/livingRoom1.jpg);
+    -webkit-animation-delay: 38s;
+    -moz-animation-delay: 38s;
+    animation-delay: 38s; }
+    @media (min-width: 32ems) {
+      ul.kf-slider li:nth-child(6) {
+        background-image: url(../land_img/livingRoom1.jpg); } }
+  ul.kf-slider li:nth-child(7) {
+    background-image: url(../land_img/house2.jpg);
+    -webkit-animation-delay: 46s;
+    -moz-animation-delay: 46s;
+    animation-delay: 46s; }
+    @media (min-width: 32ems) {
+      ul.kf-slider li:nth-child(7) {
+        background-image: url(../land_img/house2.jpg); } }
 
 .landing-button-section {
   display: flex;

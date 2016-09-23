@@ -19,6 +19,7 @@
 
 <div class="convo-container">
 	<h1 class="convo-headline">Conversation between {{ convoCtrl.convo.message[0].author }} & {{ convoCtrl.convo.message[0].recipient }}</h1>
+  <h5 class="convo-headline"><a href="#/agentDetail/{{convoCtrl.convo.convo_agent.id}}">See {{ convoCtrl.convo.convo_agent.user.username }}'s listings</a></h5>
 
 	<div class="convo-message" ng-repeat="message in convoCtrl.convo.message">
 		<h4 class="convo-author">{{ message.author }}</h4>
