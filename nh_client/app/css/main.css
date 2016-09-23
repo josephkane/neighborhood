@@ -264,4 +264,24 @@ ul.kf-slider {
   flex-grow: 2; }
 
 .request {
-  margin: 2rem 1rem; }
+  margin: 2rem 1rem;
+  font-size: 0.5rem;
+  width: 28%; }
+  .request .profile-card-img {
+    max-height: 154px; }
+
+.message .profile-card-img {
+  width: 23%; }
+
+.message .profile-card-info {
+  width: 78%; }
+
+.message h4 {
+  padding-left: 1rem; }
+
+.agent-metrics p {
+  text-align: center; }
+
+.metric-label {
+  text-decoration: underline;
+  font-weight: bold; }
