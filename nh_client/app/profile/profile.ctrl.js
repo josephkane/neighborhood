@@ -8,7 +8,6 @@ angular.module("nh")
 		"ProfileFactory",
 		function ($location, $http, apiUrl, LandingFactory, $timeout, ProfileFactory) {
 			const profCtrl = this;
-			profCtrl.houseRequestFormIsVisible = false;
 
 			profCtrl.user = LandingFactory.getUser()
 
@@ -51,7 +50,6 @@ angular.module("nh")
 				profCtrl.sq_ft = null;
 				profCtrl.budget = null;
 				profCtrl.neighborhood = null;
-				profCtrl.houseRequestFormIsVisible = false;
 			}
 
 			profCtrl.submitHouseRequest = function () {
@@ -65,12 +63,12 @@ angular.module("nh")
 						"bath": profCtrl.bath,
 						"sq_ft": profCtrl.sq_ft,
 						"budget": profCtrl.budget,
-						"neighborhood": profCtrl.requestedNeighborhood,
-						"buyer": user.add_info
+						"neighborhood": profCtrl.requestedNeighborhood.id,
+						"buyer": profCtrl.user.add_info.id
 					}
 				})
 				.then((res) => {
-					ProfileFactory.getHouseRequests(user.add_info)
+					ProfileFactory.getHouseRequests(profCtrl.user.add_info)
 					.then((res) => {
 						profCtrl.requests = res;
 					})

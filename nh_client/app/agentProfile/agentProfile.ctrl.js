@@ -7,7 +7,6 @@ angular.module("nh")
 		"AgentProfileFactory",
 		function ($http, apiUrl, $location, LandingFactory, AgentProfileFactory) {
 			const agentCtrl = this;
-			agentCtrl.newHouseFormIsVisible = false;
 			agentCtrl.metrics = {
 				number_of_sales: 0,
 				total_sales: 0
@@ -56,7 +55,6 @@ angular.module("nh")
 				agentCtrl.yr_built = null;
 				agentCtrl.description = null;
 				agentCtrl.price = null;
-				agentCtrl.newHouseFormIsVisible = false;
 
 			}
 
