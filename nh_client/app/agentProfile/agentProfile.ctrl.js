@@ -87,8 +87,11 @@ angular.module("nh")
 								"agent": user.add_info.id
 							}
 						})
+						.then((res) => {
+							console.log("house", res);
+							agentCtrl.houses.push(res.data[0].fields)
+						})
 					})
-					.then((res) => agentCtrl.houses.push(res.data))
 			}
 
 			agentCtrl.showRequest = function (request_id) {
