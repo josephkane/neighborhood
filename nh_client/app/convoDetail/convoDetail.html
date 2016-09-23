@@ -10,26 +10,24 @@
       <div class="form-group">
       	<textarea ng-model="convoCtrl.reply"></textarea>
       </div>
-      <button type="click" ng-click="convoCtrl.replyMessage()">Reply</button>
+      <div class="convo-button" type="click" ng-click="convoCtrl.replyMessage()">Reply</div>
     </div>
   </div>
 </div>
 
-<div>
-	<h1>Conversation between {{ convoCtrl.convo.message[0].author }} & {{ convoCtrl.convo.message[0].recipient }}</h1>
+<div class="convo-container">
+	<h1 class="convo-headline">Conversation between {{ convoCtrl.convo.message[0].author }} & {{ convoCtrl.convo.message[0].recipient }}</h1>
 
-	<div ng-repeat="message in convoCtrl.convo.message">
-		<h4>From: {{ message.author }}</h4>
-		<h4>To: {{ message.recipient }}</h4>
-		<p>Time: {{ message.created | date:short }}</p>
-		<p>Message: {{ message.text }}</p>
+	<div class="convo-message" ng-repeat="message in convoCtrl.convo.message">
+		<h4 class="convo-author">{{ message.author }}</h4>
+		<p class="convo-message-text">{{ message.text }} <span class="convo-message-date">-{{ message.created | date:short }}</span></p>
 	</div>
 
-	<button
+	<div
 		type="button"
-		class="btn btn-primary"
+		class="convo-button"
 		data-toggle="modal"
 		data-target=".bd-example-modal-sm">
 			Add message
-	</button>
+	</div>
 </div>

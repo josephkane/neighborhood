@@ -271,10 +271,10 @@ ul.kf-slider {
     max-height: 154px; }
 
 .message .profile-card-img {
-  width: 23%; }
+  width: 30%; }
 
 .message .profile-card-info {
-  width: 78%; }
+  width: 70%; }
 
 .message h4 {
   padding-left: 1rem; }
@@ -285,3 +285,37 @@ ul.kf-slider {
 .metric-label {
   text-decoration: underline;
   font-weight: bold; }
+
+.convo-button {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #27ae60;
+  padding: 0.8rem 1.8rem;
+  border-radius: 2px;
+  margin-right: 1rem; }
+  .convo-button:hover {
+    background-color: #2ecc71; }
+
+.convo-container {
+  width: 80%;
+  margin: 0 auto; }
+
+.convo-message {
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 2rem; }
+
+.convo-author {
+  margin-left: 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid black;
+  font-weight: bold; }
+
+.convo-message-text {
+  margin-left: 3rem;
+  font-size: 2rem; }
+
+.convo-message-date {
+  font-size: 0.9rem;
+  margin-left: 3rem; }

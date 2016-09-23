@@ -48,7 +48,7 @@
 	<p>Price: {{ houseCtrl.house.price }}</p>
 	<p>Description: {{ houseCtrl.house.description }}</p>
 	<p ng-show="houseCtrl.house.last_sold !== null">
-		Last sold: {{ houseCtrl.house.last_sold }}
+		Last sold: {{ houseCtrl.house.last_sold | date:short}}
 	</p>
 	<button ng-show="houseCtrl.showBuyButton" ng-click="houseCtrl.buyHouse()">BUY</button>
 	<button
