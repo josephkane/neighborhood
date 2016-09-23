@@ -371,3 +371,24 @@ ul.kf-slider {
 
 .bs-radius {
   border-radius: 2px; }
+
+.agent-detail-container {
+  width: 90%;
+  margin: 0 auto; }
+  .agent-detail-container img {
+    border-radius: 2px; }
+
+.agent-detail-top {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3rem; }
+
+.agent-detail-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5rem;
+  width: 100%; }
+
+.agent-name {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #000; }

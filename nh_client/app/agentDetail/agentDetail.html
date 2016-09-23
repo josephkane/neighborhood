@@ -1,35 +1,43 @@
-<h1>AGENT DETAIL</h1>
+<div class="agent-detail-container">
+	<div class="agent-detail-top">
+		<div><img ng-src="{{ adCtrl.agent.image }}"></div>
+		<div class="agent-detail-info">
+			<h3 class="agent-name">{{ adCtrl.agent.user.first_name }} {{ adCtrl.agent.user.last_name }}</h3>
+			<p><span class="bold">Member since:</span> {{ adCtrl.agent.member_since | date:short
+			}}</p>
+			<p><span class="bold">Contact:</span> {{ adCtrl.agent.user.email }}</p>
+			<p>{{ adCtrl.agent.bio }}</p>
+		</div>
+	</div>
 
-<div>
-	<p><img ng-src="{{ adCtrl.agent.image }}"></p>
-	<h3>{{ adCtrl.agent.user.first_name }} {{ adCtrl.agent.user.last_name }}</h3>
-	<p>{{ adCtrl.agent.bio }}</p>
-	<p>Member since: {{ adCtrl.agent.member_since }}</p>
-	<p>Contact: {{ adCtrl.agent.user.email }}</p>
-</div>
+	<h2 class="profile-headline">{{ adCtrl.agent.user.first_name }}'s Listings</h2>
+	<div class="profile-section">
+		<div class="profile-card grow" ng-repeat="house in adCtrl.houses" ng-click="adCtrl.routeToHouse(house.id)">
+			<div class="profile-card-image"><img ng-src="{{ house.image }}"></div>
+			<div class="profile-card-info">
+				<h4>{{ house.address }}</h4>
+				<p>Bed: {{ house.bed }}</p>
+				<p>Bath: {{ house.bath }}</p>
+				<p>Square feet: {{ house.sq_ft }}</p>
+				<p>Year built: {{ house.yr_built }}</p>
+				<p>Price: {{ house.price | currency : $ : 2}}</p>
+			</div>
+		</div>
+	</div>
 
-<h2>{{ adCtrl.agent.user.first_name }}'s Listings</h2>
-
-<div ng-repeat="house in adCtrl.houses" ng-click="adCtrl.routeToHouse(house.id)">
-	<p><img ng-src="{{ house.image }}"></p>
-	<h3>{{ house.address }}</h3>
-	<p>Bed: {{ house.bed }}</p>
-	<p>Bath: {{ house.bath }}</p>
-	<p>Square feet: {{ house.sq_ft }}</p>
-	<p>Year built: {{ house.yr_built }}</p>
-	<p>{{ house.description }}</p>
-	<p>Price: {{ house.price | currency : $ : 2}}</p>
-</div>
-
-<h2>{{ adCtrl.agent.user.first_name }}'s Sales</h2>
-<div ng-repeat="sale in adCtrl.sales">
-	<p><img ng-src="{{ sale.sale_house.image }}"></p>
-	<h3>{{ sale.sale_house.address }}</h3>
-	<p>Bed: {{ sale.sale_house.bed }}</p>
-	<p>Bath: {{ sale.sale_house.bath }}</p>
-	<p>Square feet: {{ sale.sale_house.sq_ft }}</p>
-	<p>Year built: {{ sale.sale_house.yr_built }}</p>
-	<p>{{ sale.sale_house.description }}</p>
-	<p>Price: {{ sale.sale_house.price | currency : $ : 2}}</p>
-	<p>Date: {{ sale.date | date:short }}</p>
+	<h2 class="profile-headline">{{ adCtrl.agent.user.first_name }}'s Sales</h2>
+	<div class="profile-section">
+		<div class="profile-card grow" ng-repeat="sale in adCtrl.sales">
+			<div class="profile-card-image"><img ng-src="{{ sale.sale_house.image }}"></div>
+			<div class="profile-card-info">
+				<h4>{{ sale.sale_house.address }}</h4>
+				<p>Bed: {{ sale.sale_house.bed }}</p>
+				<p>Bath: {{ sale.sale_house.bath }}</p>
+				<p>Square feet: {{ sale.sale_house.sq_ft }}</p>
+				<p>Year built: {{ sale.sale_house.yr_built }}</p>
+				<p>Price: {{ sale.sale_house.price | currency : $ : 2}}</p>
+				<p>Date: {{ sale.date | date:short }}</p>
+			</div>
+		</div>
+	</div>
 </div>
