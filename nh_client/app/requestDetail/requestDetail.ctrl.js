@@ -28,7 +28,9 @@ angular.module("nh")
 					}
 				})
 				.then((res) => {
-					console.log("response: ", res);
+					console.log("RES: ", res);
+					$location.path("/agentProfile");
+					$timeout()
 				})
 			}
 		}

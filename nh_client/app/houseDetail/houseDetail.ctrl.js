@@ -4,7 +4,9 @@ angular.module("nh")
 		"apiUrl",
 		"$routeParams",
 		"LandingFactory",
-		function ($http, apiUrl, $routeParams, LandingFactory) {
+		"$location",
+		"$timeout",
+		function ($http, apiUrl, $routeParams, LandingFactory, $location, $timeout) {
 			const houseCtrl = this;
 			houseCtrl.currentUser = LandingFactory.getUser();
 
@@ -51,6 +53,8 @@ angular.module("nh")
 				})
 				.then((res) => {
 					console.log("RES: ", res);
+					$location.path("/profile");
+					$timeout()
 				})
 			}
 
@@ -65,7 +69,11 @@ angular.module("nh")
 						"price": houseCtrl.price,
 					}
 				})
-				.then((res) => console.log("listed: ", res))
+				.then((res) => {
+					console.log("RES: ", res);
+					$location.path("/profile");
+					$timeout()
+				})
 			}
 		}
 	])
