@@ -38,7 +38,8 @@ angular.module("nh")
 					}
 				})
 				.then((res) => {
-					console.log("response: ", res);
+					console.log("res:", res);
+					convoCtrl.convo.message.push(res.data[0].fields);
 				})
 			}
 		}
