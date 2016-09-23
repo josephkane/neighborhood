@@ -30,34 +30,35 @@
 	<div class="house-info">
 		<h2 class="house-headline">{{ houseCtrl.house.address }}</h2>
 		<p ng-show="houseCtrl.house.house_agent !== null">
-			Listed by: <a href="#/agentDetail/{{houseCtrl.house.house_agent.id}}">{{ houseCtrl.house.house_agent.user.first_name }}
+			<span class="bold">Listed by:</span> <a href="#/agentDetail/{{houseCtrl.house.house_agent.id}}">{{ houseCtrl.house.house_agent.user.first_name }}
 			{{ houseCtrl.house.house_agent.user.last_name }}</a>
 		</p>
 		<p ng-show="houseCtrl.house.house_buyer !== null">
-			Owned by: {{ houseCtrl.house.house_buyer.user.first_name }}
+			<span class="bold">Owned by:</span> {{ houseCtrl.house.house_buyer.user.first_name }}
 			{{ houseCtrl.house.house_buyer.user.last_name }}
 		</p>
-		<p>Beds: {{ houseCtrl.house.bed }}</p>
-		<p>Bath: {{ houseCtrl.house.bath }}</p>
-		<p>Square feet: {{ houseCtrl.house.sq_ft }}</p>
-		<p>Lot size (in acres): {{ houseCtrl.house.lot_size }}</p>
-		<p>Year built: {{ houseCtrl.house.yr_built }}</p>
+		<p><span class="bold">Beds:</span> {{ houseCtrl.house.bed }}</p>
+		<p><span class="bold">Bath:</span> {{ houseCtrl.house.bath }}</p>
+		<p><span class="bold">Square feet:</span> {{ houseCtrl.house.sq_ft }}</p>
+		<p><span class="bold">Lot size (in acres):</span> {{ houseCtrl.house.lot_size }}</p>
+		<p><span class="bold">Year built:</span> {{ houseCtrl.house.yr_built }}</p>
 		<p ng-show="houseCtrl.house.house_neighborhood !== null">
-			Neighborhood: {{ houseCtrl.house.house_neighborhood.name }}
+			<span class="bold">Neighborhood:</span> {{ houseCtrl.house.house_neighborhood.name }}
 		</p>
-		<p>Price: {{ houseCtrl.house.price }}</p>
-		<p>Description: {{ houseCtrl.house.description }}</p>
+		<p><span class="bold">Price:</span> {{ houseCtrl.house.price | currency : $ : 2}}</p>
+		<p><span class="bold">Description:</span> {{ houseCtrl.house.description }}</p>
 		<p ng-show="houseCtrl.house.last_sold !== null">
-			Last sold: {{ houseCtrl.house.last_sold | date:short}}
+			<span class="bold">Last sold:</span> {{ houseCtrl.house.last_sold | date:short}}
 		</p>
+		<button class="btn btn-primary" ng-show="houseCtrl.showBuyButton" ng-click="houseCtrl.buyHouse()">BUY</button>
+		<button
+			type="button"
+			class="btn btn-primary"
+			data-toggle="modal"
+			data-target=".bd-example-modal-sm"
+			ng-show="houseCtrl.showListButton">
+				List this house
+		</button>
 	</div>
 </div>
-<button ng-show="houseCtrl.showBuyButton" ng-click="houseCtrl.buyHouse()">BUY</button>
-<button
-	type="button"
-	class="btn btn-primary"
-	data-toggle="modal"
-	data-target=".bd-example-modal-sm"
-	ng-show="houseCtrl.showListButton">
-		List this house
-</button>
+

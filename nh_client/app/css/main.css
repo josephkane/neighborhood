@@ -11,6 +11,9 @@ body {
   .grow:hover {
     transform: scale(1.005); }
 
+.bold {
+  font-weight: bold; }
+
 .landing-container {
   display: table;
   width: 100%;
