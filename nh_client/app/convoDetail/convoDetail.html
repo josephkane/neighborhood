@@ -7,10 +7,12 @@
         </button>
         <h4 class="modal-title" id="mySmallModalLabel">Reply:</h4>
       </div>
-      <div class="form-group">
+      <div class="form-group reply-textarea">
       	<textarea ng-model="convoCtrl.reply"></textarea>
       </div>
-      <div class="convo-button" type="click" ng-click="convoCtrl.replyMessage()">Reply</div>
+      <div>
+      	<div class="convo-button reply-button" type="click" ng-click="convoCtrl.replyMessage()">Reply</div>
+      </div>
     </div>
   </div>
 </div>
