@@ -106,8 +106,8 @@
 					<h4>{{ request.request_buyer.user.first_name }} {{ request.request_buyer.user.last_name }}</h4>
 					<label>Budget:</label>
 					<p>{{ request.budget | currency : $ : 2}}</p>
-					<label>Budget:</label>
-					<p>{{ request.budget }}</p>
+					<label>Neighborhood:</label>
+					<p>{{ request.request_neighborhood.name }}</p>
 				</div>
 			</div>
 		</div>

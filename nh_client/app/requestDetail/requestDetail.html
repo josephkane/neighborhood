@@ -7,34 +7,35 @@
         </button>
         <h4 class="modal-title" id="mySmallModalLabel">Message to {{ reqCtrl.request.request_buyer.user.first_name }}:</h4>
       </div>
-      <div class="form-group">
-      	<label>Message:</label>
-      	<textarea ng-model="reqCtrl.text"></textarea>
+      <div class="form-group reply-textarea">
+      	<textarea class="" ng-model="reqCtrl.text"></textarea>
       </div>
-      <button type="click" ng-click="reqCtrl.createConvo()">Send</button>
+      <div>
+        <div class="convo-button reply-button" type="click" ng-click="reqCtrl.createConvo()">Send</div>
+      </div>
     </div>
   </div>
 </div>
 
-<h1>REQUEST DETAIL</h1>
+<div class="request-container">
+	<h4 class="request-headline">{{ reqCtrl.request.request_buyer.user.first_name }}
+	{{ reqCtrl.request.request_buyer.user.last_name }} is looking for:</h4>
+	<div class="request-info">
+    <p><span class="bold">Beds:</span> {{ reqCtrl.request.bed }}</p>
+    <p><span class="bold">Bath:</span> {{ reqCtrl.request.bath }}</p>
+    <p><span class="bold">Square feet:</span> {{ reqCtrl.request.sq_ft }}</p>
+    <p ng-show="reqCtrl.request.request_neighborhood !== null"><span class="bold">Neighborhood:</span> {{ reqCtrl.request.request_neighborhood.name }}</p>
+  </div>
 
-<div>
-	<p>Requested by {{ reqCtrl.request.request_buyer.user.first_name }}
-	{{ reqCtrl.request.request_buyer.user.last_name }}</p>
-	<p>Beds: {{ reqCtrl.request.bed }}</p>
-	<p>Bath: {{ reqCtrl.request.bath }}</p>
-	<p>Square feet: {{ reqCtrl.request.sq_ft }}</p>
-	<p ng-show="reqCtrl.request.request_neighborhood !== null">Neighborhood: {{ reqCtrl.request.request_neighborhood.name }}</p>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target=".bd-example-modal-sm"
+    ng-show="reqCtrl.showMessageButton"
+    >
+      Send {{ reqCtrl.request.request_buyer.user.first_name }} a message
+  </button>
 </div>
-
-<button
-	type="button"
-	class="btn btn-primary"
-	data-toggle="modal"
-	data-target=".bd-example-modal-sm"
-	ng-show="reqCtrl.showMessageButton"
-	>
-		Send buyer a message
-</button>
 
 

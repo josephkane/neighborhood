@@ -392,3 +392,11 @@ ul.kf-slider {
 .agent-name {
   padding-bottom: 1rem;
   border-bottom: 2px solid #000; }
+
+.request-container {
+  width: 50%;
+  margin: 3rem auto 0; }
+
+.request-headline {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #000; }
