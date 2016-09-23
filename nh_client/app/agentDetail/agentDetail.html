@@ -18,7 +18,7 @@
 	<p>Square feet: {{ house.sq_ft }}</p>
 	<p>Year built: {{ house.yr_built }}</p>
 	<p>{{ house.description }}</p>
-	<p>Price: {{ house.price }}</p>
+	<p>Price: {{ house.price | currency : $ : 2}}</p>
 </div>
 
 <h2>{{ adCtrl.agent.user.first_name }}'s Sales</h2>
@@ -30,6 +30,6 @@
 	<p>Square feet: {{ sale.sale_house.sq_ft }}</p>
 	<p>Year built: {{ sale.sale_house.yr_built }}</p>
 	<p>{{ sale.sale_house.description }}</p>
-	<p>Price: {{ sale.sale_house.price }}</p>
+	<p>Price: {{ sale.sale_house.price | currency : $ : 2}}</p>
 	<p>Date: {{ sale.date | date:short }}</p>
 </div>

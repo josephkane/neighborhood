@@ -63,7 +63,7 @@
 
 	<div>
 		<p>Houses sold this year: {{ agentCtrl.metrics.number_of_sales }}</p>
-		<p>Amount YTD: {{ agentCtrl.metrics.total_sales }}</p>
+		<p>Amount YTD: {{ agentCtrl.metrics.total_sales | currency : $ : 2}}</p>
 	</div>
 
 	<div class="profile-content">
@@ -106,7 +106,7 @@
 					<p>Beds: {{ request.bed }}</p>
 					<p>Bath: {{ request.bath }}</p>
 					<p>Square feet: {{ request.sq_ft }}</p>
-					<p>Budget: {{ request.budget }}</p>
+					<p>Budget: {{ request.budget | currency : $ : 2}}</p>
 				</div>
 			</div>
 		</div>
