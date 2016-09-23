@@ -7,19 +7,21 @@
         </button>
         <h4 class="modal-title" id="mySmallModalLabel">List this house!</h4>
       </div>
-      <div class="form-group">
-      	<label>List with:</label>
-      	<select class="form-control" ng-model="houseCtrl.listingAgent">
-      		<option ng-repeat="agent in houseCtrl.agents" value="{{ agent.id }}">
-      			{{ agent.user.first_name }} {{ agent.user.last_name }}
-      		</option>
-      	</select>
+      <div class="list-modal-body">
+	      <div class="form-group">
+	      	<label>List with:</label>
+	      	<select class="form-control" ng-model="houseCtrl.listingAgent">
+	      		<option ng-repeat="agent in houseCtrl.agents" value="{{ agent.id }}">
+	      			{{ agent.user.first_name }} {{ agent.user.last_name }}
+	      		</option>
+	      	</select>
+	      </div>
+	      <div class="form-group">
+		      <label>Price:</label>
+		      <input ng-model="houseCtrl.price" class="form-control" type="number" min="50000" max="1000000" step="5000">
+	      </div>
+	      <div class="list-modal-button" type="click" ng-click="houseCtrl.listHouse()">List this house</div>
       </div>
-      <div class="form-group">
-	      <label>Price:</label>
-	      <input ng-model="houseCtrl.price" class="form-control" type="number" min="50000" max="1000000" step="5000">
-      </div>
-      <button type="click" ng-click="houseCtrl.listHouse()">List this house</button>
     </div>
   </div>
 </div>
@@ -50,14 +52,14 @@
 		<p ng-show="houseCtrl.house.last_sold !== null">
 			<span class="bold">Last sold:</span> {{ houseCtrl.house.last_sold | date:short}}
 		</p>
-		<button class="btn btn-primary" ng-show="houseCtrl.showBuyButton" ng-click="houseCtrl.buyHouse()">BUY</button>
+		<button class="btn btn-primary bs-radius" ng-show="houseCtrl.showBuyButton" ng-click="houseCtrl.buyHouse()">BUY</button>
 		<button
 			type="button"
-			class="btn btn-primary"
+			class="btn btn-primary bs-radius"
 			data-toggle="modal"
 			data-target=".bd-example-modal-sm"
 			ng-show="houseCtrl.showListButton">
-				List this house
+				List
 		</button>
 	</div>
 </div>

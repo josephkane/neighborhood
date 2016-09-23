@@ -351,3 +351,23 @@ ul.kf-slider {
 .house-headline {
   border-bottom: 2px solid #000;
   margin-top: 1rem; }
+
+.list-modal-body {
+  width: 80%;
+  margin: 0 auto; }
+
+.list-modal-button {
+  display: block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #27ae60;
+  padding: 0.8rem 1.8rem;
+  border-radius: 2px;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto 2rem; }
+  .list-modal-button:hover {
+    background-color: #2ecc71; }
+
+.bs-radius {
+  border-radius: 2px; }
