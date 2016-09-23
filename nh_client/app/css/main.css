@@ -330,3 +330,21 @@ ul.kf-slider {
   display: block;
   width: 90%;
   margin: 2rem auto; }
+
+.house-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 2rem auto 0;
+  justify-content: space-around; }
+
+.house-image img {
+  border-radius: 2px; }
+
+.house-info {
+  display: flex;
+  flex-direction: column; }
+
+.house-headline {
+  border-bottom: 2px solid #000;
+  margin-top: 1rem; }
